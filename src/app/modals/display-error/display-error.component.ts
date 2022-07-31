@@ -23,7 +23,4 @@ export class DisplayErrorComponent implements OnInit {
   Decline(){
     this.basModalRef.hide();
   }
-
-  
-
 }
