@@ -1,0 +1,22 @@
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+    <c-container>
+      <c-row class="justify-content-center">
+        <c-col md="6" sm="12" xs="12" lg="6">
+          <div class="clearfix">
+            <h1 class="float-start display-3 me-4">404</h1>
+            <h2 class="pt-3">Oops! You're lost.</h2>
+            <p class="text-medium-emphasis float-start">
+              <strong>The Query you are looking for was not found.</strong>     
+            </p>
+          </div>
+          
+        </c-col>
+        <div class="d-grid gap-2 col-md-3 col-lg-3 col-sm-12 col-xs-12 mx-auto">
+          <button class="btn btn-primary" type="button" routerLink="/dashboard">Go to dashboard</button>
+          <button class="btn btn-dark" type="button" (click)="previousUrl()">Back</button>
+        </div>
+      
+      </c-row>
+    </c-container>
+  </div>
+ 

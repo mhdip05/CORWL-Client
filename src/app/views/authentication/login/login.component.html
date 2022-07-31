@@ -1,0 +1,124 @@
+<div 
+    class="bg-light min-vh-100 d-flex flex-row align-items-center"
+>
+    <c-container style="background-color: bg-light">
+        <c-row class="justify-content-center">
+            <c-col
+                xl="6"
+                lg="6"
+                md="12"
+                sm="12"
+                xs="12"
+                class="mb-1"
+            >
+                <c-card-group>
+                    <c-card class="p-4">
+                        <c-card-body>
+                            <form
+                                #loginForm="ngForm"
+                                cForm
+                                autocomplete="off"
+                                (ngSubmit)="login()"
+                                ngNativeValidate
+                            >
+                                <h1>Login</h1>
+                                <p class="text-medium-emphasis">Sign In to your account</p>
+                                <c-input-group class="mb-3">
+                                    <span cInputGroupText>
+                                        <svg
+                                            cIcon
+                                            name="cilUser"
+                                        ></svg>
+                                    </span>
+                                    <input
+                                        class="form-control"
+                                        type="text"
+                                        placeholder="Username"
+                                        name="UserName"
+                                        [(ngModel)]="model.UserName"
+                                    >
+                                </c-input-group>
+                                <c-input-group class="mb-4">
+                                    <span cInputGroupText>
+                                        <svg
+                                            cIcon
+                                            name="cilLockLocked"
+                                        ></svg>
+                                    </span>
+                                    <input
+                                        cFormControl
+                                        placeholder="Password"
+                                        type="password"
+                                        name="Password"
+                                        [(ngModel)]="model.Password"
+                                    >
+                                </c-input-group>
+                                <c-row>
+                                    <c-col
+                                        xl="6"
+                                        lg="12"
+                                        md="12"
+                                        sm="12"
+                                        xs="12"
+                                        class="mb-1"
+                                    >
+                                        <button
+                                            cButton
+                                            class="px-4 btn-block"
+                                            color="primary"
+                                            type="submit"
+                                        >
+                                            Login
+                                        </button>
+                                    </c-col>
+                                    <c-col
+                                        xl="6"
+                                        lg="12"
+                                        md="12"
+                                        sm="12"
+                                        xs="12"
+                                    >
+                                        <button
+                                            cButton
+                                            class="px-4 btn btn-block"
+                                            color="dark"
+                                        >
+                                            Forgot password?
+                                        </button>
+                                    </c-col>
+                                </c-row>
+                            </form>
+                        </c-card-body>
+                    </c-card>
+                </c-card-group>
+            </c-col>
+        </c-row>
+        <c-row class="justify-content-center mt-1">
+            <c-col
+                xl="6"
+                lg="6"
+                md="12"
+                sm="12"
+                xs="12"
+                class="mb-1"
+            >
+                <c-card-group>
+                    <c-card
+                        class="text-white bg-primary py-5"
+                        id="quote-card"
+                    >
+                        <c-card-body class="text-center mt-5">
+                            <div>
+                                <h2>Today's Quote</h2>
+                                <p>
+                                    Your body hears everything your mind says.
+                                </p>
+                            </div>
+                        </c-card-body>
+                    </c-card>
+                </c-card-group>
+            </c-col>
+        </c-row>
+    </c-container>
+
+
