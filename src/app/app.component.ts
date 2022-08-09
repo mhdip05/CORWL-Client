@@ -10,8 +10,16 @@ import { IUser } from './_interface/IUser';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'body',
-  template: '<router-outlet></router-outlet>',
+  template: `<ngx-loading-bar
+              height="4px"
+              color="#0d6efd"
+              [includeSpinner] = false
+            >
+
+            </ngx-loading-bar> 
+             <router-outlet></router-outlet>`,
 })
+
 export class AppComponent implements OnInit {
   title = 'NMS';
 
@@ -33,15 +41,12 @@ export class AppComponent implements OnInit {
         return;
       }
     });
-     
   }
 
-  setCurrentUser(){
-    
-    const user:IUser = JSON.parse(localStorage.getItem('0F340967EE56C835881A40DA48CE1D472C3DD368217A83DCB5074EB97BB367FBB3CB008FC9F7C86D075392F3D44DC97008BD04F328B36DED48DEC57230581E91')!)
-    if(user){
+  setCurrentUser() {
+    const user: IUser = JSON.parse(localStorage.getItem('0F340967EE56C835881A40DA48CE1D472C3DD368217A83DCB5074EB97BB367FBB3CB008FC9F7C86D075392F3D44DC97008BD04F328B36DED48DEC57230581E91')!)
+    if (user) {
       this.authService.setCurrentUser(user)
     }
   }
-
 }

@@ -1,16 +1,19 @@
-<div class="modal-header" >
-    <h4 class="modal-title pull-left">{{title}}</h4>
-    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="Decline()">
-      <span aria-hidden="true" class="visually-hidden">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-      <div id="modal-error" *ngFor='let m of message;let i=index;'>
-          <span>{{m}}</span>
+<div>
+    <div class="modal-header" >
+        <h4 class="modal-title pull-left">{{title}}</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="Decline()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
       </div>
-  </div>
-  <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="Decline()">Close</button>
-  </div>
+      <div class="modal-body">
+          <div id="modal-error" *ngFor='let m of message;let i=index;'>
+              <span>{{m}}</span>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="Decline()">Close</button>
+    </div>
+</div>
+
  
 

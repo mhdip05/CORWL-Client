@@ -37,6 +37,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError(e => {
+        //console.log(e)
         this.modalData.message.length = 0;
         if (e.error) {
           switch (e.status) {
@@ -75,8 +76,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           }
         }
         if (this.showModal == true) {
-          this.modal.show(DisplayErrorComponent, this.config);
-          
+          this.modal.show(DisplayErrorComponent, this.config); 
         }
 
         throw '';

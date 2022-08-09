@@ -32,10 +32,10 @@ const routes: Routes = [
   },
 
   {
-    path: '', 
+    path: '',
     component: DefaultLayoutComponent,
-    runGuardsAndResolvers:'always',
-    canActivate:[AuthGuard],
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',
@@ -55,17 +55,21 @@ const routes: Routes = [
           import('./views/employee/employee.module').then((m) => m.EmployeeModule)
       },
       {
-        path:'doctor',
-        loadChildren:()=>
-          import('./views/doctor/doctor.module').then((m)=>m.DoctorModule)
+        path: 'doctor',
+        loadChildren: () =>
+          import('./views/doctor/doctor.module').then((m) => m.DoctorModule)
+      },
+      {
+        path: 'account-settings',
+        loadChildren: () => import('./views/account-settings/account-settings.module').then((m) => m.AccountSettingsModule)
       }
     ]
   },
 
-  {path:'test-error', component:TestErrorComponent},
-  {path:'not-found', component:NotFoundComponent},
-  {path:'server-error', component:ServerErrorComponent},
-  {path:'**', component:NotFoundComponent, pathMatch:'full'}
+  { path: 'test-error', component: TestErrorComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: 'server-error', component: ServerErrorComponent },
+  { path: '**', component: NotFoundComponent, pathMatch: 'full' }
 
 ];
 

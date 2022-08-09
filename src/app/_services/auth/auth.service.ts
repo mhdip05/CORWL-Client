@@ -32,15 +32,24 @@ export class AuthService {
 
   setCurrentUser(user: IUser) {
     if (user) {
-      user.roles = []  
+      user.roles = []
       const userRoles = this.getDecodedToken(user.token).role;
 
       Array.isArray(userRoles) ? user.roles = userRoles : user.roles.push(userRoles);
-      
+
       localStorage.setItem('0F340967EE56C835881A40DA48CE1D472C3DD368217A83DCB5074EB97BB367FBB3CB008FC9F7C86D075392F3D44DC97008BD04F328B36DED48DEC57230581E91', JSON.stringify(user))
       this.currentUserSource.next(user)
       this.authUserdata = JSON.parse(localStorage.getItem('0F340967EE56C835881A40DA48CE1D472C3DD368217A83DCB5074EB97BB367FBB3CB008FC9F7C86D075392F3D44DC97008BD04F328B36DED48DEC57230581E91')!)
     }
+  }
+
+  changePassword(model: any) {
+    return this.http.post(environment.apiUrl + "auth/Change-Password", model).pipe(
+      map((response: any) => {
+        //console.log('dip',response)
+        return response;
+      })
+    )
   }
 
   logout() {

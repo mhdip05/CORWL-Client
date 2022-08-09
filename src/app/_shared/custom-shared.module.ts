@@ -13,7 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot({
       progressBar:true,
       progressAnimation:'increasing',
-      timeOut:4000,
+      timeOut:5000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
       messageClass: 'custom-toast',

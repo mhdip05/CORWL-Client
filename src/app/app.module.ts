@@ -1,3 +1,5 @@
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
+import { TokenInterceptor } from './_interceptors/token.interceptor';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { CustomSharedModule } from './_shared/custom-shared.module';
 import { NgModule } from '@angular/core';
@@ -45,6 +47,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NotFoundComponent } from './views/errors/not-found/not-found.component';
 import { ServerErrorComponent } from './views/errors/server-error/server-error.component';
 import { TestErrorComponent } from './views/errors/test-error/test-error.component';
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -79,11 +84,16 @@ const APP_CONTAINERS = [
     ProgressModule,
     HttpClientModule,
     CustomSharedModule,
+    LoadingBarModule,
+    LoadingBarHttpClientModule,
+    LoadingBarRouterModule,
     ModalModule.forRoot()
 
   ],
   providers: [
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     IconSetService,
     Title
