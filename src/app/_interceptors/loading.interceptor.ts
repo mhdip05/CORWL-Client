@@ -23,7 +23,5 @@ export class LoadingInterceptor implements HttpInterceptor {
         this.loadingService.idle()
       })
     );
-
-
   }
 }

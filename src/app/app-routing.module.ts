@@ -1,3 +1,4 @@
+import { ResetPasswordComponent } from './views/authentication/reset-password/reset-password.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,12 +8,13 @@ import { LoginComponent } from './views/authentication/login/login.component';
 import { NotFoundComponent } from './views/errors/not-found/not-found.component';
 import { ServerErrorComponent } from './views/errors/server-error/server-error.component';
 import { TestErrorComponent } from './views/errors/test-error/test-error.component';
+import { ForgotPasswordComponent } from './views/authentication/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full'
+     path: '',
+     redirectTo: 'auth',
+     pathMatch: 'full'
   },
 
   {
@@ -21,7 +23,7 @@ const routes: Routes = [
     data: {
       title: 'Login'
     },
-
+    
     children: [
       {
         path: 'auth',
@@ -29,6 +31,15 @@ const routes: Routes = [
           import('./views/authentication/authentication.module').then((m) => m.AuthenticationModule)
       }
     ]
+  },
+  
+  {
+    path: 'forgot-password',
+    component:ForgotPasswordComponent
+  },
+  {
+    path: 'reset-password',
+    component:ResetPasswordComponent
   },
 
   {
@@ -61,7 +72,8 @@ const routes: Routes = [
       },
       {
         path: 'account-settings',
-        loadChildren: () => import('./views/account-settings/account-settings.module').then((m) => m.AccountSettingsModule)
+        loadChildren: () =>
+          import('./views/account-settings/account-settings.module').then((m) => m.AccountSettingsModule)
       }
     ]
   },

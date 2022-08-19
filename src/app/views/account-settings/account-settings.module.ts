@@ -14,7 +14,7 @@ import { CustomSharedModule } from 'src/app/_shared/custom-shared.module';
     ParentComponent,
     ChangePasswordComponent,
     ChangeEmailComponent,
-    ChangeUsernameComponent
+    ChangeUsernameComponent,
   ],
   imports: [
     CommonModule,

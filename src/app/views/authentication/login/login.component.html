@@ -4,8 +4,8 @@
     <c-container style="background-color: bg-light">
         <c-row class="justify-content-center">
             <c-col
-                xl="6"
-                lg="6"
+                xl="5"
+                lg="5"
                 md="12"
                 sm="12"
                 xs="12"
@@ -21,7 +21,7 @@
                                 (ngSubmit)="login()"
                                 ngNativeValidate
                             >
-                                <h1>Login</h1>
+                                <h2>Login</h2>
                                 <p class="text-medium-emphasis">Sign In to your account</p>
                                 <c-input-group class="mb-3">
                                     <span cInputGroupText>
@@ -31,7 +31,7 @@
                                         ></svg>
                                     </span>
                                     <input
-                                        class="form-control"
+                                        class="form-control form-control-sm"
                                         type="text"
                                         placeholder="Username"
                                         name="UserName"
@@ -46,7 +46,7 @@
                                         ></svg>
                                     </span>
                                     <input
-                                        cFormControl
+                                        class="form-control form-control-sm"
                                         placeholder="Password"
                                         type="password"
                                         name="Password"
@@ -80,10 +80,11 @@
                                     >
                                         <button
                                             cButton
-                                            class="px-4 btn btn-block"
+                                            class="px-3 btn"
                                             color="dark"
+                                            routerLink="forgot-password"
                                         >
-                                            Forgot password?
+                                            Forgot password
                                         </button>
                                     </c-col>
                                 </c-row>
@@ -95,8 +96,8 @@
         </c-row>
         <c-row class="justify-content-center mt-1">
             <c-col
-                xl="6"
-                lg="6"
+                xl="5"
+                lg="5"
                 md="12"
                 sm="12"
                 xs="12"
