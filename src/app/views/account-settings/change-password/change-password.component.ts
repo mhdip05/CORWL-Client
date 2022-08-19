@@ -1,6 +1,7 @@
+import { AccountSettingsService } from './../../../_services/account-settings/account-settings.service';
+
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/_services/auth/auth.service';
 
 @Component({
   selector: 'app-change-password',
@@ -10,14 +11,14 @@ import { AuthService } from 'src/app/_services/auth/auth.service';
 export class ChangePasswordComponent implements OnInit {
 
   model: any = {}
-  constructor(private authService: AuthService, private toastr:ToastrService) { }
+  constructor(private accountSettingsService:AccountSettingsService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     
   }
 
   changePassword() {
-    this.authService.changePassword(this.model).subscribe({
+    this.accountSettingsService.changePassword(this.model).subscribe({
       next: (r:any) => {
         this.toastr.success(r.message)
         this.model = {}
