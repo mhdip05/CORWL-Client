@@ -1,3 +1,4 @@
+import { PrimeuiSharedModule } from './_shared/primeui-shared.module';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { TokenInterceptor } from './_interceptors/token.interceptor';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
@@ -49,7 +50,9 @@ import { ServerErrorComponent } from './views/errors/server-error/server-error.c
 import { TestErrorComponent } from './views/errors/test-error/test-error.component';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
-import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { RippleModule } from 'primeng/ripple';
+
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -62,7 +65,13 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, NotFoundComponent, ServerErrorComponent, TestErrorComponent],
+  declarations: [
+    AppComponent, 
+    ...APP_CONTAINERS, 
+    NotFoundComponent, 
+    ServerErrorComponent, 
+    TestErrorComponent, 
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -81,12 +90,13 @@ const APP_CONTAINERS = [
     ReactiveFormsModule,
     SidebarModule,
     SharedModule,
+    PrimeuiSharedModule,
     ProgressModule,
     HttpClientModule,
     CustomSharedModule,
     LoadingBarModule,
     LoadingBarHttpClientModule,
-    LoadingBarRouterModule,
+    RippleModule,
     ModalModule.forRoot()
 
   ],

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { DesignationComponent } from './designation/designation.component';
+import { UserRoleMappingComponent } from './user-role-mapping/user-role-mapping.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,14 @@ const routes: Routes = [
         path: 'designation',
         component: DesignationComponent,
         data: {
-          title: "Designation"
+          title: "Add-Designation"
+        }
+      },
+      {
+        path: 'user-role-map',
+        component: UserRoleMappingComponent,
+        data: {
+          title: "User Role Mapping"
         }
       }
     ]
