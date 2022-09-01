@@ -6,6 +6,7 @@ import { iconSubset } from './icons/icon-subset';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from './_services/auth/auth.service';
 import { IUser } from './_interface/IUser';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -27,7 +28,8 @@ export class AppComponent implements OnInit {
     private router: Router,
     private titleService: Title,
     private iconSetService: IconSetService,
-    private authService: AuthService
+    private authService: AuthService,
+    private primengConfig: PrimeNGConfig
   ) {
     titleService.setTitle(this.title);
     // iconSet singleton
@@ -35,6 +37,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
     this.setCurrentUser();
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {

@@ -1,7 +1,10 @@
 export interface IUser {
-    username:string;
+    id:number
+    userName:string;
     token:string;
-    userid:number;
-    employeid:number;
+    userId:number;
+    employeId:number;
+    email:string;
+    phoneNumber:string;
     roles:string[]
 }
