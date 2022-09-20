@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private titleService: Title,
     private iconSetService: IconSetService,
+    
     private authService: AuthService,
     private primengConfig: PrimeNGConfig
   ) {
@@ -43,8 +44,7 @@ export class AppComponent implements OnInit {
       if (!(evt instanceof NavigationEnd)) {
         return;
       }
-    });
-    
+    }); 
   }
 
   setCurrentUser() {

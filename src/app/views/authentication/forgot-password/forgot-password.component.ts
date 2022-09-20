@@ -2,6 +2,7 @@ import { AccountSettingsService } from './../../../_services/account-settings/ac
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth/auth.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-forgot-password',
@@ -10,11 +11,12 @@ import { AuthService } from 'src/app/_services/auth/auth.service';
 })
 export class ForgotPasswordComponent implements OnInit {
 
+  disabled = false;
   model: any = {}
 
   constructor(private router: Router,
-              private authService: AuthService,
-              private accountSettingsService:AccountSettingsService) { }
+    private authService: AuthService,
+    private accountSettingsService: AccountSettingsService) { }
 
   ngOnInit(): void {
     if (this.authService.authUserdata != null)
@@ -26,13 +28,18 @@ export class ForgotPasswordComponent implements OnInit {
   forgotPassword() {
     //console.log(this.model)
     //return;
-    this.accountSettingsService.sendCodeToEmail(this.model).subscribe({
-      next:(r)=>{
-        //console.log(r)
-        var email = r.value;
-        sessionStorage.setItem('forgot_password_email', email);
-        this.router.navigateByUrl('/reset-password')
-      }
-    })
+    this.disabled = true;
+    this.accountSettingsService.sendCodeToEmail(this.model)
+      .pipe(finalize(() => {
+        this.disabled = false;
+      }))
+      .subscribe({
+        next: (r) => {
+          //console.log(r)
+          var email = r.value;
+          sessionStorage.setItem('forgot_password_email', email);
+          this.router.navigateByUrl('/reset-password')
+        }
+      })
   }
 }

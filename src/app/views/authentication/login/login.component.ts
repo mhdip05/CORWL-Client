@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { IErrorModal } from './../../../_interface/IErrorModal';
 import { AuthService } from './../../../_services/auth/auth.service';
 import { Component, OnInit, } from '@angular/core';
@@ -13,6 +13,7 @@ import { IUser } from 'src/app/_interface/IUser';
 })
 export class LoginComponent implements OnInit {
 
+  disabled: boolean = false;
   model: any = {};
   currentUser$?: Observable<IUser>
 
@@ -26,11 +27,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.model).subscribe({
-      next: (v) => {
-        //console.log("login successfull")
-        this.router.navigateByUrl('/dashboard')
-      },
-    })
+    this.disabled = true;
+    this.authService.login(this.model)
+      .pipe(finalize(() => {
+        this.disabled = false;
+      }))
+      .subscribe({
+        next: (v) => {
+          this.router.navigateByUrl('/dashboard')
+        },
+      })
   }
 }
