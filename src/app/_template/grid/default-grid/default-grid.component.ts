@@ -51,7 +51,6 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
   @Input() delteButtonClass  = 'p-button-rounded p-button-warning';
   @Input() addButtonNewDataClass = 'p-button-primary';
  
-
   @Output() modifyEvent = new EventEmitter();
   @Output() deleteEvent = new EventEmitter();
 
