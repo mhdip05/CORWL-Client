@@ -50,8 +50,9 @@ import { ServerErrorComponent } from './views/errors/server-error/server-error.c
 import { TestErrorComponent } from './views/errors/test-error/test-error.component';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
-import { RippleModule } from 'primeng/ripple';
-
+import { StoreModule } from '@ngrx/store';
+import { rootReducer } from './_redux/reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -66,11 +67,11 @@ const APP_CONTAINERS = [
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    ...APP_CONTAINERS, 
-    NotFoundComponent, 
-    ServerErrorComponent, 
-    TestErrorComponent, 
+    AppComponent,
+    ...APP_CONTAINERS,
+    //NotFoundComponent,
+    ServerErrorComponent,
+    TestErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,19 +97,30 @@ const APP_CONTAINERS = [
     CustomSharedModule,
     LoadingBarModule,
     LoadingBarHttpClientModule,
-    RippleModule,
-    ModalModule.forRoot()
-
+    ModalModule.forRoot(),
+    StoreModule.forRoot(rootReducer),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: false,
+      // autoPause: true,
+      // features: {
+      //   pause: false,
+      //   lock: true,
+      //   persist: true,
+      // },
+    }),
   ],
   providers: [
-    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     IconSetService,
-    Title
+    Title,
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

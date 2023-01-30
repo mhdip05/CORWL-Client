@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" *appHasRole="userPermission">
     <div class="card-header .custom-card-header-font">User Role Map</div>
     <div class="card-body">
         <div
@@ -7,11 +7,13 @@
         >
             <app-default-grid
                 [cols]="cols"
-                [data]="users"
-                isDeleteButton 
+                [data]="users"              
                 (modifyEvent)="selectUsername($event)"
                 gridModifyButtonName="Map Role"
-                [hasGridDeleteButton]="false"  
+                [hasGridDeleteButton]="false"
+                [scrollable]="true"
+                [showOverlay]="false"
+                [turnDataFilterOn]="true"       
             >
             </app-default-grid>
             <br>
@@ -26,3 +28,4 @@
         </div>
     </div>
 </div>
+

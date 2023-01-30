@@ -1,4 +1,7 @@
 // Here you can add other styles
+body {
+    font-family: 'Roboto';
+}
 .custom-toast {
     font-weight: bold;
     font-family: Roboto;
@@ -20,3 +23,86 @@
 .custom-card-header-font{
     font-size: 15px;
 }
+
+.custom-card-header,
+.custom-card-footer {
+  background: rgba(234, 239, 240, 0.957);
+}
+
+@media screen and (max-width: 992px){
+    .utilityBtn {
+        margin-top: 11px;
+    } 
+}
+
+.utilityBtn{
+    text-align: right;
+}
+
+.p-dropdown {
+    width: 100%;
+}
+
+.modal-content {
+    border-radius: 6px;
+}
+
+.feature-title > h6 {
+    font-size: 18px;
+}
+
+label {
+    color:rgba(0,0,0,0.5);
+    font-weight: 500;  
+    font-family: 'Roboto'; 
+}
+
+.p-dropdown-label {
+    font-weight: 500;  
+    font-family: 'Roboto'; 
+}
+
+.dropdown-selected-item{
+    color: gray;
+    color: #000000;
+    font-weight: normal;
+    //font-size: 17px;
+}
+
+.under-header{
+    margin-top:10px
+}
+
+.p-inputtext {
+    margin-bottom: 5px;
+}
+
+input[type='text']{
+    color:#000000;
+    //font-size: 17px;
+}
+
+p-inputnumber, .p-inputnumber{
+    width: 100%;
+}
+
+.input-margin-bottom {
+    margin-bottom: 20px;
+}
+
+.custom-group{
+    font-weight: bold;
+}
+
+.custom-group-title {
+    margin-bottom: 7px;
+}
+
+.custom-group-clear {
+    margin-bottom:10px;
+}
+
+.utility-box {
+    text-align:right;
+}
+

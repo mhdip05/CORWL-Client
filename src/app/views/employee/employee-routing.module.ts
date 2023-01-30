@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from '../errors/not-found/not-found.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { DesignationComponent } from './designation/designation.component';
 import { UserRoleMappingComponent } from './user-role-mapping/user-role-mapping.component';
@@ -37,7 +38,8 @@ const routes: Routes = [
         }
       }
     ]
-  }
+  },
+  { path: '**', component: NotFoundComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -11,6 +11,7 @@ import { IUser } from 'src/app/_interface/IUser';
 })
 export class UserRoleMappingComponent implements OnInit {
 
+  userPermission = ['admin']
   users: Partial<IUser[]> = []
   cols!: any[];
   pagination: any
@@ -38,15 +39,11 @@ export class UserRoleMappingComponent implements OnInit {
         this.pagination = users.pagination;
 
         this.userRoleMappingColumn()
-      },
-      complete: () => {
-
       }
     })
   }
 
   paginate($event: any) {
-    //console.log($event)
     var pageNumber = $event.page + 1
     var pageSize = $event.rows;
 

@@ -1,0 +1,158 @@
+<div class="card" (window:resize)="onResized($event)">
+  <p-table
+    #dt
+    [columns]="cols"
+    [value]="data"
+    responsiveLayout="scroll"
+    selectionMode="single"
+    [scrollable]="scrollable"
+    [styleClass]="gridStyleClass"
+    [resizableColumns]="true"
+    [scrollHeight]="gridHeight"
+  >
+    <ng-template pTemplate="caption">
+      <div class="row">
+        <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-6">
+          <div>
+            <button
+              pButton
+              pRipple
+              label="Clear"
+              class="p-button-outlined"
+              icon="pi pi-filter-slash"
+              (click)="clear(dt)"
+            ></button>
+            <button
+              *ngIf="hasBtnSetData"
+              id="btn-set-data"
+              pButton
+              pRipple
+              class="p-button-warning"
+              label="NEW"
+              icon="pi pi-plus"
+              style="margin: 0px 5px 0px 3px"
+              [pTooltip]="btnSetDataLabel"
+              tooltipPosition="bottom"
+              (click)="setData()"
+            ></button>
+          </div>
+        </div>
+        <div
+          class="col-xxl-6 col-xl-6 col-md-6 col-sm-6"
+          style="text-align: right"
+        >
+          <span id="search-data-in-grid" class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input
+              #globalFilterInput
+              pInputText
+              class="form-control from-control-sm"
+              type="text"
+              (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Search Data"
+            />
+          </span>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th
+          *ngFor="let col of columns"
+          [pSortableColumn]="col.field"
+          pResizableColumn
+          [style]="shrinkGridHeader()"
+        >
+          <span>
+            {{ col.header }}
+          </span>
+          <span>
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </span>
+        </th>
+        <th *ngIf="hasAction">
+          <span style="margin-left: 25px">Action</span>
+        </th>
+      </tr>
+
+      <tr *ngIf="turnDataFilterOn">
+        <th *ngFor="let col of columns">
+          <p-columnFilter
+            *ngIf="filterByText"
+            type="text"
+            [field]="col.field"
+            [placeholder]="'Filter ' + col.header"
+          ></p-columnFilter>
+          <p-columnFilter
+            *ngIf="filterByMenu"
+            [field]="col.field"
+            display="menu"
+          ></p-columnFilter>
+        </th>
+        <th *ngIf="hasAction"></th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowIndex="rowIndex" let-rowData>
+      <tr [pSelectableRow]="rowIndex + 1">
+        <td
+          *ngFor="let col of cols"
+          (click)="overLay(op, $event)"
+          [style]="shrinkGridData()"
+        >
+          <span [ngStyle]="col.style">
+            {{
+              col.type == "date"
+                ? getRowData(rowData[col.field]) !== null
+                  ? (getRowData(rowData[col.field]) | date : col.format)
+                  : "N/A"
+                : getRowData(rowData[col.field]) === null || ""
+                ? "N/A"
+                : getRowData(rowData[col.field])
+            }}
+          </span>
+          <p-overlayPanel
+            #op
+            [style]="{ width: '450px', 'text-align': 'justify' }"
+          >
+            <ng-template pTemplate>
+              <span>
+                {{ rowData[col.field] }}
+              </span>
+            </ng-template>
+          </p-overlayPanel>
+        </td>
+
+        <td class="action" *ngIf="hasAction">
+          <span [ngStyle]="actionStyle">
+            <button
+              pButton
+              pRipple
+              (click)="modifyRowData(rowData)"
+              [icon]="isButtonIconable ? iconClass : ''"
+              [class]="modifyButtonClass"
+              [label]="!isButtonIconable ? modifyButtonName : ''"
+            ></button>
+            <button
+              *ngIf="hasGridDeleteButton"
+              pButton
+              pRipple
+              (click)="readyToDelete(rowData)"
+              [icon]="isButtonIconable ? 'pi pi-trash' : ''"
+              [class]="delteButtonClass"
+              [label]="!isButtonIconable ? deleteButtonName : ''"
+            ></button>
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<app-confirmation-dialog
+  [display]="display"
+  (hideDialog)="hideDialog()"
+  (accept)="deleteConfirmation()"
+>
+</app-confirmation-dialog>

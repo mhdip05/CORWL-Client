@@ -1,0 +1,6 @@
+<div class="validation" *ngIf="hasValidation">
+  <div *ngFor="let v of validationModel">
+    <span><i class="pi pi-info-circle validation-star"></i></span>
+    <span class="validation-message">{{ v }}</span>
+  </div>
+</div>

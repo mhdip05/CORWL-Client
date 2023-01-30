@@ -22,9 +22,7 @@ export const navItems: any[] = [
     role:["admin","management"],
     iconComponent: { name: 'cilApplicationsSettings' },
     children: [
-      { name: 'Add Company', url: '/settings/company' },
-      { name: 'Add Branch', url: '/settings/branch' },
-      { name: 'Add Place', url: '/settings/place' }
+      { name: 'Basic Settings', url: '/settings/basic-settings' },
     ]
   },
 

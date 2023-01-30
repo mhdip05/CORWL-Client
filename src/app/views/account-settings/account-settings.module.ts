@@ -7,6 +7,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ChangeEmailComponent } from './change-email/change-email.component';
 import { ChangeUsernameComponent } from './change-username/change-username.component';
 import { CustomSharedModule } from 'src/app/_shared/custom-shared.module';
+import { PrimeuiSharedModule } from 'src/app/_shared/primeui-shared.module';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { CustomSharedModule } from 'src/app/_shared/custom-shared.module';
   imports: [
     CommonModule,
     AccountSettingsRoutingModule,
-    CustomSharedModule
+    PrimeuiSharedModule
   ]
 })
 export class AccountSettingsModule { }

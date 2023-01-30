@@ -1,0 +1,375 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="feature-title">
+        <h6>{{ isAmend ? "Edit Company" : "Add Company" }}</h6>
+      </div>
+
+      <hr class="under-header" />
+      <div class="utility-box">
+        <app-reset class="utility" (click)="reset()"></app-reset>
+        <app-validation-reset
+          class="utility"
+          (click)="validationReset()"
+        ></app-validation-reset>
+        <app-content-help class="utility"></app-content-help>
+      </div>
+      <hr class="custom-hr" />
+
+      <form #addForm="ngForm" autocomplete="off">
+        <div class="row">
+          <div class="custom-group">
+            <p class="custom-group-title">General Info</p>
+          </div>
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="companyName"
+                [class]="inputClass"
+                [(ngModel)]="model.companyName"
+              />
+              <label for="companyName">Company Name</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.CompanyName"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="companyCode"
+                [class]="inputClass"
+                [(ngModel)]="model.companyCode"
+              />
+              <label for="companyCode">Company Code</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.CompanyCode"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <app-countryDropdown
+                [countries]="[
+                  {
+                    countryName: model.countryName,
+                    countryId: model.countryId
+                  }
+                ]"
+                [selectedCountry]="
+                  editMode
+                    ? {
+                        countryName: model.countryName,
+                        countryId: model.countryId
+                      }
+                    : undefined
+                "
+                (changeCountry)="changeCountry($event)"
+              >
+              </app-countryDropdown>
+              <label
+                for="country"
+                *ngIf="model.countryId == 0 || model.countryId == null"
+                >Select Country</label
+              >
+            </span>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <app-cityDropdown
+                [cities]="[{ cityName: model.cityName, cityId: model.cityId }]"
+                [countryId]="model.countryId"
+                [load]="cascadeModel.load"
+                [disabledCity]="cascadeModel.disabledCity"
+                [selectedCity]="
+                  editMode
+                    ? {
+                        cityName: model.cityName,
+                        cityId: model.cityId
+                      }
+                    : undefined
+                "
+                (changeCity)="changeDropDown($event)"
+              >
+              </app-cityDropdown>
+
+              <label
+                for="city"
+                *ngIf="model.cityId == 0 || model.cityId == null"
+                >Select City</label
+              >
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.CityId"
+            ></app-error-validation>
+          </div>
+          <div class="custom-group-clear"></div>
+
+          <div class="custom-group">
+            <p class="custom-group-title">Contact Info</p>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="mobileNo"
+                [class]="inputClass"
+                [(ngModel)]="model.mobileNo"
+              />
+              <label for="mobileNo">Mobile No.</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.MobileNo"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="phone"
+                [class]="inputClass"
+                [(ngModel)]="model.phoneNo"
+              />
+              <label for="phone">Phone No.</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.PhoneNo"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="email"
+                [class]="inputClass"
+                [(ngModel)]="model.email"
+              />
+              <label for="email">Email</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.Email"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="web"
+                [class]="inputClass"
+                [(ngModel)]="model.web"
+              />
+              <label for="web">Website</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.Web"
+            ></app-error-validation>
+          </div>
+          <div class="custom-group-clear"></div>
+
+          <div class="custom-group">
+            <p class="custom-group-title">Address & Misc</p>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="zipCode"
+                [class]="inputClass"
+                [(ngModel)]="model.zipCode"
+              />
+              <label for="zipCode">Zip Code</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.ZipCode"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <app-currency-dropdown
+                [currencies]="[
+                  {
+                    currencyId: model.localCurrencyId,
+                    currencyName: model.localCurrencyName
+                  }
+                ]"
+                [selectedCurrency]="
+                  editMode
+                    ? {
+                        currencyId: model.localCurrencyId,
+                        currencyName: model.localCurrencyName
+                      }
+                    : undefined
+                "
+                (changeCurrency)="
+                  changeCurrencyDropDown($event, 'localCurrency')
+                "
+              >
+              </app-currency-dropdown>
+              <label
+                for="localCurrency"
+                *ngIf="
+                  model.localCurrencyId == 0 || model.localCurrencyId == null
+                "
+                >Select Local Currency
+              </label>
+            </span>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <app-currency-dropdown
+                [currencies]="[
+                  {
+                    currencyName: model.interNationalCurrencyName,
+                    currencyId: model.interNationalCurrencyId
+                  }
+                ]"
+                [selectedCurrency]="
+                  editMode
+                    ? {
+                        currencyName: model.interNationalCurrencyName,
+                        currencyId: model.interNationalCurrencyId
+                      }
+                    : undefined
+                "
+                (changeCurrency)="
+                  changeCurrencyDropDown($event, 'internationalCurrency')
+                "
+              >
+              </app-currency-dropdown>
+              <label
+                for="localCurrency"
+                *ngIf="
+                  model.interNationalCurrencyId == 0 ||
+                  model.interNationalCurrencyId == null
+                "
+                >Select Int Currency
+              </label>
+            </span>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <p-inputNumber
+                mode="decimal"
+                name="conversionRate"
+                [useGrouping]="false"
+                [minFractionDigits]="2"
+                [maxFractionDigits]="4"
+                [(ngModel)]="model.conversionRate"
+              >
+              </p-inputNumber>
+              <label for="conversionRate">Conversion Rate</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.ConversionRate"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <textarea
+                pInputText
+                [rows]="4"
+                [cols]="30"
+                name="address"
+                [class]="inputClass"
+                [(ngModel)]="model.address"
+              >
+              </textarea>
+              <label for="address">Address</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.Address"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <div class="row">
+              <div class="col-6">
+                <label class="switch-label">Is Active</label>
+              </div>
+              <div class="col-2">
+                <p-inputSwitch
+                  name="isActive"
+                  [(ngModel)]="model.isActive"
+                ></p-inputSwitch>
+              </div>
+            </div>
+          </div>
+
+          <div [class]="responsiveClass">
+            <div class="row">
+              <div class="col-6">
+                <label class="switch-label">Is Parent Company</label>
+              </div>
+              <div class="col-2">
+                <p-inputSwitch
+                  name="isParentCompany"
+                  [(ngModel)]="model.isParentCompany"
+                ></p-inputSwitch>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
+            <div class="d-grid">
+              <button
+                *ngIf="!isAmend"
+                pButton
+                pRipple               
+                label="Submit"
+                class="p-button"
+                [disabled]="disabled"
+                (click)="addCompany()"
+              ></button>
+              <!-- <button (click)="rollback()">Rollback</button>  -->
+            </div>
+            <div class="d-grid">
+              <button
+                *ngIf="isAmend"
+                pButton
+                pRipple             
+                label="Edit"
+                class="p-button"
+                [disabled]="disabled"
+                (click)="editCompany()"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-default-toast></app-default-toast>

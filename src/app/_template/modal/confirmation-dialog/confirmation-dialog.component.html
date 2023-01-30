@@ -1,0 +1,40 @@
+<p-dialog
+  [(visible)]="display"
+  [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+  [style]="{ width: '37vw' }"
+  [modal]="true"
+  [dismissableMask]="true"
+  [draggable]="false"
+  [position]="position"
+  (onHide)="onHide()"
+>
+  <ng-template pTemplate="header">
+    <h3 id="header">Confirmation</h3>
+  </ng-template>
+  <div class="row" id="content" style="display: inline">
+    <span><i id="content-icon" class="pi pi-info-circle"></i></span>
+    <span id="content-details">Are you sure to proceed ?</span>
+  </div>
+  <ng-template pTemplate="footer">
+    <div>
+      <button
+        style="width: 45px; height: 45px"
+        pRipple
+        pButton
+        type="button"
+        class="p-button-success p-button-rounded"
+        icon="pi pi-times"
+        (click)="onReject()"
+      ></button>
+      <button
+        style="width: 45px; height: 45px"
+        pRipple
+        pButton
+        type="button"
+        icon="pi pi-check"
+        class="p-button p-button-rounded"
+        (click)="onAccept()"
+      ></button>
+    </div>
+  </ng-template>
+</p-dialog>

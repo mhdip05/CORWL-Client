@@ -6,15 +6,16 @@ import { map } from 'rxjs/operators';
 import { ReplaySubject } from 'rxjs';
 import { Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  item = '0F340967EE56C835881A40DA48CE1D472C3DD368217A83DCB5074EB97BB367FBB3CB008FC9F7C86D075392F3D44DC97008BD04F328B36DED48DEC57230581E91'
+
   private currentUserSource = new ReplaySubject<IUser | null>(1)
   currentUser$ = this.currentUserSource.asObservable();
-  authUserdata = JSON.parse(localStorage.getItem('0F340967EE56C835881A40DA48CE1D472C3DD368217A83DCB5074EB97BB367FBB3CB008FC9F7C86D075392F3D44DC97008BD04F328B36DED48DEC57230581E91')!) || null
+  authUserdata = JSON.parse(localStorage.getItem(this.item)!) || null
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -34,17 +35,15 @@ export class AuthService {
     if (user) {
       user.roles = []
       const userRoles = this.getDecodedToken(user.token).role;
-
       Array.isArray(userRoles) ? user.roles = userRoles : user.roles.push(userRoles);
-
-      localStorage.setItem('0F340967EE56C835881A40DA48CE1D472C3DD368217A83DCB5074EB97BB367FBB3CB008FC9F7C86D075392F3D44DC97008BD04F328B36DED48DEC57230581E91', JSON.stringify(user))
+      localStorage.setItem(this.item, JSON.stringify(user))
       this.currentUserSource.next(user)
-      this.authUserdata = JSON.parse(localStorage.getItem('0F340967EE56C835881A40DA48CE1D472C3DD368217A83DCB5074EB97BB367FBB3CB008FC9F7C86D075392F3D44DC97008BD04F328B36DED48DEC57230581E91')!)
+      this.authUserdata = JSON.parse(localStorage.getItem(this.item)!)
     }
   }
 
   logout() {
-    localStorage.removeItem('0F340967EE56C835881A40DA48CE1D472C3DD368217A83DCB5074EB97BB367FBB3CB008FC9F7C86D075392F3D44DC97008BD04F328B36DED48DEC57230581E91');
+    localStorage.removeItem(this.item);
     this.currentUserSource.next(null)
     this.authUserdata = null;
   }

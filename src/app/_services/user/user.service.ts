@@ -7,17 +7,23 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  paginatedResult: PaginatedResult<IUser[]> = new PaginatedResult<IUser[]>()
+  paginatedResult: PaginatedResult<IUser[]> = new PaginatedResult<IUser[]>();
 
-  constructor(private http: HttpClient, private paginationServices: PaginationService) { }
+  constructor(
+    private http: HttpClient,
+    private paginationServices: PaginationService
+  ) {}
 
   getAllUser(page: number, itemsPerPage: number) {
-
-    let params = this.paginationServices.getPaginationHeaders(page, itemsPerPage)
-
-    return this.paginationServices.getPaginatedResult<IUser[]>(environment.apiUrl + "user/getAllUsers", params);
+    let params = this.paginationServices.getPaginationHeaders(
+      page,
+      itemsPerPage
+    );
+    return this.paginationServices.getPaginatedResult<IUser[]>(
+      environment.apiUrl + 'user/getAllUsers',params
+    );
   }
 }
