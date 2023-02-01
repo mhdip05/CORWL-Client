@@ -32,6 +32,7 @@ import { ValidationResetComponent } from '../_template/utility/validation-reset/
 import { ContentHelpComponent } from '../_template/utility/content-help/content-help.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModalComponent } from '../_template/modal/dialog-modal/dialog-modal.component';
+import { AccordionModule } from 'primeng/accordion';
 
 
 
@@ -71,7 +72,7 @@ import { DialogModalComponent } from '../_template/modal/dialog-modal/dialog-mod
     InputTextareaModule,
     InputSwitchModule,
     InputNumberModule,
-
+    AccordionModule,
   ],
   exports: [
     ButtonModule,
@@ -103,6 +104,7 @@ import { DialogModalComponent } from '../_template/modal/dialog-modal/dialog-mod
     ContentHelpComponent,
     InputNumberModule,
     DialogModalComponent,
+    AccordionModule
 
   ],
   providers: [

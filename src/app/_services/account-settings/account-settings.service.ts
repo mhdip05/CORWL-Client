@@ -4,34 +4,53 @@ import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AccountSettingsService {
-
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   changePassword(model: any) {
-    return this.http.post(environment.apiUrl + "AccountSettings/Change-Password", model).pipe(
-      map((response: any) => {
-        //console.log('dip',response)
-        return response;
-      })
-    )
+    return this.http
+      .post(environment.apiUrl + 'AccountSettings/Change-Password', model)
+      .pipe(
+        map((response: any) => {
+          //console.log('dip',response)
+          return response;
+        })
+      );
   }
 
-  sendCodeToEmail(model:any){
-    return this.http.post(environment.apiUrl + "AccountSettings/SendCodeToEmail", model).pipe(
-      map((response:any)=>{
-        return response;
-      })
-    )
+  changeUsername(model: any) {
+    return this.http.post(
+      environment.apiUrl + 'AccountSettings/change-username',
+      model
+    );
   }
 
-  ResetPassowrd(model:any){
-    return this.http.post(environment.apiUrl + "AccountSettings/ResetPassword", model).pipe(
-      map((response:any)=>{
-        return response;
-      })
-    )
+  changeEmail(model: any) {
+    return this.http.post(
+      environment.apiUrl + 'AccountSettings/change-email',
+      model
+    );
+  }
+
+  sendCodeToEmail(model: any) {
+    return this.http
+      .post(environment.apiUrl + 'AccountSettings/SendCodeToEmail', model)
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
+  }
+
+  ResetPassowrd(model: any) {
+    return this.http
+      .post(environment.apiUrl + 'AccountSettings/ResetPassword', model)
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
   }
 }
