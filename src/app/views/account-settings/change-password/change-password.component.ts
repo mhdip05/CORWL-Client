@@ -11,8 +11,9 @@ import { finalize } from 'rxjs';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  disabled = false;
   model: any = {}
+  loading = false;
+  inputClass = "form-control form-control-sm"
   constructor(private accountSettingsService: AccountSettingsService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -20,10 +21,10 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   changePassword() {
-    this.disabled = true;
+    this.loading = true;
     this.accountSettingsService.changePassword(this.model)
       .pipe(finalize(() => {
-        this.disabled = false;
+        this.loading = false;
       }))
       .subscribe({
         next: (r: any) => {

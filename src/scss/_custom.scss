@@ -39,6 +39,14 @@ body {
     text-align: right;
 }
 
+.btn-full-width{
+    width: 100%;
+}
+
+.custom-text-right {
+    text-align: right;
+}
+
 .p-dropdown {
     width: 100%;
 }
@@ -82,6 +90,10 @@ input[type='text']{
     //font-size: 17px;
 }
 
+.input-total-width{
+    width: 100%;
+}
+
 p-inputnumber, .p-inputnumber{
     width: 100%;
 }
@@ -106,3 +118,19 @@ p-inputnumber, .p-inputnumber{
     text-align:right;
 }
 
+.p-accordion-header-text{
+    font-weight:bolder;
+    font-size: 18px;
+}
+
+.quarter-card-height{
+    min-height: 300px;
+}
+
+.quarter-card-input{
+    margin-bottom: 10px;
+}
+
+.quarter-card{
+    margin-top: 5px;
+}

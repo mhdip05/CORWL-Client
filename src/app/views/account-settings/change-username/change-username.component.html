@@ -1,17 +1,34 @@
-<div class="card">
-    <div class="card-header .custom-card-header-font">Change Username</div>
+<div class="col-12">
+  <div class="card quarter-card">
     <div class="card-body">
-        <div class="col-12 custom-password-change">
-            <span class="p-float-label">
-              <input
-                type="password"
-                class="form-control form-control-md"
-                id="current-password"
-                name="currentPassword"
-                pInputText
-              />
-              <label for="currentPassword">Username</label>
-            </span>
-          </div>
-    </div> 
+      <div class="feature-title">
+        <h6>Change Username</h6>
+      </div>
+      <hr class="under-header" />
+      <div class="quarter-card-input">
+        <span class="p-float-label">
+          <input
+            type="text"
+            pInputText
+            name="username"
+            class="form-control form-control-sm"
+            [(ngModel)]="model.username"
+          />
+          <label for="username">Username</label>
+        </span>
+      </div>
+
+      <div>
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Save Changes"
+          class="p-button p-button-primary"
+           [disabled]="disabled"
+          (click)="changeUsername()"
+        ></button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,18 +1,38 @@
-<div class="card">
-    <div class="card-header .custom-card-header-font">NMS Change</div>
+<div class="col-12">
+  <div class="card quarter-card">
     <div class="card-body">
-        <div class="col-12 custom-password-change">
-            <span class="p-float-label">
-              <input
-                type="password"
-                pInputText
-                class="form-control form-control-sm"
-                id="current-password"
-                name="currentPassword"
-                
-              />
-              <label for="currentPassword">Email</label>
-            </span>
-          </div>
-    </div> 
+      <div class="feature-title">
+        <h6>Change Email</h6>
+      </div>
+      <hr class="under-header" />
+        <div class="quarter-card-input">
+        <span class="p-float-label">
+          <input
+            type="text"
+            pInputText
+            name="email"
+            class="form-control form-control-sm"
+            [(ngModel)]="model.email"
+          />
+          <label for="email">Email</label>
+        </span>
+      </div>
+
+      <div>
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Save Changes"
+          class="p-button p-button-primary "
+          [disabled]="disabled"
+          (click)="changeEmail()"
+        ></button>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
+

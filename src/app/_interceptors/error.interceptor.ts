@@ -67,7 +67,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                   }
                   this.modalData.message.flat();
                 } else if (e.error) {
-                  console.log(e.error)
+                  //console.log(e.error)
                   this.modalData.message.push(e.error);
                 }
                 break;

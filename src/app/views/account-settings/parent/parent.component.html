@@ -1,16 +1,25 @@
 <div class="container d-flex align-items-center justify-content-center">
-    <div class="col-xl-4 col-lg-5 col-md-8 col-sm-12">
-        <app-change-email></app-change-email>
-    </div><br>
-</div>
-<div class="container d-flex align-items-center justify-content-center">
-    <div class="col-xl-4 col-lg-5 col-md-8 col-sm-12">
-        <app-change-username></app-change-username>
-    </div>
+  <div [class]="responsiveClass">
+    <p-accordion class="accordion-header">
+      <p-accordionTab
+        header="Authentication Settings"
+        [selected]="true"
+        [transitionOptions]="'350ms'"
+      >
+        <div class="row">
+            <div [class]="authsetResponsicClass">
+                <app-change-username></app-change-username>
+              </div>
+          <div [class]="authsetResponsicClass">
+            <app-change-password></app-change-password>
+          </div>
+        
+          <div [class]="authsetResponsicClass">
+            <app-change-email></app-change-email>
+          </div>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
 </div>
 
-<div class="container d-flex align-items-center justify-content-center">
-    <div class="col-xl-4 col-lg-5 col-md-8 col-sm-12">
-        <app-change-password></app-change-password>
-    </div>
-</div>
