@@ -7,31 +7,33 @@ import { finalize } from 'rxjs';
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.scss']
+  styleUrls: ['./change-password.component.scss'],
 })
 export class ChangePasswordComponent implements OnInit {
-
-  model: any = {}
+  model: any = {};
   loading = false;
-  inputClass = "form-control form-control-sm"
-  constructor(private accountSettingsService: AccountSettingsService, private toastr: ToastrService) { }
+  inputClass = 'form-control form-control-sm';
+  constructor(
+    private accountSettingsService: AccountSettingsService,
+    private toastr: ToastrService
+  ) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   changePassword() {
     this.loading = true;
-    this.accountSettingsService.changePassword(this.model)
-      .pipe(finalize(() => {
-        this.loading = false;
-      }))
+    this.accountSettingsService
+      .changePassword(this.model)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+        })
+      )
       .subscribe({
         next: (r: any) => {
-          this.toastr.success(r.message)
-          this.model = {}
-        }
-      })
+          this.toastr.success(r.message);
+          this.model = {};
+        },
+      });
   }
-
 }

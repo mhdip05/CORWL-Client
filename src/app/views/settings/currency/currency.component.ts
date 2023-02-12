@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { filter, finalize } from 'rxjs';
 import { CurrencyService } from 'src/app/_services/currency/currency.service';
@@ -11,14 +11,15 @@ import { UtilsService } from 'src/app/_services/utils/utils.service';
 })
 export class CurrencyComponent implements OnInit {
   model: any = {};
-  editMode = false;
   cols!: any[];
   data!: any[];
+
+  loading = false;
+  isInsert = false;
+  editMode = false;
   disabled = false;
   showDialog = false;
-  loading = false;
-  showGrid = false;
-  isInsert = false;
+  @Input() showGrid = false;
 
   constructor(
     private currencyService: CurrencyService,
@@ -28,6 +29,7 @@ export class CurrencyComponent implements OnInit {
 
   ngOnInit(): void {
     this.currencyListColumn();
+    if(this.showGrid) this.getAllCurrencies()
   }
 
   private currencyListColumn() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
 import { CountryService } from 'src/app/_services/country/country.service';
 
@@ -8,20 +8,21 @@ import { CountryService } from 'src/app/_services/country/country.service';
   styleUrls: ['./country.component.scss'],
 })
 export class CountryComponent implements OnInit {
+  data =[];
   cols!: any[];
-  data!: any[];
   model: any = {};
 
   loading = false; 
   disabled = false; 
-  showGrid = false;
   editMode = false; 
+  @Input() showGrid = false;
   
   constructor(private countryService: CountryService) {}
 
   ngOnInit(): void {
      this.countryListColumn();
      
+     if(this.showGrid == true) this.getAllCountries()
   }
 
   private countryListColumn() {
@@ -55,6 +56,7 @@ export class CountryComponent implements OnInit {
   }
 
   getAllCountries() {
+    if (this.data.length > 0) return;
     this.countryService.getAllCountries().subscribe({
       next:(res:any) => {
         this.data = res;
@@ -89,8 +91,8 @@ export class CountryComponent implements OnInit {
       });
   }
 
-  viewData(companyData: any) {
-    this.model = { ...companyData };
+  viewData(data: any) {
+    this.model = { ...data };
     this.editMode = true;
   }
 

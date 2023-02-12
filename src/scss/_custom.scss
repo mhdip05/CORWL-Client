@@ -1,27 +1,27 @@
 // Here you can add other styles
 body {
-    font-family: 'Roboto';
+  font-family: "Roboto";
 }
 .custom-toast {
-    font-weight: bold;
-    font-family: Roboto;
-    font-style: italic;
+  font-weight: bold;
+  font-family: Roboto;
+  font-style: italic;
 }
 
 .custom-font {
-    font-family: Roboto;
+  font-family: Roboto;
 }
 
-.card-header{
-    font-weight: bold;
+.card-header {
+  font-weight: bold;
 }
 
-.custom-label-color{
-    color:#636f83;
+.custom-label-color {
+  color: #636f83;
 }
 
-.custom-card-header-font{
-    font-size: 15px;
+.custom-card-header-font {
+  font-size: 15px;
 }
 
 .custom-card-header,
@@ -29,108 +29,119 @@ body {
   background: rgba(234, 239, 240, 0.957);
 }
 
-@media screen and (max-width: 992px){
-    .utilityBtn {
-        margin-top: 11px;
-    } 
+@media screen and (max-width: 992px) {
+  .utilityBtn {
+    margin-top: 11px;
+  }
 }
 
-.utilityBtn{
-    text-align: right;
+.utilityBtn {
+  text-align: right;
 }
 
-.btn-full-width{
-    width: 100%;
+.btn-full-width {
+  width: 100%;
 }
 
 .custom-text-right {
-    text-align: right;
+  text-align: right;
 }
 
 .p-dropdown {
-    width: 100%;
+  width: 100%;
 }
 
 .modal-content {
-    border-radius: 6px;
+  border-radius: 6px;
 }
 
 .feature-title > h6 {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 label {
-    color:rgba(0,0,0,0.5);
-    font-weight: 500;  
-    font-family: 'Roboto'; 
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  font-family: "Roboto";
 }
 
 .p-dropdown-label {
-    font-weight: 500;  
-    font-family: 'Roboto'; 
+  font-weight: 500;
+  font-family: "Roboto";
 }
 
-.dropdown-selected-item{
-    color: gray;
-    color: #000000;
-    font-weight: normal;
-    //font-size: 17px;
+.dropdown-selected-item {
+  color: gray;
+  color: #000000;
+  font-weight: normal;
+  //font-size: 17px;
 }
 
-.under-header{
-    margin-top:10px
+.under-header {
+  margin-top: 10px;
 }
 
 .p-inputtext {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
-input[type='text']{
-    color:#000000;
-    //font-size: 17px;
+input[type="text"] {
+  color: #000000;
+  //font-size: 17px;
 }
 
-.input-total-width{
-    width: 100%;
+.input-total-width {
+  width: 100%;
 }
 
-p-inputnumber, .p-inputnumber{
-    width: 100%;
+p-inputnumber,
+.p-inputnumber {
+  width: 100%;
 }
 
 .input-margin-bottom {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-.custom-group{
-    font-weight: bold;
+.custom-group {
+  font-weight: bold;
 }
 
 .custom-group-title {
-    margin-bottom: 7px;
+  margin-bottom: 7px;
 }
 
 .custom-group-clear {
-    margin-bottom:10px;
+  margin-bottom: 10px;
 }
 
 .utility-box {
-    text-align:right;
+  text-align: right;
 }
 
-.p-accordion-header-text{
-    font-weight:bolder;
-    font-size: 18px;
+.p-accordion-header-text {
+  font-weight: bolder;
+  font-size: 18px;
 }
 
-.quarter-card-height{
-    min-height: 300px;
+.quarter-card-height {
+  min-height: 300px;
 }
 
-.quarter-card-input{
-    margin-bottom: 10px;
+.quarter-card-input {
+  margin-bottom: 10px;
 }
 
-.quarter-card{
-    margin-top: 5px;
+.quarter-card {
+  margin-top: 5px;
 }
+
+.setting-menubar-bakground {
+  background: #fff;
+}
+
+.p-menuitem-text {
+  font-weight: bolder;
+}
+
+

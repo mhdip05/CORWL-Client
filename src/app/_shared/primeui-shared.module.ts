@@ -33,8 +33,7 @@ import { ContentHelpComponent } from '../_template/utility/content-help/content-
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModalComponent } from '../_template/modal/dialog-modal/dialog-modal.component';
 import { AccordionModule } from 'primeng/accordion';
-
-
+import { MenubarModule } from 'primeng/menubar';
 
 @NgModule({
   declarations: [
@@ -73,6 +72,7 @@ import { AccordionModule } from 'primeng/accordion';
     InputSwitchModule,
     InputNumberModule,
     AccordionModule,
+    MenubarModule,
   ],
   exports: [
     ButtonModule,
@@ -104,13 +104,9 @@ import { AccordionModule } from 'primeng/accordion';
     ContentHelpComponent,
     InputNumberModule,
     DialogModalComponent,
-    AccordionModule
-
+    AccordionModule,
+    MenubarModule,
   ],
-  providers: [
-    ConfirmationService, 
-    MessageService,
-    
-  ],
+  providers: [ConfirmationService, MessageService],
 })
 export class PrimeuiSharedModule {}

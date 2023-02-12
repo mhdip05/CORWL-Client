@@ -1,5 +1,12 @@
-<app-country></app-country><br>
-<app-city></app-city><br>
-<app-currency></app-currency><br>
-<app-company></app-company><br>
+<div class="container">
+  <div class="setting-menubar-bakground">
+    <p-menubar [model]="items"> </p-menubar>
+  </div>
+</div>
+<br />
+
+<app-country *ngIf="selectedMenuItem == 'country'" [showGrid]="true"></app-country>
+<app-city *ngIf="selectedMenuItem == 'city'" [showGrid]="true"></app-city>
+<app-currency *ngIf="selectedMenuItem == 'currency'" [showGrid]="true"></app-currency>
+<!-- <app-company></app-company><br /> -->
 <app-default-toast></app-default-toast>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { UtilsService } from 'src/app/_services/utils/utils.service';
 
 @Component({
@@ -8,8 +9,38 @@ import { UtilsService } from 'src/app/_services/utils/utils.service';
 })
 export class BasicSettingsComponent implements OnInit {
   constructor(private utilsService: UtilsService) {}
-
+  items!: MenuItem[];
+  selectedMenuItem:any = 'country';
+  
   ngOnInit(): void {
-    this.utilsService.queryParamsSanitization()
+    this.utilsService.queryParamsSanitization();
+    this.items = [
+      {
+        label: 'Set Country',
+        icon:'pi pi-fw pi-map',
+        command: () => {
+          this.selectedMenu('country');
+        },
+      },
+      {
+        label: 'Set City',
+        icon:'pi pi-fw pi-map-marker',
+        command: () => {
+          this.selectedMenu('city');
+        },
+      },
+      {
+        label: 'Set Currency',
+        icon:'pi pi-fw pi-dollar',
+        command: () => {
+          this.selectedMenu('currency');
+        },
+      },
+    ];
+  }
+
+  selectedMenu(item: string) {
+    //console.log(item);
+    this.selectedMenuItem = item;
   }
 }

@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  Input,
   OnInit,
   Renderer2,
   ViewChild,
@@ -16,16 +17,17 @@ import { finalize } from 'rxjs';
   styleUrls: ['./city.component.scss'],
 })
 export class CityComponent implements OnInit {
- // @ViewChild('addForm') myForm!: ElementRef;
+  // @ViewChild('addForm') myForm!: ElementRef;
+  data = [];
+  cols!: any[];
   model: any = {};
+
   test = false;
+  loading = false;
   isAmend = false;
   editMode = false;
-  cols!: any[];
-  data = [];
   disabled = false;
-  loading = false;
-  showGrid = false;
+  @Input() showGrid = false;
 
   selectedCountry: any = {};
   country: any;
@@ -38,6 +40,7 @@ export class CityComponent implements OnInit {
 
   ngOnInit(): void {
     this.cityListColumn();
+    if(this.showGrid) this.getAllCity();
   }
 
   changeCountry(country: any) {
@@ -46,7 +49,6 @@ export class CityComponent implements OnInit {
     this.model.countryName = country.countryName;
   }
 
- 
   private cityListColumn() {
     this.cols = [
       {
@@ -123,7 +125,6 @@ export class CityComponent implements OnInit {
     setTimeout(() => {
       this.editMode = true;
     }, 0);
-    
   }
 
   updateCity() {
