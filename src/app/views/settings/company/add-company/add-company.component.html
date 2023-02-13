@@ -13,6 +13,7 @@
           (click)="validationReset()"
         ></app-validation-reset>
         <app-content-help class="utility"></app-content-help>
+        <app-back class="utility" [url]="'settings/company'"></app-back>
       </div>
       <hr class="custom-hr" />
 
@@ -347,7 +348,7 @@
               <button
                 *ngIf="!isAmend"
                 pButton
-                pRipple               
+                pRipple
                 label="Submit"
                 class="p-button"
                 [disabled]="disabled"
@@ -359,7 +360,7 @@
               <button
                 *ngIf="isAmend"
                 pButton
-                pRipple             
+                pRipple
                 label="Edit"
                 class="p-button"
                 [disabled]="disabled"

@@ -83,7 +83,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/account-settings/account-settings.module').then(
             (m) => m.AccountSettingsModule
-          ), 
+          ),
       },
       {
         path: 'test-app',

@@ -26,6 +26,11 @@ const routes: Routes = [
         data: { title: 'Basic-Settings' },
       },
       {
+        path: 'company',
+        component: CompanyComponent,
+        data: { title: 'Company-List' },
+      },
+      {
         path: 'add-company',
         component: AddCompanyComponent,
         data: { title: 'Add-Company' },

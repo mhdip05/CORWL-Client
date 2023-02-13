@@ -34,6 +34,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModalComponent } from '../_template/modal/dialog-modal/dialog-modal.component';
 import { AccordionModule } from 'primeng/accordion';
 import { MenubarModule } from 'primeng/menubar';
+import { BackComponent } from '../_template/utility/back/back.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MenubarModule } from 'primeng/menubar';
     ValidationResetComponent,
     ContentHelpComponent,
     DialogModalComponent,
+    BackComponent
   ],
   imports: [
     CommonModule,
@@ -106,6 +108,7 @@ import { MenubarModule } from 'primeng/menubar';
     DialogModalComponent,
     AccordionModule,
     MenubarModule,
+    BackComponent
   ],
   providers: [ConfirmationService, MessageService],
 })

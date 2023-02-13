@@ -26,4 +26,8 @@ export class CountryService {
         })
       );
   }
+
+  updateCountry(model: any) {
+    return this.http.put(environment.apiUrl + 'country/update-country', model)
+  }
 }

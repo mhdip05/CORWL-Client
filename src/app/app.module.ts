@@ -55,6 +55,7 @@ import { rootReducer } from './_redux/reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
