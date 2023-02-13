@@ -35,6 +35,7 @@ import { DialogModalComponent } from '../_template/modal/dialog-modal/dialog-mod
 import { AccordionModule } from 'primeng/accordion';
 import { MenubarModule } from 'primeng/menubar';
 import { BackComponent } from '../_template/utility/back/back.component';
+import { TopMenubarComponent } from '../_template/top-menubar/top-menubar.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { BackComponent } from '../_template/utility/back/back.component';
     ValidationResetComponent,
     ContentHelpComponent,
     DialogModalComponent,
-    BackComponent
+    BackComponent,
+    TopMenubarComponent
   ],
   imports: [
     CommonModule,
@@ -108,7 +110,8 @@ import { BackComponent } from '../_template/utility/back/back.component';
     DialogModalComponent,
     AccordionModule,
     MenubarModule,
-    BackComponent
+    BackComponent,
+    TopMenubarComponent
   ],
   providers: [ConfirmationService, MessageService],
 })
