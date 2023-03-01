@@ -1,0 +1,9 @@
+<p-dropdown
+  [options]="branchTypes"
+  [(ngModel)]="selectedBranchType"
+  optionLabel="branchType"
+  [autoDisplayFirst]="false"
+  [showClear]="true"
+  (onShow)="onShow()"
+  (onChange)="onChange()"
+></p-dropdown>

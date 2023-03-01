@@ -7,7 +7,7 @@
   [emptyMessage]="emptyMessage"
   [autoDisplayFirst]="false"
   optionLabel="countryName"
-  (onChange)="onCountryChange()"
+  (onChange)="onChange()"
   (onShow)="onShow($event)"
 >
 
@@ -18,8 +18,8 @@
   </div>
 </ng-template>
 <ng-template let-countries pTemplate="item">
-  <div>
-    <div>{{ countries.countryName }}</div>
+  <div class="dropdown-text">
+    <div id="country-dropdown">{{ countries.countryName }}</div>
   </div>
 </ng-template>
 </p-dropdown>

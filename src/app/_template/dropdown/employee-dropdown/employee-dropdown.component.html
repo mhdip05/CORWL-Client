@@ -1,0 +1,24 @@
+<p-dropdown
+  [options]="employees"
+  [(ngModel)]="selectedEmployee"
+  optionLabel="employeeName"
+  [showClear]="showClear"
+  [emptyMessage]="emptyMessage"
+  [autoDisplayFirst]="false"
+  [filter]="true"
+  (onShow)="onShow()"
+  (onChange)="onChange()"
+>
+  <ng-template pTemplate="selectedItem">
+    <div *ngIf="selectedEmployee">
+      <div class="dropdown-selected-item">
+        {{ selectedEmployee.employeeName }}
+      </div>
+    </div>
+  </ng-template>
+  <ng-template let-employees pTemplate="item">
+    <div class="dropdown-text">
+      <div id="employee-dropdown">{{ employees.employeeName }}</div>
+    </div>
+  </ng-template>
+</p-dropdown>

@@ -1,0 +1,408 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="feature-title">
+        <h6>{{ isAmend ? "Edit Branch" : "Add Branch" }}</h6>
+      </div>
+
+      <hr class="under-header" />
+      <div class="utility-box">
+        <app-reset class="utility" (click)="reset()"></app-reset>
+        <app-validation-reset
+          class="utility"
+          (click)="validationReset()"
+        ></app-validation-reset>
+        <app-content-help class="utility"></app-content-help>
+        <app-back class="utility" [url]="'settings/branch'"></app-back>
+      </div>
+      <hr class="custom-hr" />
+
+      <form #addForm="ngForm" autocomplete="off">
+        <div class="row">
+          <div class="custom-group">
+            <p class="custom-group-title">General Info</p>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="branchName"
+                [class]="inputClass"
+                [(ngModel)]="model.branchName"
+              />
+              <label for="branchName">Branch Name</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.BranchName"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="branchCode"
+                [class]="inputClass"
+                [(ngModel)]="model.branchCode"
+              />
+              <label for="branchCode">Branch Code</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.BranchCode"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <app-company-dropdown
+                [companies]="[
+                  {
+                    companyName: model.companyName,
+                    companyId: model.companyId
+                  }
+                ]"
+                [selectedCompany]="
+                  editMode
+                    ? {
+                        companyName: model.companyName,
+                        companyId: model.companyId
+                      }
+                    : undefined
+                "
+                (changeCompany)="changeDropdown($event)"
+              >
+              </app-company-dropdown>
+              <label
+                for="company"
+                *ngIf="model.companyId == 0 || model.companyId == null"
+                >Select Company
+              </label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.CompanyId"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <app-branch-type-dropdown
+                [branchTypes]="[
+                  {
+                    branchType: model.branchType
+                  }
+                ]"
+                [selectedBranchType]="
+                  editMode
+                    ? {
+                        branchType: model.branchType
+                      }
+                    : undefined
+                "
+                (changeBranchType)="changeDropdown($event)"
+              >
+              </app-branch-type-dropdown>
+              <label for="country" *ngIf="model.branchType == null"
+                >Select Branch type
+              </label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.BranchType"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <app-countryDropdown
+                [countries]="[
+                  {
+                    countryName: model.countryName,
+                    countryId: model.countryId
+                  }
+                ]"
+                [selectedCountry]="
+                  editMode
+                    ? {
+                        countryName: model.countryName,
+                        countryId: model.countryId
+                      }
+                    : undefined
+                "
+                (changeCountry)="changeCountry($event)"
+              >
+              </app-countryDropdown>
+              <label
+                for="country"
+                *ngIf="model.countryId == 0 || model.countryId == null"
+                >Select Country
+              </label>
+            </span>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <app-cityDropdown
+                [cities]="[{ cityName: model.cityName, cityId: model.cityId }]"
+                [countryId]="model.countryId"
+                [load]="cascadeModel.load"
+                [disabledCity]="cascadeModel.disabledCity"
+                [selectedCity]="
+                  editMode
+                    ? {
+                        cityName: model.cityName,
+                        cityId: model.cityId
+                      }
+                    : undefined
+                "
+                (changeCity)="changeDropdown($event)"
+              >
+              </app-cityDropdown>
+
+              <label
+                for="city"
+                *ngIf="model.cityId == 0 || model.cityId == null"
+                >Select City</label
+              >
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.CityId"
+            ></app-error-validation>
+          </div>
+          <div class="custom-group-clear"></div>
+
+          <div class="custom-group">
+            <p class="custom-group-title">Contact Info</p>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="mobile"
+                [class]="inputClass"
+                [(ngModel)]="model.mobile"
+              />
+              <label for="mobile">Mobile No.</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.Mobile"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="phone"
+                [class]="inputClass"
+                [(ngModel)]="model.phone"
+              />
+              <label for="phone">Phone No.</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.Phone"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="email"
+                [class]="inputClass"
+                [(ngModel)]="model.email"
+              />
+              <label for="email">Email</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.Email"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="web"
+                [class]="inputClass"
+                [(ngModel)]="model.web"
+              />
+              <label for="web">Website</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.Web"
+            ></app-error-validation>
+          </div>
+          <div class="custom-group-clear"></div>
+
+          <div class="custom-group">
+            <p class="custom-group-title">Address & Misc</p>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <textarea
+                pInputText
+                [rows]="1"
+                [cols]="30"
+                name="address"
+                [class]="inputClass"
+                [(ngModel)]="model.address"
+              >
+              </textarea>
+              <label for="address">Address</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.Address"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="zipCode"
+                [class]="inputClass"
+                [(ngModel)]="model.zipCode"
+              />
+              <label for="zipCode">Zip Code</label>
+            </span>
+            <app-error-validation
+              [hasValidation]="hasValidation"
+              [validationModel]="validationModel.ZipCode"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <app-employee-dropdown
+                [employees]="[
+                  {
+                    employeeName: model.branchInchargeName,
+                    employeeId: model.branchInchargeId
+                  }
+                ]"
+                [selectedEmployee]="
+                  editMode
+                    ? {
+                        employeeName: model.branchInchargeName,
+                        employeeId: model.branchInchargeId
+                      }
+                    : undefined
+                "
+                (changeEmployee)="
+                  changeEmployeeDropdown($event, 'branchIncharge')
+                "
+              >
+              </app-employee-dropdown>
+              <label
+                for="employee"
+                *ngIf="
+                  model.branchInchargeId == 0 || model.branchInchargeId == null
+                "
+                >Select Branch Incharge
+              </label>
+            </span>
+          </div>
+
+          <div [class]="responsiveClass">
+            <span class="p-float-label">
+              <app-employee-dropdown
+                [employees]="[
+                  {
+                    employeeName: model.branchAttentionPersonName,
+                    employeeId: model.branchAttentionPersonId
+                  }
+                ]"
+                [selectedEmployee]="
+                  editMode
+                    ? {
+                      employeeName: model.branchAttentionPersonName,
+                      employeeId: model.branchAttentionPersonId
+                      }
+                    : undefined
+                "
+                (changeEmployee)="
+                  changeEmployeeDropdown($event, 'attentionPerson')
+                "
+              >
+              </app-employee-dropdown>
+              <label
+                for="employee"
+                *ngIf="
+                  model.branchAttentionPersonId == 0 ||
+                  model.branchAttentionPersonId == null
+                "
+                >Select Attention Person
+              </label>
+            </span>
+          </div>
+
+          <div [class]="responsiveClass">
+            <div class="row">
+              <div class="col-6">
+                <label class="switch-label">Is Active</label>
+              </div>
+              <div class="col-2">
+                <p-inputSwitch
+                  name="isActive"
+                  [(ngModel)]="model.isActive"
+                ></p-inputSwitch>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+          <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
+            <div class="d-grid">
+              <button
+                *ngIf="!isAmend"
+                pButton
+                pRipple
+                label="Submit"
+                class="p-button"
+                [disabled]="disabled"
+                (click)="addBranch()"
+              ></button>
+              <!-- <button (click)="rollback()">Rollback</button>  -->
+            </div>
+
+            <div class="d-grid">
+              <button
+                *ngIf="isAmend"
+                pButton
+                pRipple
+                label="Edit"
+                class="p-button"
+                [disabled]="disabled"
+                (click)="editBranch()"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-default-toast></app-default-toast>

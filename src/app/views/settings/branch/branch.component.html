@@ -1,1 +1,27 @@
-<p>branch works!</p>
+<div class="container">
+    <div class="card">
+      <div class="card-body">
+        <div class="feature-title">
+          <h6>Set Branch</h6>
+        </div>
+        <hr class="under-header" />
+        <div class="row">
+            <app-default-grid
+              [cols]="cols"
+              [data]="data"
+              gridHeight="400px"
+              [showOverlay]="false"
+              modifyButtonClass="p-button-rounded p-button-primary"
+              [hasGridDeleteButton]="false"
+              (modifyEvent)="viewData($event)"
+              [actionStyle]="{'margin-left': '20px'}"
+              [hasBtnSetData]="true"
+              btnSetDataLabel="Add Branch"
+              (setDataEvent)="setBranch()"
+            >
+            </app-default-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+  
