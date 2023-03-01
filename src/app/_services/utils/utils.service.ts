@@ -15,6 +15,13 @@ export class UtilsService {
     private messageService: MessageService
   ) {}
 
+  dropdownDefaultText = (text?: string) => {
+    if(text == undefined || text == null){
+      return `========= Select =========`; 
+    }
+    return `========= Select ${text} =========`; 
+  };
+
   resetDropDown = () => {
     var list: any = document.getElementsByClassName('p-dropdown-clear-icon');
     if (list.length === 0) return;
@@ -57,12 +64,11 @@ export class UtilsService {
 
   checkIntegerInUrl = (intData: number) => {
     if (!(intData > 0) || intData.toString().length > 11) {
-      alert("Please check weather your URL is valid or not.")
-      return false;  
-    }else{
+      alert('Please check weather your URL is valid or not.');
+      return false;
+    } else {
       return true;
-    } 
-   
+    }
   };
 
   lastInsertedData = (data: any) => {
@@ -75,8 +81,8 @@ export class UtilsService {
       return e.error.errors;
     } else if (e.error) {
       return { dbError: e.error };
-    }else {
-      return {dbError:"Something went wrong"}
+    } else {
+      return { dbError: 'Something went wrong' };
     }
   };
 }

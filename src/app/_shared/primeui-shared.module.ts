@@ -36,6 +36,10 @@ import { AccordionModule } from 'primeng/accordion';
 import { MenubarModule } from 'primeng/menubar';
 import { BackComponent } from '../_template/utility/back/back.component';
 import { TopMenubarComponent } from '../_template/top-menubar/top-menubar.component';
+import { AddBranchComponent } from '../views/settings/branch/add-branch/add-branch.component';
+import { CompanyDropdownComponent } from '../_template/dropdown/company-dropdown/company-dropdown.component';
+import { EmployeeDropdownComponent } from '../_template/dropdown/employee-dropdown/employee-dropdown.component';
+import { BranchTypeDropdownComponent } from '../_template/dropdown/branch-type-dropdown/branch-type-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,11 @@ import { TopMenubarComponent } from '../_template/top-menubar/top-menubar.compon
     ContentHelpComponent,
     DialogModalComponent,
     BackComponent,
-    TopMenubarComponent
+    TopMenubarComponent,
+    AddBranchComponent,
+    CompanyDropdownComponent,
+    EmployeeDropdownComponent,
+    BranchTypeDropdownComponent
   ],
   imports: [
     CommonModule,

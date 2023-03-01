@@ -11,6 +11,7 @@ import {
 import { finalize, take } from 'rxjs';
 import { CityService } from 'src/app/_services/city/city.service';
 import { CountryService } from 'src/app/_services/country/country.service';
+import { UtilsService } from 'src/app/_services/utils/utils.service';
 
 @Component({
   selector: 'app-countryDropdown',
@@ -29,15 +30,16 @@ export class CountryDropdownComponent implements OnInit {
 
   constructor(
     private countryServices: CountryService,
-    private cityService: CityService
+    private cityService: CityService,
+    private utilService:UtilsService
   ) {}
 
   ngOnInit(): void {
     this.showClear = false;
   }
 
-  onCountryChange() {
-   // console.log(this.selectedCountry)
+  onChange() {
+    //console.log(this.selectedCountry)
     if (this.selectedCountry == null) {
       this.checkSelectedCountry()
       return;
@@ -75,9 +77,10 @@ export class CountryDropdownComponent implements OnInit {
       .getCountries()
       .pipe(take(1))
       .subscribe({
-        next: (res: any) => {
-          let empty = [
-            { countryName: '------ Select Country ------', countryId: -1 },
+        next: (res:any) => {
+          //console.log(res)
+          const empty = [
+            { countryName: this.utilService.dropdownDefaultText(), countryId: -1 },
           ];
           this.countries = [...empty, ...res];
           this.currentCountries = [...empty,...res];

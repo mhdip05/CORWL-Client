@@ -89,6 +89,10 @@ export class CompanyService {
       );
   }
 
+  GetCompanyDropdown() {
+    return this.http.get(environment.apiUrl + 'company/GetCompanyDropdown');
+  }
+
   addCompany(model: any) {
     return this.http
       .post(environment.apiUrl + 'company/add-company', model)

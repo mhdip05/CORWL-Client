@@ -12,13 +12,13 @@ import { CompanyService } from '../../../_services/company/company.service';
 })
 export class CompanyComponent implements OnInit {
   model: any = {};
-  editMode = false;
   cols!: any[];
   data!: any[];
-  disabled = false;
   showDialog = false;
-  loading = false;
   isInsert = false;
+  editMode = false;
+  disabled = false;
+  loading  = false;
 
   constructor(
     private companyService: CompanyService,

@@ -29,7 +29,7 @@ export class CurrencyService {
 
   getCurrencies() {
     return this.httpClient
-      .get(environment.apiUrl + 'currency/GetCurrencies')
+      .get(environment.apiUrl + 'currency/GetCurrencyDropdown')
       .pipe(
         map((res: any) => {
           return res;

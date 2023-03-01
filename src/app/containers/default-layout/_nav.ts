@@ -24,7 +24,7 @@ export const navItems: any[] = [
     children: [
       { name: 'Basic Settings', url: '/settings/basic-settings' },
       { name: 'Company', url: '/settings/company' },
-      // { name: 'Branch', url: '/settings/' },
+      { name: 'Branch', url: '/settings/branch' },
     ],
   },
 

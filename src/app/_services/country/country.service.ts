@@ -14,7 +14,7 @@ export class CountryService {
   }
 
   getCountries() {
-    return this.http.get(environment.apiUrl + 'country/GetCountries');
+    return this.http.get(environment.apiUrl + 'country/GetCountryDropdown');
   }
 
   addCountry(model: any) {
