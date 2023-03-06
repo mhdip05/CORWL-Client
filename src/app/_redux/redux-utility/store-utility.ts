@@ -29,7 +29,4 @@ export class StoreUtility {
     return newObj;
   }
 
-  // static removeAll(entities: { [id: number]: any }){
-  //     var data = entities.
-  // }
 }

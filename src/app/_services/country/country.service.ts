@@ -1,16 +1,50 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { combineLatest, map, Observable, take } from 'rxjs';
+import {
+  CountryAddAction,
+  CountryListRequestAction,
+  CountryListSuccessAction,
+  CountryUpdateAction,
+} from 'src/app/_redux/action/country-action';
+import {
+  getCountries,
+  getCountryLoaded,
+  getCountryLoading,
+  RootReducerState,
+} from 'src/app/_redux/reducer';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CountryService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private store: Store<RootReducerState>
+  ) {}
 
-  getAllCountries() {
+  getAllCountriesApi() {
     return this.http.get(environment.apiUrl + 'country/getAllCountries');
+  }
+
+  getAllCountries(): [Observable<boolean>, Observable<any>] {
+    const loaded$ = this.store.select(getCountryLoaded);
+    const loading$ = this.store.select(getCountryLoading);
+    const countryData$ = this.store.select(getCountries);
+
+    combineLatest([loaded$, loading$])
+      .pipe(take(1))
+      .subscribe((data) => {
+        if (!data[0] && !data[1]) {
+          this.store.dispatch(new CountryListRequestAction());
+          this.getAllCountriesApi().subscribe((res: any) => {
+            this.store.dispatch(new CountryListSuccessAction({ data: res }));
+          });
+        }
+      });
+    return [loaded$, countryData$];
   }
 
   getCountries() {
@@ -22,12 +56,20 @@ export class CountryService {
       .post(environment.apiUrl + 'country/add-country', model)
       .pipe(
         map((res: any) => {
+          this.store.dispatch(new CountryAddAction({ data: res.data }));
           return res;
         })
       );
   }
 
-  updateCountry(model: any) {
-    return this.http.put(environment.apiUrl + 'country/update-country', model)
+  updateCountry(id:number, model: any) {
+    return this.http
+      .put(environment.apiUrl + 'country/update-country', model)
+      .pipe(
+        map((res: any) => {
+          this.store.dispatch(new CountryUpdateAction({ id, data: res.data }));
+          return res;
+        })
+      );
   }
 }

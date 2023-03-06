@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { finalize } from 'rxjs';
+import { finalize, filter } from 'rxjs';
 import { CountryService } from 'src/app/_services/country/country.service';
 import { UtilsService } from 'src/app/_services/utils/utils.service';
 
@@ -16,6 +16,7 @@ export class CountryComponent implements OnInit {
 
   loading = false;
   disabled = false;
+  isInsert = false;
   editMode = false;
   @Input() showGrid = false;
 
@@ -62,10 +63,11 @@ export class CountryComponent implements OnInit {
   }
 
   getAllCountries() {
-    if (this.data.length > 0) return;
-    this.countryService.getAllCountries().subscribe({
-      next: (res: any) => {
-        this.data = res;
+    var data = this.countryService.getAllCountries()[1];
+    data.pipe(filter((res) => res.length > 0)).subscribe({
+      next: (r: any) => {
+        if (!this.isInsert) this.data = r;
+        else this.data = this.utilService.lastInsertedData(r);
       },
     });
   }
@@ -83,6 +85,7 @@ export class CountryComponent implements OnInit {
 
   addCountry() {
     this.disabled = true;
+    this.isInsert = true;
     this.countryService
       .addCountry(this.model)
       .pipe(
@@ -91,7 +94,10 @@ export class CountryComponent implements OnInit {
         })
       )
       .subscribe({
-        next: () => {
+        next: (r:any) => {
+          this.messageService.add(
+            this.utilService.successMessage(r.message, 3000)
+          );
           this.model = {};
         },
       });
@@ -99,14 +105,14 @@ export class CountryComponent implements OnInit {
 
   viewData(data: any) {
     this.model = { ...data };
-    console.log(this.model);
+    //console.log(this.model);
     this.editMode = true;
   }
 
   updateCountry() {
     this.disabled = true;
     this.countryService
-      .updateCountry(this.model)
+      .updateCountry(this.model.id, this.model)
       .pipe(
         finalize(() => {
           this.disabled = false;
@@ -114,6 +120,7 @@ export class CountryComponent implements OnInit {
       )
       .subscribe({
         next: (r: any) => {
+          //console.log(r)
           this.messageService.add(
             this.utilService.successMessage(r.message, 3000)
           );
