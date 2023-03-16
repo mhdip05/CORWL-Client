@@ -13,29 +13,46 @@
     <ng-template pTemplate="caption">
       <div class="row">
         <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-6">
-          <div>
-            <button
-              pButton
-              pRipple
-              label="Clear"
-              class="p-button-outlined"
-              icon="pi pi-filter-slash"
-              (click)="clear(dt)"
-            ></button>
-            <button
-              *ngIf="hasBtnSetData"
-              id="btn-set-data"
-              pButton
-              pRipple
-              class="p-button-warning"
-              label="NEW"
-              icon="pi pi-plus"
-              style="margin: 0px 5px 0px 3px"
-              [pTooltip]="btnSetDataLabel"
-              tooltipPosition="bottom"
-              (click)="setData()"
-            ></button>
-          </div>
+
+            <div class="grid-btn-utility">
+              <button
+                pButton
+                pRipple
+                label="Clear"
+                class="p-button-outlined"
+                icon="pi pi-filter-slash"
+                (click)="clear(dt)"
+              ></button>
+            </div>
+            <div class="grid-btn-utility">
+              <button
+                *ngIf="hasBtnSetData"
+                pButton
+                pRipple
+                class="p-button-outlined p-button-rounded"
+                icon="pi pi-plus"
+                style="border: 2px solid"
+                [pTooltip]="btnSetDataLabel"
+                tooltipPosition="bottom"
+                (click)="setData()"
+              ></button>
+            </div>
+            <div class="grid-btn-utility">
+              <button
+                *ngIf="hasBtnPull"
+                id="grid-pull"
+                pButton
+                pRipple
+                type="button"
+                class="p-button-outlined p-button-rounded"
+                icon="pi pi-cloud-download"
+                style="border: 2px solid #273746"
+                [pTooltip]="'Pull'"
+                tooltipPosition="bottom"
+                (click)="pullData()"
+              ></button>
+            </div>
+
         </div>
         <div
           class="col-xxl-6 col-xl-6 col-md-6 col-sm-6"
