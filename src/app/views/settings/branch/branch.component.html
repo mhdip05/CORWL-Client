@@ -12,12 +12,14 @@
               gridHeight="400px"
               [showOverlay]="false"
               modifyButtonClass="p-button-rounded p-button-primary"
-              [hasGridDeleteButton]="false"
-              (modifyEvent)="viewData($event)"
+              [hasGridDeleteButton]="false"           
               [actionStyle]="{'margin-left': '20px'}"
               [hasBtnSetData]="true"
               btnSetDataLabel="Add Branch"
+              [hasBtnPull]="true"
+              (modifyEvent)="viewData($event)"
               (setDataEvent)="setBranch()"
+              (pullDataEvent)="pullData()"
             >
             </app-default-grid>
         </div>

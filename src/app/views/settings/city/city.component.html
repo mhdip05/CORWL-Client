@@ -110,7 +110,9 @@
       [hasGridDeleteButton]="false"
       [modifyButtonClass]="'p-button-primary p-button-rounded'"
       [actionStyle]="{ 'margin-left': '20px' }"
+      [hasBtnPull]="true"
       (modifyEvent)="viewData($event)"
+      (pullDataEvent)="pullData()"
     >
     </app-default-grid>
   </div>

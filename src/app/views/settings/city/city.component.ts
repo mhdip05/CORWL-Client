@@ -85,6 +85,10 @@ export class CityComponent implements OnInit {
 
   getAllCity() {
     if (this.data.length > 0) return;
+    this.fetchAllCity();
+  }
+
+  private fetchAllCity(){
     this.cityService.getAllCity().subscribe({
       next: (res: any) => {
         //console.log(res)
@@ -148,6 +152,10 @@ export class CityComponent implements OnInit {
           this.reset();
         },
       });
+  }
+
+  pullData(){
+    this.fetchAllCity();
   }
 
   reset() {

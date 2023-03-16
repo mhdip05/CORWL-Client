@@ -38,6 +38,10 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
   @Input() btnSetDataLabel = 'Set Data';  
   @Output() setDataEvent = new EventEmitter();
 
+  //--------------- Pull Data ---------------
+  @Input() hasBtnPull = false;
+  @Output() pullDataEvent = new EventEmitter();
+
   // ----------Edit and Delete Button --------
   @Input() actionStyle = {};
   @Input() hasAction = true;
@@ -71,6 +75,10 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
 
   setData() {
     this.setDataEvent.emit();
+  }
+
+  pullData(){
+    this.pullDataEvent.emit()
   }
 
   ngAfterViewInit(): void {

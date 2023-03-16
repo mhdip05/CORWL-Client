@@ -76,4 +76,9 @@ export class BranchComponent implements OnInit {
   setBranch() {
     this.router.navigateByUrl('/settings/add-branch');
   }
+
+  pullData(){
+    console.log("hello world")
+    this.getAllBranches();
+  }
 }
