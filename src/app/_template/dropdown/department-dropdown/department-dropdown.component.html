@@ -1,25 +1,24 @@
 <p-dropdown
-  [options]="employees"
-  [(ngModel)]="selectedEmployee"
-  optionLabel="employeeName"
+  [options]="departments"
+  [(ngModel)]="selectedDepartment"
   [showClear]="showClear"
   [emptyMessage]="emptyMessage"
   [autoDisplayFirst]="false"
   [filter]="true"
+  optionLabel="departmentName"
   (onShow)="onShow()"
   (onChange)="onChange()"
-  [class]="applyCustomClass?'custom-dd':''"
 >
   <ng-template pTemplate="selectedItem">
-    <div *ngIf="selectedEmployee">
+    <div *ngIf="selectedDepartment">
       <div class="dropdown-selected-item">
-        {{ selectedEmployee.employeeName }}
+        {{ selectedDepartment.departmentName }}
       </div>
     </div>
   </ng-template>
-  <ng-template let-employees pTemplate="item">
+  <ng-template let-departments pTemplate="item">
     <div class="dropdown-text">
-      <div id="employee-dropdown">{{ employees.employeeName }}</div>
+      <div id="department-dropdown">{{ departments.departmentName }}</div>
     </div>
   </ng-template>
 </p-dropdown>

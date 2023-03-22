@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="feature-title">
+        <h6>Set City</h6>
+      </div>
+      <hr class="under-header" />
+      <form #addForm="ngForm" autocomplete="off">
+        <div class="row">
+          <div
+            class="col-xxl-10 col-xl-10 col-lg-9 col-md-12 col-sm-12 col-xs-12"
+          >
+            <div class="row">
+              <div class="col-xl-3 col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                <span class="p-float-label">
+                  <input
+                    type="text"
+                    pInputText
+                    class="form-control form-control-sm"
+                    name="designationName"
+                    [(ngModel)]="model.designationName"
+                  />
+                  <label for="designationName">Designation</label>
+                </span>
+              </div>
+              <div class="col-xl-3 col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                <span class="p-float-label">
+                  <input
+                    type="text"
+                    pInputText
+                    class="form-control form-control-sm"
+                    name="abbreviation"
+                    [(ngModel)]="model.abbreviation"
+                  />
+                  <label for="abbreviation">Abbreviation</label>
+                </span>
+              </div>
+              <div class="col-xl-3 col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                <span class="p-float-label">
+                  <app-department-dropdown
+                    (changeDepartment)="changeDropdown($event)"
+                    [departments]="[
+                      {
+                        departmentId: model.departmentId,
+                        departmentName: model.departmentName
+                      }
+                    ]"
+                    [selectedDepartment]="
+                      editMode
+                        ? {
+                            departmentId: model.departmentId,
+                            departmentName: model.departmentName
+                          }
+                        : undefined
+                    "
+                  >
+                  </app-department-dropdown>
+                  <label
+                    for="department"
+                    *ngIf="
+                      model.departmentId == 0 || model.departmentId == null
+                    "
+                    >Department</label
+                  >
+                </span>
+              </div>
+              <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-xs-12 mt-1">
+                <div class="d-grid gap-2">
+                  <button
+                    pButton
+                    pRipple
+                    [label]="editMode?'Edit':'Add'"
+                    class="p-button"
+                    (click)="editMode?updateDesignation():addDesignation()"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-xxl-2 col-xl-2 col-lg-3 col-md-12 col-sm-12 col-xs-12"
+          >
+            <div class="utilityBtn">
+              <span>
+                <app-reset (click)="reset()"></app-reset>
+              </span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-2" *ngIf="showGrid">
+    <app-default-grid
+      [cols]="cols"
+      [data]="data"
+      [hasGridDeleteButton]="false"
+      [modifyButtonClass]="'p-button-primary p-button-rounded'"
+      [actionStyle]="{ 'margin-left': '20px' }"
+      [hasBtnPull]="true"
+      [isShrinkGridData]="true"
+      (modifyEvent)="viewData($event)" 
+      (pullDataEvent)="pullData()"
+    >
+    </app-default-grid>
+  </div>
+</div>
+<app-default-toast></app-default-toast>

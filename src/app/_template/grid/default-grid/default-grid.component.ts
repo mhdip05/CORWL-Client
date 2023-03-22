@@ -24,18 +24,17 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
   @Input() data!: any[];
   @Input() rowWidth = '0px';
   @Input() gridStyleClass = '';
-  @Input() gridHeight = '400px'; 
-  @Input() scrollable = true; 
+  @Input() gridHeight = '400px';
+  @Input() scrollable = true;
   @Input() showOverlay = false;
   @Input() showToolbar = false;
   @Input() isShrinkGridData = false;
   @Input() turnDataFilterOn = false;
   @Input() isShrinkGridHeader = false;
 
-
-  //---------------- Set Data----------------- 
+  //---------------- Set Data-----------------
   @Input() hasBtnSetData = false;
-  @Input() btnSetDataLabel = 'Set Data';  
+  @Input() btnSetDataLabel = 'Set Data';
   @Output() setDataEvent = new EventEmitter();
 
   //--------------- Pull Data ---------------
@@ -48,15 +47,19 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
   @Input() isButtonIconable = true;
   @Input() hasGridModifyButton = true;
   @Input() hasGridDeleteButton = true;
+  @Input() hasGridViewButton = false;
   @Input() iconClass = 'pi pi-pencil';
-  @Input() modifyButtonName  = 'Modify';
+  @Input() modifyButtonName = 'Modify';
   @Input() modifyButtonClass = 'p-button-rounded p-button-success mr-2';
-  @Input() deleteButtonName  = 'Delete';
-  @Input() delteButtonClass  = 'p-button-rounded p-button-warning';
+  @Input() deleteButtonName = 'Delete';
+  @Input() delteButtonClass = 'p-button-rounded p-button-warning mr-2';
+  @Input() viewButtonName = 'View';
+  @Input() viewButtonClass = 'p-button-rounded p-button-info mr-2';
   @Input() addButtonNewDataClass = 'p-button-primary';
- 
+
   @Output() modifyEvent = new EventEmitter();
   @Output() deleteEvent = new EventEmitter();
+  @Output() viewEvent = new EventEmitter();
 
   @ViewChild('dt') gridData: ElementRef | any;
   @ViewChild('globalFilterInput') globalFilterInput!: ElementRef;
@@ -64,7 +67,7 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
   rowData = {};
   filterByText = false;
   filterByMenu = false;
-  applyCustomWidth = false; 
+  applyCustomWidth = false;
   display: boolean = false;
 
   constructor(private confirmationService: ConfirmationService) {}
@@ -77,8 +80,8 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
     this.setDataEvent.emit();
   }
 
-  pullData(){
-    this.pullDataEvent.emit()
+  pullData() {
+    this.pullDataEvent.emit();
   }
 
   ngAfterViewInit(): void {
@@ -138,16 +141,20 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
     this.deleteEvent.emit(rowData);
   }
 
-  hideDialog(){
+  viewData(rowData: any) {
+    this.viewEvent.emit(rowData);
+  }
+
+  hideDialog() {
     this.display = false;
   }
 
   readyToDelete(rowData: any) {
-   this.display = true;
-   this.rowData = rowData;
+    this.display = true;
+    this.rowData = rowData;
   }
 
-  deleteConfirmation(){
+  deleteConfirmation() {
     this.deleteEvent.emit(this.rowData);
     setTimeout(() => {
       this.display = false;

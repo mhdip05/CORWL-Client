@@ -12,6 +12,7 @@ export class EmployeeDropdownComponent implements OnInit {
   emptyMessage = 'No Record Found';
   currentEmployees: any = [];
   showClear = true;
+  @Input() applyCustomClass = false;
   @Input() employees: any = [];
   @Input() editMode = false;
   @Input() disabled = false;

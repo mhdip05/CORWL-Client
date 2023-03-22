@@ -2,48 +2,49 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from '../errors/not-found/not-found.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
-import { DesignationComponent } from './designation/designation.component';
+import { EmployeeSettingsComponent } from './employee-settings/employee-settings.component';
 import { UserRoleMappingComponent } from './user-role-mapping/user-role-mapping.component';
 
 const routes: Routes = [
   {
     path: '',
     data: {
-      title: "Employee"
+      title: 'Employee',
     },
     children: [
       {
-        path:'',
-        redirectTo:'add-employee'
+        path: '',
+        redirectTo: 'employee-settings',
+      },
+      {
+        path: 'employee-settings',
+        component: EmployeeSettingsComponent,
+        data: {
+          title: 'Employee-Settings',
+        },
       },
       {
         path: 'add-employee',
         component: AddEmployeeComponent,
         data: {
-          title: "Add-Empoloyee"
-        }
+          title: 'Add-Empoloyee',
+        },
       },
-      {
-        path: 'designation',
-        component: DesignationComponent,
-        data: {
-          title: "Add-Designation"
-        }
-      },
+
       {
         path: 'user-role-map',
         component: UserRoleMappingComponent,
         data: {
-          title: "User Role Mapping"
-        }
-      }
-    ]
+          title: 'User Role Mapping',
+        },
+      },
+    ],
   },
   { path: '**', component: NotFoundComponent, pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class EmployeeRoutingModule { }
+export class EmployeeRoutingModule {}

@@ -160,6 +160,15 @@
               [class]="delteButtonClass"
               [label]="!isButtonIconable ? deleteButtonName : ''"
             ></button>
+            <button
+              *ngIf="hasGridViewButton"
+              pButton
+              pRipple
+              (click)="viewData(rowData)"
+              [icon]="isButtonIconable ? 'pi pi-eye' : ''"
+              [class]="viewButtonClass"
+              [label]="!isButtonIconable ? viewButtonName : ''"
+            ></button>
           </span>
         </td>
       </tr>

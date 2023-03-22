@@ -39,8 +39,8 @@ export const navItems: any[] = [
     role: ['admin', 'management'],
     iconComponent: { name: 'cilPeople' },
     children: [
+      { name: 'Settings', url: '/employee/employee-settings' },
       { name: 'Add Employee', url: '/employee/add-employee' },
-      { name: 'Add Designation', url: '/employee/designation' },
       { name: 'User Role Map', url: '/employee/user-role-map' },
     ],
   },

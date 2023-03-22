@@ -104,13 +104,13 @@
   </div>
   <div class="row mt-2" *ngIf="showGrid">
     <app-default-grid
-      id="cityGrid"
       [cols]="cols"
       [data]="data"
       [hasGridDeleteButton]="false"
       [modifyButtonClass]="'p-button-primary p-button-rounded'"
       [actionStyle]="{ 'margin-left': '20px' }"
       [hasBtnPull]="true"
+      [isShrinkGridData]="true"
       (modifyEvent)="viewData($event)"
       (pullDataEvent)="pullData()"
     >

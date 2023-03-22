@@ -8,10 +8,11 @@ import { UtilsService } from 'src/app/_services/utils/utils.service';
   styleUrls: ['./basic-settings.component.scss'],
 })
 export class BasicSettingsComponent implements OnInit {
-  constructor(private utilsService: UtilsService) {}
   items!: MenuItem[];
   selectedMenuItem:any = 'country';
   
+  constructor(private utilsService: UtilsService) {}
+
   ngOnInit(): void {
     this.utilsService.queryParamsSanitization();
     this.items = [

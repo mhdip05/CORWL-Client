@@ -40,6 +40,10 @@ import { AddBranchComponent } from '../views/settings/branch/add-branch/add-bran
 import { CompanyDropdownComponent } from '../_template/dropdown/company-dropdown/company-dropdown.component';
 import { EmployeeDropdownComponent } from '../_template/dropdown/employee-dropdown/employee-dropdown.component';
 import { BranchTypeDropdownComponent } from '../_template/dropdown/branch-type-dropdown/branch-type-dropdown.component';
+import { DepartmentDropdownComponent } from '../_template/dropdown/department-dropdown/department-dropdown.component';
+import { DesignationDropdownComponent } from '../_template/dropdown/designation-dropdown/designation-dropdown.component';
+
+
 
 @NgModule({
   declarations: [
@@ -62,7 +66,10 @@ import { BranchTypeDropdownComponent } from '../_template/dropdown/branch-type-d
     AddBranchComponent,
     CompanyDropdownComponent,
     EmployeeDropdownComponent,
-    BranchTypeDropdownComponent
+    BranchTypeDropdownComponent,
+    DepartmentDropdownComponent,
+    DesignationDropdownComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -119,7 +126,10 @@ import { BranchTypeDropdownComponent } from '../_template/dropdown/branch-type-d
     AccordionModule,
     MenubarModule,
     BackComponent,
-    TopMenubarComponent
+    TopMenubarComponent,
+    EmployeeDropdownComponent,
+    DepartmentDropdownComponent,
+    DesignationDropdownComponent
   ],
   providers: [ConfirmationService, MessageService],
 })

@@ -1,0 +1,133 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xxl-3 col-xl-3 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="feature-title">
+            <h6>Set Department</h6>
+          </div>
+          <hr style="margin-top: 2px" />
+          <div class="utility-box" style="margin-top: -11px">
+            <app-reset class="utility" (click)="reset()"></app-reset>
+          </div>
+          <hr class="custom-hr" />
+          <form #addForm="ngForm" autocomplete="off">
+            <div class="col-12 mb-3">
+              <span class="p-float-label">
+                <input
+                  type="text"
+                  pInputText
+                  class="form-control form-control-sm"
+                  name="departmentName"
+                  [(ngModel)]="model.departmentName"
+                />
+                <label for="departmentName">Name</label>
+              </span>
+            </div>
+            <div class="col-12 mb-3">
+              <span class="p-float-label">
+                <input
+                  type="text"
+                  pInputText
+                  class="form-control form-control-sm"
+                  name="abbreviation"
+                  [(ngModel)]="model.abbreviation"
+                />
+                <label for="abbreviation">Abbreviation</label>
+              </span>
+            </div>
+            <div class="col-12 mb-3">
+              <span class="p-float-label">
+                <input
+                  type="text"
+                  pInputText
+                  class="form-control form-control-sm"
+                  name="departmentCode"
+                  [(ngModel)]="model.departmentCode"
+                />
+                <label for="departmentCode">Code</label>
+              </span>
+            </div>
+
+            <div class="col-12 mb-3">
+              <span class="p-float-label">
+                <app-employee-dropdown
+                  [employees]="[
+                    {
+                      employeeName: model.departmentHeadName,
+                      employeeId: model.departmentHeadId
+                    }
+                  ]"
+                  [selectedEmployee]="
+                    editMode
+                      ? {
+                          employeeName: model.departmentHeadName,
+                          employeeId: model.departmentHeadId
+                        }
+                      : undefined
+                  "
+                  (changeEmployee)="changeDropdown($event)"
+                >
+                </app-employee-dropdown>
+                <label
+                  for="employee"
+                  *ngIf="
+                    model.departmentHeadId == 0 ||
+                    model.departmentHeadId == null
+                  "
+                  >Dept. Head
+                </label>
+              </span>
+            </div>
+            <div class="col-12 mb-3">
+              <span class="p-float-label">
+                <textarea
+                  pInputTextarea 
+                  [rows]="1"
+                  [cols]="28"
+                  name="address"
+                  class="custom-textarea"
+                  [(ngModel)]="model.departmentAddress"                
+                >
+                </textarea>
+                <label for="address">Address</label>
+              </span>
+            </div>
+
+            <div class="col-12 mb-3" *ngIf="isRemoved==false">
+              <button               
+                pButton
+                pRipple
+                [label]="editMode ? 'Edit' : 'Add'"
+                class="p-button"
+                style="width: 100%"
+                [disabled]="disabled"
+                (click)="editMode ? updateDepartment() : addDepartment()"
+              ></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-9 col-xl-9 col-md-12 col-sm-12 col-xs-12">
+      <div *ngIf="showGrid">
+        <app-default-grid
+          gridHeight="455px"
+          [cols]="cols"
+          [data]="data"
+          [actionStyle]="{ 'margin-left': '10px' }"
+          [hasGridDeleteButton]="false"
+          [isShrinkGridData]="true"
+          [hasBtnPull]="true"
+          [scrollable]="false"
+          [hasGridViewButton]="true"
+          (modifyEvent)="viewData($event, 'edit')"
+          (viewEvent)="viewData($event, 'view')"
+          (pullDataEvent)="pullData()"
+        >
+        </app-default-grid>
+      </div>
+    </div>
+  </div>
+</div>
+<app-default-toast></app-default-toast>
