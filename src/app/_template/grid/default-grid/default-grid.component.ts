@@ -31,6 +31,9 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
   @Input() isShrinkGridData = false;
   @Input() turnDataFilterOn = false;
   @Input() isShrinkGridHeader = false;
+  @Input() applyCustomHeaderStyle = false;
+  @Input() gridLoad = false;
+  
 
   //---------------- Set Data-----------------
   @Input() hasBtnSetData = false;
@@ -73,6 +76,7 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
   constructor(private confirmationService: ConfirmationService) {}
 
   ngOnInit(): void {
+    //this.enableSkeltetonLoading = true;
     this.gridInitialization();
   }
 
@@ -181,11 +185,12 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
     if (this.showOverlay) template.toggle($event);
   }
 
-  shrinkGridHeader() {
+  shrinkGridHeader(col: any) {
     if (this.isShrinkGridHeader)
       return {
         'white-space': 'normal',
       };
+    if (this.applyCustomHeaderStyle) return col.headerStyle;
     return {};
   }
 

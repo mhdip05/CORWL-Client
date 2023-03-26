@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UtilsService {
   turnModalStateErrorOn = true;
+  turnLoadingBarOn = true;
 
   constructor(
     private route: Router,
@@ -16,10 +17,10 @@ export class UtilsService {
   ) {}
 
   dropdownDefaultText = (text?: string) => {
-    if(text == undefined || text == null){
-      return `========= Select =========`; 
+    if (text == undefined || text == null) {
+      return `========= Select =========`;
     }
-    return `========= Select ${text} =========`; 
+    return `========= Select ${text} =========`;
   };
 
   resetDropDown = () => {

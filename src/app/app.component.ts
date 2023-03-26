@@ -11,13 +11,7 @@ import { PrimeNGConfig } from 'primeng/api';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'body',
-  template: `<ngx-loading-bar
-      height="4px"
-      color="#0d6efd"
-      [includeSpinner]="false"
-    >
-    </ngx-loading-bar>
-    <router-outlet></router-outlet>`,
+  templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
   title = 'NMS';

@@ -82,20 +82,20 @@
             <div class="col-12 mb-3">
               <span class="p-float-label">
                 <textarea
-                  pInputTextarea 
+                  pInputTextarea
                   [rows]="1"
                   [cols]="28"
                   name="address"
                   class="custom-textarea"
-                  [(ngModel)]="model.departmentAddress"                
+                  [(ngModel)]="model.departmentAddress"
                 >
                 </textarea>
                 <label for="address">Address</label>
               </span>
             </div>
 
-            <div class="col-12 mb-3" *ngIf="isRemoved==false">
-              <button               
+            <div class="col-12 mb-3" *ngIf="isRemoved == false">
+              <button
                 pButton
                 pRipple
                 [label]="editMode ? 'Edit' : 'Add'"
@@ -109,6 +109,7 @@
         </div>
       </div>
     </div>
+
     <div class="col-xxl-9 col-xl-9 col-md-12 col-sm-12 col-xs-12">
       <div *ngIf="showGrid">
         <app-default-grid
@@ -119,8 +120,8 @@
           [hasGridDeleteButton]="false"
           [isShrinkGridData]="true"
           [hasBtnPull]="true"
-          [scrollable]="false"
           [hasGridViewButton]="true"
+          [gridLoad]="gridLoad"
           (modifyEvent)="viewData($event, 'edit')"
           (viewEvent)="viewData($event, 'view')"
           (pullDataEvent)="pullData()"

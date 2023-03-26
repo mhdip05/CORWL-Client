@@ -42,8 +42,8 @@ import { EmployeeDropdownComponent } from '../_template/dropdown/employee-dropdo
 import { BranchTypeDropdownComponent } from '../_template/dropdown/branch-type-dropdown/branch-type-dropdown.component';
 import { DepartmentDropdownComponent } from '../_template/dropdown/department-dropdown/department-dropdown.component';
 import { DesignationDropdownComponent } from '../_template/dropdown/designation-dropdown/designation-dropdown.component';
-
-
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { SkeleteonLoaderComponent } from '../_template/utility/skeleteon-loader/skeleteon-loader.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +69,7 @@ import { DesignationDropdownComponent } from '../_template/dropdown/designation-
     BranchTypeDropdownComponent,
     DepartmentDropdownComponent,
     DesignationDropdownComponent,
-    
+    SkeleteonLoaderComponent,
   ],
   imports: [
     CommonModule,
@@ -92,6 +92,7 @@ import { DesignationDropdownComponent } from '../_template/dropdown/designation-
     InputNumberModule,
     AccordionModule,
     MenubarModule,
+    NgxSkeletonLoaderModule,
   ],
   exports: [
     ButtonModule,
@@ -129,7 +130,9 @@ import { DesignationDropdownComponent } from '../_template/dropdown/designation-
     TopMenubarComponent,
     EmployeeDropdownComponent,
     DepartmentDropdownComponent,
-    DesignationDropdownComponent
+    DesignationDropdownComponent,
+    NgxSkeletonLoaderModule,
+    SkeleteonLoaderComponent
   ],
   providers: [ConfirmationService, MessageService],
 })

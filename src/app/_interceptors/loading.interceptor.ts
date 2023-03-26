@@ -7,18 +7,25 @@ import {
 } from '@angular/common/http';
 import { delay, finalize, Observable } from 'rxjs';
 import { LoadingService } from '../_services/loading.service';
+import { UtilsService } from '../_services/utils/utils.service';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
-  constructor(private loadingService: LoadingService) {}
+  constructor(
+    private loadingService: LoadingService,
+    private utilService: UtilsService
+  ) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    this.loadingService.busy();
+    if (this.utilService.turnLoadingBarOn == true) {
+      this.loadingService.busy();
+    }
+
     return next.handle(request).pipe(
-      //delay(500),
+      //delay(5000),
       finalize(() => {
         //console.log('dip',request)
         this.loadingService.idle();

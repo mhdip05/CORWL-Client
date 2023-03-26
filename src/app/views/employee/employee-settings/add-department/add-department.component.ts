@@ -20,6 +20,7 @@ export class AddDepartmentComponent implements OnInit {
   disabled = false;
   showDialog = false;
   isRemoved = false;
+  gridLoad = false;
   @Input() showGrid = false;
 
   constructor(
@@ -78,6 +79,10 @@ export class AddDepartmentComponent implements OnInit {
         //console.log(res)
         this.data = res;
       },
+      complete: () => {
+        this.gridLoad = false;
+        this.utilService.turnLoadingBarOn = true;
+      },
     });
   }
 
@@ -103,6 +108,9 @@ export class AddDepartmentComponent implements OnInit {
             this.utilService.successMessage(v.message, 2000)
           );
           this.reset();
+        },
+        complete: () => {
+          this.refreshGrid();
         },
       });
   }
@@ -141,6 +149,12 @@ export class AddDepartmentComponent implements OnInit {
     } else {
       this.isRemoved = false;
     }
+  }
+
+  refreshGrid() {
+    this.utilService.turnLoadingBarOn = false;
+    this.gridLoad = true;
+    this.getAllDepartment();
   }
 
   pullData() {

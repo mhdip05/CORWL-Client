@@ -19,6 +19,7 @@ export class AddDesignationComponent implements OnInit {
   isAmend = false;
   editMode = false;
   disabled = false;
+  gridLoad = false;
   @Input() showGrid = false;
 
   selectedCountry: any = {};
@@ -82,6 +83,10 @@ export class AddDesignationComponent implements OnInit {
         //console.log(res)
         this.data = res;
       },
+      complete: () => {
+        this.utilService.turnLoadingBarOn = true;
+        this.gridLoad = false;
+      },
     });
   }
 
@@ -98,16 +103,19 @@ export class AddDesignationComponent implements OnInit {
       )
 
       .subscribe({
-        next: (v:any) => {
+        next: (v: any) => {
           this.messageService.add(
-            this.utilService.successMessage(v.message,2000)
+            this.utilService.successMessage(v.message, 2000)
           );
+        },
+        complete: () => {
+          this.refreshGrid();
         },
       });
   }
 
   viewData(data: any) {
-    console.log(data)
+    console.log(data);
     this.isAmend = true;
     this.editMode = false;
     this.model = { ...data };
@@ -131,13 +139,19 @@ export class AddDesignationComponent implements OnInit {
         next: (r: any) => {
           //console.log(r);
           this.messageService.add(
-            this.utilService.successMessage(r.message,2000)
+            this.utilService.successMessage(r.message, 2000)
           );
         },
         complete: () => {
           this.reset();
         },
       });
+  }
+
+  refreshGrid() {
+    this.utilService.turnLoadingBarOn = false;
+    this.gridLoad = true;
+    this.getAllDesignation();
   }
 
   pullData() {
