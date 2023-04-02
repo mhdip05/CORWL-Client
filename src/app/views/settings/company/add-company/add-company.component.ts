@@ -9,6 +9,8 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { filter, finalize, map, Observable, of, switchMap, take } from 'rxjs';
+import { CustomModel } from 'src/app/_models/CustomModel';
+import { DesignModel } from 'src/app/_models/DesignModel';
 import { CompanyService } from 'src/app/_services/company/company.service';
 import { UtilsService } from 'src/app/_services/utils/utils.service';
 
@@ -18,19 +20,8 @@ import { UtilsService } from 'src/app/_services/utils/utils.service';
   styleUrls: ['./add-company.component.scss'],
 })
 export class AddCompanyComponent implements OnInit, OnDestroy {
-  model: any = {};
-  rollbackModel: any = {};
-  validationModel: any = {};
-  cascadeModel: any = { disabledCity: true, load: false };
-
-  isAmend = false;
-  editMode = false;
-  disabled = false;
-  hasValidation = false;
-
-  inputClass = 'form-control form-control-sm';
-  responsiveClass =
-    'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12 input-margin-bottom';
+  customModel = new CustomModel();
+  designModel = new DesignModel();
 
   constructor(
     private router: Router,
@@ -41,11 +32,12 @@ export class AddCompanyComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.editMode = false;
+    this.customModel.editMode = false;
     this.utilService.queryParamsSanitization();
     this.utilService.turnModalStateErrorOn = false;
 
     if (this.activatedRoute.snapshot.params['id'] !== undefined) {
+      this.customModel.editMode = true;
       this.getCompanyById();
     }
   }
@@ -55,15 +47,15 @@ export class AddCompanyComponent implements OnInit, OnDestroy {
   }
 
   addCompany() {
-    //console.log(this.model);
+    //console.log(this.customModel.model);
     //return;
-    this.disabled = true;
-    this.hasValidation = false;
+    this.customModel.disabled = true;
+    this.customModel.hasValidation = false;
     this.companyService
-      .addCompany(this.model)
+      .addCompany(this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
@@ -71,15 +63,25 @@ export class AddCompanyComponent implements OnInit, OnDestroy {
           this.messageService.add(
             this.utilService.successMessage('Company Saved Successfully', 2000)
           );
-          this.reset();
+          this.customModel.reset(this.customModel.editMode);
         },
         error: (e) => {
-          this.handleError(e);
+          this.displayError(e);
         },
       });
   }
 
+  displayError(e: any) {
+    const error: any = this.customModel.handleError(e);
+    if (error.isDbError) {
+      this.messageService.add(
+        this.utilService.dangerMessage(error.dbError, 4000)
+      );
+    }
+  }
+  
   getCompanyById() {
+    if (this.customModel.editMode == false) return;
     this.activatedRoute.params
       .pipe(
         map((data: any) => data['id']),
@@ -89,29 +91,23 @@ export class AddCompanyComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         //console.log('data',data)
         this.viewData(data);
-        //this.model = {...data}
       });
   }
 
   viewData(data: any) {
-    this.editMode = false;
-    this.model = { ...data };
-    setTimeout(() => {
-      this.editMode = true;
-    }, 0);
-    this.isAmend = true;
-    this.cascadeModel.disabledCity = false;
+    this.customModel.viewData(data);
+    this.customModel.cascadeCityModel.disabledCity = false;
   }
 
   editCompany() {
-    //console.log(this.model);
+    //console.log(this.customModel.model);
     //return
-    this.disabled = true;
+    this.customModel.disabled = true;
     this.companyService
-      .updateCompany(this.model.id, this.model)
+      .updateCompany(this.customModel.model.id, this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
@@ -123,114 +119,38 @@ export class AddCompanyComponent implements OnInit, OnDestroy {
               3000
             )
           );
-          this.validationReset();
+          this.customModel.validationReset();
         },
         error: (e) => {
-          this.handleError(e);
+          this.displayError(e);
         },
       });
     return;
   }
 
-  handleError(error: any) {
-    this.hasValidation = true;
-    this.validationModel = { ...this.utilService.errorValidation(error) };
-    if (this.validationModel.dbError) {
-      this.messageService.add(
-        this.utilService.dangerMessage(this.validationModel.dbError, 4000)
-      );
-    }
-  }
-
-  changeCountry(data: any) {
-    //console.log(data);
-    this.model.countryId = data.countryId;
-    this.model.countryName = data.countryName;
-
-    if (data.countryId == 0) {
-      this.model.cityId = 0;
-      this.model.cityName = null;
-      this.cascadeModel.disabledCity = true;
-      return;
-    }
-
-    this.model.cityId = 0;
-    this.model.cityName = null;
-    this.cascadeModel.load = true;
-    this.cascadeModel.disabledCity = false;
-  }
-
-  changeDropDown(data: any) {
-    this.model = { ...this.model, ...data };
-  }
-
   changeCurrencyDropDown(data: any, type?: String) {
     //console.log(data)
     if (type == 'internationalCurrency') {
-      this.model.interNationalCurrencyId = data.currencyId;
-      this.model.interNationalCurrencyName = data.currencyName;
+      this.customModel.model.interNationalCurrencyId = data.currencyId;
+      this.customModel.model.interNationalCurrencyName = data.currencyName;
     } else {
-      this.model.localCurrencyId = data.currencyId;
-      this.model.localCurrencyName = data.currencyName;
+      this.customModel.model.localCurrencyId = data.currencyId;
+      this.customModel.model.localCurrencyName = data.currencyName;
     }
   }
 
-  validationReset() {
-    this.validationModel = {};
-  }
-
-  reset() {
-    this.validationModel = {};
-    this.utilService.resetDropDown();
-    if (!this.editMode) this.model = {};
-    else this.getCompanyById();
-  }
-
-  // @HostListener('window:keyup.w', ['$event']) w(e: KeyboardEvent) {
-  //   console.log('w captured', e);
-  // }
-
-  // @HostListener('window:keyup.w', ['$event']) s(e: KeyboardEvent) {
-  //   console.log('shift w captured', e);
-  // }
-
-  // @HostListener('window:keyup.f8', ['$event']) sw(e: KeyboardEvent) {
-  //   this.rollbackModel = {...this.model}
-  // }
-
-  rollback() {
-    //this.cascadeModel.disabledCity = true;
-    // this.editMode = false;
-    // this.model = {...this.rollbackModel}
-    // setTimeout(() => {
-    //   this.editMode = true;
-    // }, 0);
-    // console.log(this.rollbackModel)
-    // console.log(this.model)
-  }
-
   viewDataFromResolver() {
-    this.isAmend = true;
+    this.customModel.isAmend = true;
     this.activatedRoute.snapshot.data['companyData'].pipe(take(1)).subscribe({
       next: (v: any) => {
-        this.editMode = false;
-        this.model = { ...v };
+        this.customModel.editMode = false;
+        this.customModel.model = { ...v };
         setTimeout(() => {
-          this.editMode = true;
+          this.customModel.editMode = true;
         }, 0);
 
-        this.cascadeModel.disabledCity = false;
+        this.customModel.cascadeCityModel.disabledCity = false;
       },
     });
   }
-
-  // permissionForEdit = (companyId: number) => {
-  //   if (this.utilService.checkIntegerInUrl(companyId) == false) {
-  //     this.editMode = true;
-  //     this.allowEdit = false;
-  //   } else {
-  //     this.allowEdit = true;
-  //     this.getCompanyById();
-  //   }
-  // };
 }

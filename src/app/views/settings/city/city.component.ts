@@ -10,6 +10,7 @@ import { UtilsService } from '../../../_services/utils/utils.service';
 import { CityService } from '../../../_services/city/city.service';
 import { MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
+import { GridModel } from 'src/app/_models/GridModel';
 
 @Component({
   selector: 'app-city',
@@ -17,16 +18,7 @@ import { finalize } from 'rxjs';
   styleUrls: ['./city.component.scss'],
 })
 export class CityComponent implements OnInit {
-  // @ViewChild('addForm') myForm!: ElementRef;
-  data = [];
-  cols!: any[];
-  model: any = {};
-
-  test = false;
-  loading = false;
-  isAmend = false;
-  editMode = false;
-  disabled = false;
+  customModel = new GridModel();
   @Input() showGrid = false;
 
   selectedCountry: any = {};
@@ -45,12 +37,12 @@ export class CityComponent implements OnInit {
 
   changeCountry(country: any) {
     //console.log(country);
-    this.model.countryId = country.countryId;
-    this.model.countryName = country.countryName;
+    this.customModel.model.countryId = country.countryId;
+    this.customModel.model.countryName = country.countryName;
   }
 
   private cityListColumn() {
-    this.cols = [
+    this.customModel.cols = [
       {
         field: 'cityName',
         header: 'City',
@@ -84,7 +76,7 @@ export class CityComponent implements OnInit {
   }
 
   getAllCity() {
-    if (this.data.length > 0) return;
+   // if (this.customModel.data.length > 0) return;
     this.fetchAllCity();
   }
 
@@ -92,7 +84,7 @@ export class CityComponent implements OnInit {
     this.cityService.getAllCity().subscribe({
       next: (res: any) => {
         //console.log(res)
-        this.data = res;
+        this.customModel.data = res;
       },
     });
   }
@@ -100,12 +92,12 @@ export class CityComponent implements OnInit {
   addCity() {
     //console.log(this.model);
     //return;
-    this.disabled = true;
+    this.customModel.disabled = true;
     this.cityService
-      .addCity(this.model)
+      .addCity(this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
@@ -115,30 +107,30 @@ export class CityComponent implements OnInit {
           );
         },
         complete: () => {
-          this.model.cityName = null;
+          this.customModel.model.cityName = null;
         },
       });
   }
 
   viewData(data: any) {
     //console.log(data)
-    this.isAmend = true;
-    this.editMode = false;
-    this.model = { ...data };
+    this.customModel.isAmend = true;
+    this.customModel.editMode = false;
+    this.customModel.model = { ...data };
 
     setTimeout(() => {
-      this.editMode = true;
+      this.customModel.editMode = true;
     }, 0);
   }
 
   updateCity() {
     //console.log(this.model)
-    this.disabled = true;
+    this.customModel.disabled = true;
     this.cityService
-      .editCity(this.model)
+      .editCity(this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
@@ -159,9 +151,9 @@ export class CityComponent implements OnInit {
   }
 
   reset() {
-    this.model = {};
-    this.editMode = false;
-    this.isAmend = false;
+    this.customModel.model = {};
+    this.customModel.editMode = false;
+    this.customModel.isAmend = false;
     this.utilService.resetDropDown();
   }
 }

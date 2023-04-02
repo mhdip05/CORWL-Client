@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
+import { GridModel } from 'src/app/_models/GridModel';
 import { DesignationService } from 'src/app/_services/designation/designation.service';
 import { UtilsService } from 'src/app/_services/utils/utils.service';
 
@@ -10,20 +11,8 @@ import { UtilsService } from 'src/app/_services/utils/utils.service';
   styleUrls: ['./add-designation.component.scss'],
 })
 export class AddDesignationComponent implements OnInit {
-  data = [];
-  cols!: any[];
-  model: any = {};
-
-  test = false;
-  loading = false;
-  isAmend = false;
-  editMode = false;
-  disabled = false;
-  gridLoad = false;
+  customModel = new GridModel();
   @Input() showGrid = false;
-
-  selectedCountry: any = {};
-  country: any;
 
   constructor(
     private utilService: UtilsService,
@@ -38,11 +27,11 @@ export class AddDesignationComponent implements OnInit {
 
   changeDropdown(data: any) {
     //console.log(data)
-    this.model = { ...this.model, ...data };
+    this.customModel.model = { ...this.customModel.model, ...data };
   }
 
   private designationListColumn() {
-    this.cols = [
+    this.customModel.cols = [
       {
         field: 'designationName',
         header: 'Designation',
@@ -81,24 +70,24 @@ export class AddDesignationComponent implements OnInit {
     this.designationService.getAllDesignation().subscribe({
       next: (res: any) => {
         //console.log(res)
-        this.data = res;
+        this.customModel.data = res;
       },
       complete: () => {
         this.utilService.turnLoadingBarOn = true;
-        this.gridLoad = false;
+        this.customModel.gridLoad = false;
       },
     });
   }
 
   addDesignation() {
-    //console.log(this.model);
+    //console.log(this.customModel.model);
     //return;
-    this.disabled = true;
+    this.customModel.disabled = true;
     this.designationService
-      .addDesignation(this.model)
+      .addDesignation(this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
 
@@ -116,23 +105,23 @@ export class AddDesignationComponent implements OnInit {
 
   viewData(data: any) {
     console.log(data);
-    this.isAmend = true;
-    this.editMode = false;
-    this.model = { ...data };
+    this.customModel.isAmend = true;
+    this.customModel.editMode = false;
+    this.customModel.model = { ...data };
 
     setTimeout(() => {
-      this.editMode = true;
+      this.customModel.editMode = true;
     }, 0);
   }
 
   updateDesignation() {
-    //console.log(this.model)
-    this.disabled = true;
+    //console.log(this.customModel.model)
+    this.customModel.disabled = true;
     this.designationService
-      .updateDesignation(this.model)
+      .updateDesignation(this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
@@ -150,7 +139,7 @@ export class AddDesignationComponent implements OnInit {
 
   refreshGrid() {
     this.utilService.turnLoadingBarOn = false;
-    this.gridLoad = true;
+    this.customModel.gridLoad = true;
     this.getAllDesignation();
   }
 
@@ -159,9 +148,9 @@ export class AddDesignationComponent implements OnInit {
   }
 
   reset() {
-    this.model = {};
-    this.editMode = false;
-    this.isAmend = false;
+    this.customModel.model = {};
+    this.customModel.editMode = false;
+    this.customModel.isAmend = false;
     this.utilService.resetDropDown();
   }
 }

@@ -1,0 +1,40 @@
+<form autocomplete="off">
+  <div class="row">
+    <div class="custom-group">
+      <p class="custom-group-title">Company Details</p>
+    </div>
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="Company Name"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="model.companyName"
+        />
+        <label for="companyName">Company Name</label>
+      </span>
+    </div>
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="Branch Name"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="model.branchName"
+        />
+        <label for="branchName">Banch Name</label>
+      </span>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <div class="d-grid">
+        <button pButton pRipple label="Submit" class="p-button"></button>
+        <!-- <button (click)="rollback()">Rollback</button>  -->
+      </div>
+    </div>
+  </div>
+</form>

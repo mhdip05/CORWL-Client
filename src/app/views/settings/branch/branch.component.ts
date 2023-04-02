@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BranchService } from '../../../_services/branch/branch.service';
+import { GridModel } from 'src/app/_models/GridModel';
 
 @Component({
   selector: 'app-branch',
@@ -8,15 +9,8 @@ import { BranchService } from '../../../_services/branch/branch.service';
   styleUrls: ['./branch.component.scss'],
 })
 export class BranchComponent implements OnInit {
-  model: any = {};
-  cols!: any[];
-  data!: any[];
-  showDialog = false;
-  isInsert = false;
-  editMode = false;
-  disabled = false;
-  loading = false;
-
+  customModel = new GridModel();
+  
   constructor(private branchService: BranchService, private router: Router) {}
 
   ngOnInit(): void {
@@ -25,7 +19,7 @@ export class BranchComponent implements OnInit {
   }
 
   private branchListColumn() {
-    this.cols = [
+    this.customModel.cols = [
       {
         field: 'branchName',
         header: 'Name',
@@ -64,7 +58,7 @@ export class BranchComponent implements OnInit {
     this.branchService.getAllBranches().subscribe({
       next: (res: any) => {
         //console.log(res)
-        this.data = res;
+        this.customModel.data = res;
       },
     });
   }

@@ -18,7 +18,7 @@
                     pInputText
                     class="form-control form-control-sm"
                     name="countryName"
-                    [(ngModel)]="model.countryName"
+                    [(ngModel)]="customModel.model.countryName"
                   />
                   <label for="countryName">Country</label>
                 </span>
@@ -30,14 +30,14 @@
                     pInputText
                     class="form-control form-control-sm"
                     name="countryAlias"
-                    [(ngModel)]="model.countryAlias"
+                    [(ngModel)]="customModel.model.countryAlias"
                   />
                   <label for="countryName">Country Alias</label>
                 </span>
               </div>
               <div
                 class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-xs-12 mt-1"
-                *ngIf="!editMode"
+                *ngIf="!customModel.editMode"
               >
                 <div class="d-grid gap-2">
                   <button
@@ -46,14 +46,14 @@
                     type="submit"
                     label="Add"
                     class="p-button"
-                    [disabled]="disabled"
+                    [disabled]="customModel.disabled"
                     (click)="addCountry()"
                   ></button>
                 </div>
               </div>
               <div
                 class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-xs-12 mt-1"
-                *ngIf="editMode"
+                *ngIf="customModel.editMode"
               >
                 <div class="d-grid">
                   <button
@@ -61,7 +61,7 @@
                     pRipple
                     label="Edit"
                     class="p-button"
-                    [disabled]="disabled"
+                    [disabled]="customModel.disabled"
                     (click)="updateCountry()"                    
                   ></button>
                 </div>
@@ -90,8 +90,8 @@
   </div>
   <div class="row mt-2" *ngIf="showGrid" >
     <app-default-grid  
-      [cols]="cols"
-      [data]="data"
+      [cols]="customModel.cols"
+      [data]="customModel.data"
       [hasGridDeleteButton]="false"
       [modifyButtonClass]="'p-button-primary p-button-rounded'"
       [actionStyle]="{ 'margin-left': '20px' }"

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { finalize, map, switchMap, take } from 'rxjs';
+import { CustomModel } from 'src/app/_models/CustomModel';
+import { DesignModel } from 'src/app/_models/DesignModel';
 import { BranchService } from 'src/app/_services/branch/branch.service';
 import { CompanyService } from 'src/app/_services/company/company.service';
 import { UtilsService } from 'src/app/_services/utils/utils.service';
@@ -12,19 +14,8 @@ import { UtilsService } from 'src/app/_services/utils/utils.service';
   styleUrls: ['./add-branch.component.scss'],
 })
 export class AddBranchComponent implements OnInit {
-  model: any = {};
-  rollbackModel: any = {};
-  validationModel: any = {};
-  cascadeModel: any = { disabledCity: true, load: false };
-
-  isAmend = false;
-  editMode = false;
-  disabled = false;
-  hasValidation = false;
-
-  inputClass = 'form-control form-control-sm';
-  responsiveClass =
-    'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12 input-margin-bottom';
+  customModel = new CustomModel();
+  designModel = new DesignModel();
 
   constructor(
     private utilService: UtilsService,
@@ -34,11 +25,12 @@ export class AddBranchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.editMode = false;
+    this.customModel.editMode = false;
     this.utilService.queryParamsSanitization();
     this.utilService.turnModalStateErrorOn = false;
 
     if (this.activatedRoute.snapshot.params['id'] !== undefined) {
+      this.customModel.editMode = true;
       this.getBranchId();
     }
   }
@@ -48,15 +40,14 @@ export class AddBranchComponent implements OnInit {
   }
 
   addBranch() {
-    //console.log(this.model);
+    //console.log(this.customModel.model);
     //return;
-    this.disabled = true;
-    this.hasValidation = false;
+    this.customModel.disabled = true;
     this.branchService
-      .addBranch(this.model)
+      .addBranch(this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
@@ -65,15 +56,16 @@ export class AddBranchComponent implements OnInit {
           this.messageService.add(
             this.utilService.successMessage(v.message, 2000)
           );
-          this.reset();
+          this.customModel.reset(this.customModel.editMode);
         },
         error: (e) => {
-          this.handleError(e);
+          this.displayError(e);
         },
       });
   }
 
   getBranchId() {
+    if (this.customModel.editMode == false) return;
     this.branchService
       .getBranchById(this.activatedRoute.snapshot.params['id'])
       .subscribe({
@@ -87,24 +79,19 @@ export class AddBranchComponent implements OnInit {
   viewData(data: any) {
     //console.log(data);
     //return;
-    this.editMode = false;
-    this.model = { ...data };
-    setTimeout(() => {
-      this.editMode = true;
-    }, 0);
-    this.isAmend = true;
-    this.cascadeModel.disabledCity = false;
+    this.customModel.viewData(data);
+    this.customModel.cascadeCityModel.disabledCity = false;
   }
 
   editBranch() {
     //console.log(this.model);
     //return
-    this.disabled = true;
+    this.customModel.disabled = false;
     this.branchService
-      .updateBranch(this.model)
+      .updateBranch(this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
@@ -113,69 +100,34 @@ export class AddBranchComponent implements OnInit {
           this.messageService.add(
             this.utilService.successMessage(v.message, 3000)
           );
-          this.validationReset();
+          this.customModel.validationReset();
         },
         error: (e) => {
-          this.handleError(e);
+          this.displayError(e);
         },
       });
     return;
   }
 
-  handleError(error: any) {
-    //console.log(error);
-    this.hasValidation = true;
-    this.validationModel = { ...this.utilService.errorValidation(error) };
-    if (this.validationModel.dbError) {
+  displayError(e: any) {
+    const error: any = this.customModel.handleError(e);
+    if (error.isDbError) {
       this.messageService.add(
-        this.utilService.dangerMessage(this.validationModel.dbError, 4000)
+        this.utilService.dangerMessage(error.dbError, 4000)
       );
     }
-  }
-
-  changeCountry(data: any) {
-    //console.log(data);
-    this.model.countryId = data.countryId;
-    this.model.countryName = data.countryName;
-
-    if (data.countryId == 0) {
-      this.model.cityId = 0;
-      this.model.cityName = null;
-      this.cascadeModel.disabledCity = true;
-      return;
-    }
-
-    this.model.cityId = 0;
-    this.model.cityName = null;
-    this.cascadeModel.load = true;
-    this.cascadeModel.disabledCity = false;
-  }
-
-  changeDropdown(data: any) {
-    //console.log(data)
-    this.model = { ...this.model, ...data };
   }
 
   changeEmployeeDropdown(data: any, type: string) {
     //console.log(data);
     //return;
     if (type == 'branchIncharge') {
-      (this.model.branchInchargeId = data.employeeId),
-        (this.model.branchInchargeName = data.employeeName);
+      (this.customModel.model.branchInchargeId = data.employeeId),
+        (this.customModel.model.branchInchargeName = data.employeeName);
     } else {
-      (this.model.branchAttentionPersonId = data.employeeId),
-        (this.model.branchAttentionPersonName = data.employeeName);
+      (this.customModel.model.branchAttentionPersonId = data.employeeId),
+        (this.customModel.model.branchAttentionPersonName = data.employeeName);
     }
   }
 
-  validationReset() {
-    this.validationModel = {};
-  }
-
-  reset() {
-    this.validationModel = {};
-    this.utilService.resetDropDown();
-    if (!this.editMode) this.model = {};
-    else this.getBranchId();
-  }
 }
