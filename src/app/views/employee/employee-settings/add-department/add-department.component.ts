@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
+import { GridModel } from 'src/app/_models/GridModel';
 import { DepartmentService } from 'src/app/_services/department/department.service';
 import { UtilsService } from 'src/app/_services/utils/utils.service';
 
@@ -10,17 +11,7 @@ import { UtilsService } from 'src/app/_services/utils/utils.service';
   styleUrls: ['./add-department.component.scss'],
 })
 export class AddDepartmentComponent implements OnInit {
-  model: any = {};
-  cols!: any[];
-  data!: any[];
-
-  loading = false;
-  isInsert = false;
-  editMode = false;
-  disabled = false;
-  showDialog = false;
-  isRemoved = false;
-  gridLoad = false;
+  customModel = new GridModel();
   @Input() showGrid = false;
 
   constructor(
@@ -35,7 +26,7 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   private departmentListColumn() {
-    this.cols = [
+    this.customModel.cols = [
       {
         field: 'departmentName',
         header: 'Dept',
@@ -77,29 +68,29 @@ export class AddDepartmentComponent implements OnInit {
     return this.departmentService.getAllDepartment().subscribe({
       next: (res: any) => {
         //console.log(res)
-        this.data = res;
+        this.customModel.data = res;
       },
       complete: () => {
-        this.gridLoad = false;
+        this.customModel.gridLoad = false;
         this.utilService.turnLoadingBarOn = true;
       },
     });
   }
 
   changeDropdown(data: any) {
-    this.model.departmentHeadId = data.employeeId;
-    this.model.departmentHeadName = data.employeeName;
+    this.customModel.model.departmentHeadId = data.employeeId;
+    this.customModel.model.departmentHeadName = data.employeeName;
   }
 
   addDepartment() {
     //console.log(this.model);
     //return;
-    this.disabled = true;
+    this.customModel.disabled = true;
     this.departmentService
-      .addDepartment(this.model)
+      .addDepartment(this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
@@ -116,14 +107,14 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   updateDepartment() {
-    console.log(this.model);
+    //console.log(this.customModel.model);
     //return;
-    this.disabled = true;
+    this.customModel.disabled = true;
     this.departmentService
-      .updateDepartment(this.model)
+      .updateDepartment(this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
@@ -137,23 +128,23 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   viewData(data: any, eventType: string) {
-    this.editMode = false;
-    this.model = { ...data };
+    this.customModel.editMode = false;
+    this.customModel.model = { ...data };
 
     setTimeout(() => {
-      this.editMode = true;
+      this.customModel.editMode = true;
     }, 0);
 
     if (eventType == 'view') {
-      this.isRemoved = true;
+      this.customModel.isRemoved = true;
     } else {
-      this.isRemoved = false;
+      this.customModel.isRemoved = false;
     }
   }
 
   refreshGrid() {
     this.utilService.turnLoadingBarOn = false;
-    this.gridLoad = true;
+    this.customModel.gridLoad = true;
     this.getAllDepartment();
   }
 
@@ -162,8 +153,8 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   reset() {
-    this.model = {};
-    this.isRemoved = false;
-    this.editMode = false;
+    this.customModel.model = {};
+    this.customModel.isRemoved = false;
+    this.customModel.editMode = false;
   }
 }

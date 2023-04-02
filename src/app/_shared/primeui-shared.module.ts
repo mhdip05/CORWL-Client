@@ -44,6 +44,7 @@ import { DepartmentDropdownComponent } from '../_template/dropdown/department-dr
 import { DesignationDropdownComponent } from '../_template/dropdown/designation-dropdown/designation-dropdown.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { SkeleteonLoaderComponent } from '../_template/utility/skeleteon-loader/skeleteon-loader.component';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { SkeleteonLoaderComponent } from '../_template/utility/skeleteon-loader/
     AccordionModule,
     MenubarModule,
     NgxSkeletonLoaderModule,
+    TabViewModule,
   ],
   exports: [
     ButtonModule,
@@ -132,7 +134,9 @@ import { SkeleteonLoaderComponent } from '../_template/utility/skeleteon-loader/
     DepartmentDropdownComponent,
     DesignationDropdownComponent,
     NgxSkeletonLoaderModule,
-    SkeleteonLoaderComponent
+    SkeleteonLoaderComponent,
+    TabViewModule,
+
   ],
   providers: [ConfirmationService, MessageService],
 })

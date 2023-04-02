@@ -1,0 +1,129 @@
+<form autocomplete="off">
+  <div class="row">
+    <div class="custom-group">
+      <p class="custom-group-title">General Info</p>
+    </div>
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="First Name"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.firstName"
+        />
+        <label for="firstName">First Name</label>
+      </span>
+    </div>
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="Last Name"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.lastname"
+        />
+        <label for="lastName">Last Name</label>
+      </span>
+    </div>
+
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="dateOfBirth"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.dateOfBirth"
+        />
+        <label for="dateOfBirth">Date of Birth</label>
+      </span>
+    </div>
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="gender"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.gender"
+        />
+        <label for="gender">Gender</label>
+      </span>
+    </div>
+
+    <div class="custom-group-clear" style="margin-top: 7px;"></div>
+
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="bloodGroup"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.bloodGroup"
+        />
+        <label for="bloodGroup">Blood Group</label>
+      </span>
+    </div>
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="martialStatus"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.martialStatus"
+        />
+        <label for="martialStatus">Martial Status</label>
+      </span>
+    </div>
+
+    <div class="custom-group-clear"></div>
+    <div class="custom-group">
+      <p class="custom-group-title">Identification</p>
+    </div>
+
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="idType"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.idType"
+        />
+        <label for="idType">ID Type</label>
+      </span>
+    </div>
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="idNo"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.idNo"
+        />
+        <label for="idNo">ID No</label>
+      </span>
+    </div>
+    
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <div class="d-grid">
+        <button
+          pButton
+          pRipple
+          label="Submit"
+          class="p-button"
+          (click)="test()"
+        ></button>
+        <!-- <button (click)="rollback()">Rollback</button>  -->
+      </div>
+    </div>
+  </div>
+</form>

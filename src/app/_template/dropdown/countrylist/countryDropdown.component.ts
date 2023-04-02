@@ -26,12 +26,13 @@ export class CountryDropdownComponent implements OnInit {
   @Input() editMode = false;
   @Input() disabled = false;
   @Input() selectedCountry: any;
+  @Input() cascade = true;
   @Output() changeCountry = new EventEmitter();
 
   constructor(
     private countryServices: CountryService,
     private cityService: CityService,
-    private utilService:UtilsService
+    private utilService: UtilsService
   ) {}
 
   ngOnInit(): void {
@@ -41,28 +42,30 @@ export class CountryDropdownComponent implements OnInit {
   onChange() {
     //console.log(this.selectedCountry)
     if (this.selectedCountry == null) {
-      this.checkSelectedCountry()
+      this.checkSelectedCountry();
       return;
     }
 
-    if(this.selectedCountry.countryId == -1){
-      this.checkSelectedCountry()
+    if (this.selectedCountry.countryId == -1) {
+      this.checkSelectedCountry();
       return;
     }
 
     this.showClear = true;
     this.changeCountry.emit(this.selectedCountry);
 
-    this.cityService
-      .getCityByCountryApi(this.selectedCountry.countryId, true)
-      .pipe(take(1))
-      .subscribe();
+    if (this.cascade) {
+      this.cityService
+        .getCityByCountryApi(this.selectedCountry.countryId, true)
+        .pipe(take(1))
+        .subscribe();
+    }
   }
 
-  checkSelectedCountry(){
-      this.selectedCountry = { countryName: null, countryId: 0 };
-      this.showClear = false;
-      this.changeCountry.emit(this.selectedCountry);
+  checkSelectedCountry() {
+    this.selectedCountry = { countryName: null, countryId: 0 };
+    this.showClear = false;
+    this.changeCountry.emit(this.selectedCountry);
   }
 
   onShow(event: any) {
@@ -77,13 +80,16 @@ export class CountryDropdownComponent implements OnInit {
       .getCountries()
       .pipe(take(1))
       .subscribe({
-        next: (res:any) => {
+        next: (res: any) => {
           //console.log(res)
           const empty = [
-            { countryName: this.utilService.dropdownDefaultText(), countryId: -1 },
+            {
+              countryName: this.utilService.dropdownDefaultText(),
+              countryId: -1,
+            },
           ];
           this.countries = [...empty, ...res];
-          this.currentCountries = [...empty,...res];
+          this.currentCountries = [...empty, ...res];
         },
       });
   }

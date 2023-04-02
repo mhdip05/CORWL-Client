@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import { filter, finalize } from 'rxjs';
 import { CurrencyService } from 'src/app/_services/currency/currency.service';
 import { UtilsService } from 'src/app/_services/utils/utils.service';
+import { GridModel } from 'src/app/_models/GridModel';
 
 @Component({
   selector: 'app-currency',
@@ -10,15 +11,7 @@ import { UtilsService } from 'src/app/_services/utils/utils.service';
   styleUrls: ['./currency.component.scss'],
 })
 export class CurrencyComponent implements OnInit {
-  model: any = {};
-  cols!: any[];
-  data!: any[];
-
-  loading = false;
-  isInsert = false;
-  editMode = false;
-  disabled = false;
-  showDialog = false;
+  customModel = new GridModel();
   @Input() showGrid = false;
 
   constructor(
@@ -33,7 +26,7 @@ export class CurrencyComponent implements OnInit {
   }
 
   private currencyListColumn() {
-    this.cols = [
+    this.customModel.cols = [
       {
         field: 'currencyName',
         header: 'Currency',
@@ -67,8 +60,8 @@ export class CurrencyComponent implements OnInit {
     data.pipe(filter((res) => res.length > 0)).subscribe({
       next: (r: any) => {
         //console.log(r);
-        if (!this.isInsert) this.data = r;
-        else this.data = this.utilService.lastInsertedData(r);
+        if (!this.customModel.isInsert) this.customModel.data = r;
+        else this.customModel.data = this.utilService.lastInsertedData(r);
       },
     });
   }
@@ -79,18 +72,18 @@ export class CurrencyComponent implements OnInit {
   }
 
   addCurrency() {
-    this.disabled = true;
-    this.isInsert = true;
+    this.customModel.disabled = true;
+    this.customModel.isInsert = true;
     this.currencyService
-      .addCurrency(this.model)
+      .addCurrency(this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
         next: () => {
-          this.model = {};
+          this.customModel.model = {};
           this.messageService.add(
             this.utilService.successMessage('Currency Added Successfully')
           );
@@ -99,22 +92,22 @@ export class CurrencyComponent implements OnInit {
   }
 
   viewData(currencyData: any) {
-    this.model = { ...currencyData };
-    this.editMode = true;
+    this.customModel.model = { ...currencyData };
+    this.customModel.editMode = true;
   }
 
   updateCurrency() {
-    this.disabled = true;
+    this.customModel.disabled = true;
     this.currencyService
-      .editCurrency(this.model.id, this.model)
+      .editCurrency(this.customModel.model.id, this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
         next: () => {
-          this.model = {};
+          this.customModel.model = {};
           this.messageService.add(
             this.utilService.successMessage('Currency Edited Successfully')
           );
@@ -130,8 +123,4 @@ export class CurrencyComponent implements OnInit {
     });
   }
 
-  reset() {
-    this.model = {};
-    this.editMode = false;
-  }
 }

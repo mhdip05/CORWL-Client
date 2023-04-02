@@ -2,15 +2,15 @@
   <div class="card">
     <div class="card-body">
       <div class="feature-title">
-        <h6>{{ isAmend ? "Edit Company" : "Add Company" }}</h6>
+        <h6>{{ customModel.isAmend ? "Edit Company" : "Add Company" }}</h6>
       </div>
 
       <hr class="under-header" />
       <div class="utility-box">
-        <app-reset class="utility" (click)="reset()"></app-reset>
+        <app-reset class="utility" (click)="customModel.reset(customModel.editMode, getCompanyById())"></app-reset>
         <app-validation-reset
           class="utility"
-          (click)="validationReset()"
+          (click)="customModel.validationReset()"
         ></app-validation-reset>
         <app-content-help class="utility"></app-content-help>
         <app-back class="utility" [url]="'settings/company'"></app-back>
@@ -22,96 +22,107 @@
           <div class="custom-group">
             <p class="custom-group-title">General Info</p>
           </div>
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <input
                 type="text"
                 pInputText
                 name="companyName"
-                [class]="inputClass"
-                [(ngModel)]="model.companyName"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.companyName"
               />
               <label for="companyName">Company Name</label>
             </span>
             <app-error-validation
-              [hasValidation]="hasValidation"
-              [validationModel]="validationModel.CompanyName"
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.CompanyName"
             ></app-error-validation>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <input
                 type="text"
                 pInputText
                 name="companyCode"
-                [class]="inputClass"
-                [(ngModel)]="model.companyCode"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.companyCode"
               />
               <label for="companyCode">Company Code</label>
             </span>
             <app-error-validation
-              [hasValidation]="hasValidation"
-              [validationModel]="validationModel.CompanyCode"
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.CompanyCode"
             ></app-error-validation>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <app-countryDropdown
                 [countries]="[
                   {
-                    countryName: model.countryName,
-                    countryId: model.countryId
+                    countryName: customModel.model.countryName,
+                    countryId: customModel.model.countryId
                   }
                 ]"
                 [selectedCountry]="
-                  editMode
+                  customModel.editMode
                     ? {
-                        countryName: model.countryName,
-                        countryId: model.countryId
+                        countryName: customModel.model.countryName,
+                        countryId: customModel.model.countryId
                       }
                     : undefined
                 "
-                (changeCountry)="changeCountry($event)"
+                (changeCountry)="customModel.changeCountry($event)"
               >
               </app-countryDropdown>
               <label
                 for="country"
-                *ngIf="model.countryId == 0 || model.countryId == null"
+                *ngIf="
+                  customModel.model.countryId == 0 ||
+                  customModel.model.countryId == null
+                "
                 >Select Country</label
               >
             </span>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <app-cityDropdown
-                [cities]="[{ cityName: model.cityName, cityId: model.cityId }]"
-                [countryId]="model.countryId"
-                [load]="cascadeModel.load"
-                [disabledCity]="cascadeModel.disabledCity"
+                [cities]="[
+                  {
+                    cityName: customModel.model.cityName,
+                    cityId: customModel.model.cityId
+                  }
+                ]"
+                [countryId]="customModel.model.countryId"
+                [load]="customModel.cascadeCityModel.load"
+                [disabledCity]="customModel.cascadeCityModel.disabledCity"
                 [selectedCity]="
-                  editMode
+                  customModel.editMode
                     ? {
-                        cityName: model.cityName,
-                        cityId: model.cityId
+                        cityName: customModel.model.cityName,
+                        cityId: customModel.model.cityId
                       }
                     : undefined
                 "
-                (changeCity)="changeDropDown($event)"
+                (changeCity)="customModel.changeDropdown($event)"
               >
               </app-cityDropdown>
 
               <label
                 for="city"
-                *ngIf="model.cityId == 0 || model.cityId == null"
+                *ngIf="
+                  customModel.model.cityId == 0 ||
+                  customModel.model.cityId == null
+                "
                 >Select City</label
               >
             </span>
             <app-error-validation
-              [hasValidation]="hasValidation"
-              [validationModel]="validationModel.CityId"
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.CityId"
             ></app-error-validation>
           </div>
           <div class="custom-group-clear"></div>
@@ -120,71 +131,71 @@
             <p class="custom-group-title">Contact Info</p>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <input
                 type="text"
                 pInputText
                 name="mobileNo"
-                [class]="inputClass"
-                [(ngModel)]="model.mobileNo"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.mobileNo"
               />
               <label for="mobileNo">Mobile No.</label>
             </span>
             <app-error-validation
-              [hasValidation]="hasValidation"
-              [validationModel]="validationModel.MobileNo"
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.MobileNo"
             ></app-error-validation>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <input
                 type="text"
                 pInputText
                 name="phone"
-                [class]="inputClass"
-                [(ngModel)]="model.phoneNo"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.phoneNo"
               />
               <label for="phone">Phone No.</label>
             </span>
             <app-error-validation
-              [hasValidation]="hasValidation"
-              [validationModel]="validationModel.PhoneNo"
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.PhoneNo"
             ></app-error-validation>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <input
                 type="text"
                 pInputText
                 name="email"
-                [class]="inputClass"
-                [(ngModel)]="model.email"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.email"
               />
               <label for="email">Email</label>
             </span>
             <app-error-validation
-              [hasValidation]="hasValidation"
-              [validationModel]="validationModel.Email"
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.Email"
             ></app-error-validation>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <input
                 type="text"
                 pInputText
                 name="web"
-                [class]="inputClass"
-                [(ngModel)]="model.web"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.web"
               />
               <label for="web">Website</label>
             </span>
             <app-error-validation
-              [hasValidation]="hasValidation"
-              [validationModel]="validationModel.Web"
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.Web"
             ></app-error-validation>
           </div>
           <div class="custom-group-clear"></div>
@@ -193,37 +204,37 @@
             <p class="custom-group-title">Address & Misc</p>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <input
                 type="text"
                 pInputText
                 name="zipCode"
-                [class]="inputClass"
-                [(ngModel)]="model.zipCode"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.zipCode"
               />
               <label for="zipCode">Zip Code</label>
             </span>
             <app-error-validation
-              [hasValidation]="hasValidation"
-              [validationModel]="validationModel.ZipCode"
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.ZipCode"
             ></app-error-validation>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <app-currency-dropdown
                 [currencies]="[
                   {
-                    currencyId: model.localCurrencyId,
-                    currencyName: model.localCurrencyName
+                    currencyId: customModel.model.localCurrencyId,
+                    currencyName: customModel.model.localCurrencyName
                   }
                 ]"
                 [selectedCurrency]="
-                  editMode
+                  customModel.editMode
                     ? {
-                        currencyId: model.localCurrencyId,
-                        currencyName: model.localCurrencyName
+                        currencyId: customModel.model.localCurrencyId,
+                        currencyName: customModel.model.localCurrencyName
                       }
                     : undefined
                 "
@@ -235,27 +246,29 @@
               <label
                 for="localCurrency"
                 *ngIf="
-                  model.localCurrencyId == 0 || model.localCurrencyId == null
+                  customModel.model.localCurrencyId == 0 ||
+                  customModel.model.localCurrencyId == null
                 "
                 >Select Local Currency
               </label>
             </span>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <app-currency-dropdown
                 [currencies]="[
                   {
-                    currencyName: model.interNationalCurrencyName,
-                    currencyId: model.interNationalCurrencyId
+                    currencyName: customModel.model.interNationalCurrencyName,
+                    currencyId: customModel.model.interNationalCurrencyId
                   }
                 ]"
                 [selectedCurrency]="
-                  editMode
+                  customModel.editMode
                     ? {
-                        currencyName: model.interNationalCurrencyName,
-                        currencyId: model.interNationalCurrencyId
+                        currencyName:
+                          customModel.model.interNationalCurrencyName,
+                        currencyId: customModel.model.interNationalCurrencyId
                       }
                     : undefined
                 "
@@ -267,15 +280,15 @@
               <label
                 for="localCurrency"
                 *ngIf="
-                  model.interNationalCurrencyId == 0 ||
-                  model.interNationalCurrencyId == null
+                  customModel.model.interNationalCurrencyId == 0 ||
+                  customModel.model.interNationalCurrencyId == null
                 "
                 >Select Int Currency
               </label>
             </span>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <p-inputNumber
                 mode="decimal"
@@ -283,37 +296,37 @@
                 [useGrouping]="false"
                 [minFractionDigits]="2"
                 [maxFractionDigits]="4"
-                [(ngModel)]="model.conversionRate"
+                [(ngModel)]="customModel.model.conversionRate"
               >
               </p-inputNumber>
               <label for="conversionRate">Conversion Rate</label>
             </span>
             <app-error-validation
-              [hasValidation]="hasValidation"
-              [validationModel]="validationModel.ConversionRate"
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.ConversionRate"
             ></app-error-validation>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <span class="p-float-label">
               <textarea
                 pInputText
                 [rows]="4"
                 [cols]="30"
                 name="address"
-                [class]="inputClass"
-                [(ngModel)]="model.address"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.address"
               >
               </textarea>
               <label for="address">Address</label>
             </span>
             <app-error-validation
-              [hasValidation]="hasValidation"
-              [validationModel]="validationModel.Address"
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.Address"
             ></app-error-validation>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <div class="row">
               <div class="col-6">
                 <label class="switch-label">Is Active</label>
@@ -321,13 +334,13 @@
               <div class="col-2">
                 <p-inputSwitch
                   name="isActive"
-                  [(ngModel)]="model.isActive"
+                  [(ngModel)]="customModel.model.isActive"
                 ></p-inputSwitch>
               </div>
             </div>
           </div>
 
-          <div [class]="responsiveClass">
+          <div [class]="designModel.responsiveClass">
             <div class="row">
               <div class="col-6">
                 <label class="switch-label">Is Parent Company</label>
@@ -335,7 +348,7 @@
               <div class="col-2">
                 <p-inputSwitch
                   name="isParentCompany"
-                  [(ngModel)]="model.isParentCompany"
+                  [(ngModel)]="customModel.model.isParentCompany"
                 ></p-inputSwitch>
               </div>
             </div>
@@ -346,24 +359,24 @@
           <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
             <div class="d-grid">
               <button
-                *ngIf="!isAmend"
+                *ngIf="!customModel.isAmend"
                 pButton
                 pRipple
                 label="Submit"
                 class="p-button"
-                [disabled]="disabled"
+                [disabled]="customModel.disabled"
                 (click)="addCompany()"
               ></button>
               <!-- <button (click)="rollback()">Rollback</button>  -->
             </div>
             <div class="d-grid">
               <button
-                *ngIf="isAmend"
+                *ngIf="customModel.isAmend"
                 pButton
                 pRipple
                 label="Edit"
                 class="p-button"
-                [disabled]="disabled"
+                [disabled]="customModel.disabled"
                 (click)="editCompany()"
               ></button>
             </div>

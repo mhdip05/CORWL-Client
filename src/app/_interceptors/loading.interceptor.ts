@@ -29,6 +29,7 @@ export class LoadingInterceptor implements HttpInterceptor {
       finalize(() => {
         //console.log('dip',request)
         this.loadingService.idle();
+        
       })
     );
   }

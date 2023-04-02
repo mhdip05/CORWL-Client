@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { finalize, filter } from 'rxjs';
+import { GridModel } from 'src/app/_models/GridModel';
 import { CountryService } from 'src/app/_services/country/country.service';
 import { UtilsService } from 'src/app/_services/utils/utils.service';
 
@@ -10,14 +11,15 @@ import { UtilsService } from 'src/app/_services/utils/utils.service';
   styleUrls: ['./country.component.scss'],
 })
 export class CountryComponent implements OnInit {
-  data = [];
-  cols!: any[];
-  model: any = {};
+  customModel = new GridModel();
+  // data = [];
+  // cols!: any[];
+  // model: any = {};
 
-  loading = false;
-  disabled = false;
-  isInsert = false;
-  editMode = false;
+  // loading = false;
+  // disabled = false;
+  // isInsert = false;
+  // editMode = false;
   @Input() showGrid = false;
 
   constructor(
@@ -33,7 +35,7 @@ export class CountryComponent implements OnInit {
   }
 
   private countryListColumn() {
-    this.cols = [
+    this.customModel.cols = [
       {
         field: 'countryName',
         header: 'Country',
@@ -66,8 +68,8 @@ export class CountryComponent implements OnInit {
     var data = this.countryService.getAllCountries()[1];
     data.pipe(filter((res) => res.length > 0)).subscribe({
       next: (r: any) => {
-        if (!this.isInsert) this.data = r;
-        else this.data = this.utilService.lastInsertedData(r);
+        if (!this.customModel.isInsert) this.customModel.data = r;
+        else this.customModel.data = this.utilService.lastInsertedData(r);
       },
     });
   }
@@ -84,13 +86,13 @@ export class CountryComponent implements OnInit {
   }
 
   addCountry() {
-    this.disabled = true;
-    this.isInsert = true;
+    this.customModel.disabled = true;
+    this.customModel.isInsert = true;
     this.countryService
-      .addCountry(this.model)
+      .addCountry(this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
@@ -98,24 +100,24 @@ export class CountryComponent implements OnInit {
           this.messageService.add(
             this.utilService.successMessage(r.message, 3000)
           );
-          this.model = {};
+          this.customModel.model = {};
         },
       });
   }
 
   viewData(data: any) {
-    this.model = { ...data };
+    this.customModel.model = { ...data };
     //console.log(this.model);
-    this.editMode = true;
+    this.customModel.editMode = true;
   }
 
   updateCountry() {
-    this.disabled = true;
+    this.customModel.disabled = true;
     this.countryService
-      .updateCountry(this.model.id, this.model)
+      .updateCountry(this.customModel.model.id, this.customModel.model)
       .pipe(
         finalize(() => {
-          this.disabled = false;
+          this.customModel.disabled = false;
         })
       )
       .subscribe({
@@ -129,7 +131,7 @@ export class CountryComponent implements OnInit {
   }
 
   reset() {
-    this.model = {};
-    this.editMode = false;
+    this.customModel.model = {};
+    this.customModel.editMode = false;
   }
 }

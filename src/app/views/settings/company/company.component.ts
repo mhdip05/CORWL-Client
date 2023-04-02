@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
 import { UtilsService } from 'src/app/_services/utils/utils.service';
 import { CompanyService } from '../../../_services/company/company.service';
+import { GridModel } from 'src/app/_models/GridModel';
 
 @Component({
   selector: 'app-company',
@@ -11,15 +12,8 @@ import { CompanyService } from '../../../_services/company/company.service';
   styleUrls: ['./company.component.scss'],
 })
 export class CompanyComponent implements OnInit {
-  model: any = {};
-  cols!: any[];
-  data!: any[];
-  showDialog = false;
-  isInsert = false;
-  editMode = false;
-  disabled = false;
-  loading  = false;
-
+  customModel = new GridModel();
+  
   constructor(
     private companyService: CompanyService,
     private messageService: MessageService,
@@ -33,7 +27,7 @@ export class CompanyComponent implements OnInit {
   }
 
   private companyListColumn() {
-    this.cols = [
+    this.customModel.cols = [
       {
         field: 'companyName',
         header: 'Name',
@@ -63,8 +57,8 @@ export class CompanyComponent implements OnInit {
     companyData$.subscribe({
       next: (r) => {
         //console.log(r)
-        if (!this.isInsert) this.data = r;
-        else this.data = this.utilsService.lastInsertedData(r);
+        if (!this.customModel.isInsert) this.customModel.data = r;
+        else this.customModel.data = this.utilsService.lastInsertedData(r);
       },
     });
   }

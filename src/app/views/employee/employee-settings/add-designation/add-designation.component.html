@@ -1,6 +1,7 @@
 <div class="container">
   <div class="card">
     <div class="card-body">
+
       <div class="feature-title">
         <h6>Set Designaation</h6>
       </div>
@@ -18,7 +19,7 @@
                     pInputText
                     class="form-control form-control-sm"
                     name="designationName"
-                    [(ngModel)]="model.designationName"
+                    [(ngModel)]="customModel.model.designationName"
                   />
                   <label for="designationName">Designation</label>
                 </span>
@@ -30,7 +31,7 @@
                     pInputText
                     class="form-control form-control-sm"
                     name="abbreviation"
-                    [(ngModel)]="model.abbreviation"
+                    [(ngModel)]="customModel.model.abbreviation"
                   />
                   <label for="abbreviation">Abbreviation</label>
                 </span>
@@ -41,15 +42,15 @@
                     (changeDepartment)="changeDropdown($event)"
                     [departments]="[
                       {
-                        departmentId: model.departmentId,
-                        departmentName: model.departmentName
+                        departmentId: customModel.model.departmentId,
+                        departmentName: customModel.model.departmentName
                       }
                     ]"
                     [selectedDepartment]="
-                      editMode
+                    customModel.editMode
                         ? {
-                            departmentId: model.departmentId,
-                            departmentName: model.departmentName
+                            departmentId: customModel.model.departmentId,
+                            departmentName: customModel.model.departmentName
                           }
                         : undefined
                     "
@@ -58,7 +59,7 @@
                   <label
                     for="department"
                     *ngIf="
-                      model.departmentId == 0 || model.departmentId == null
+                      customModel.model.departmentId == 0 || customModel.model.departmentId == null
                     "
                     >Department</label
                   >
@@ -69,9 +70,9 @@
                   <button
                     pButton
                     pRipple
-                    [label]="editMode?'Edit':'Add'"
+                    [label]="customModel.editMode?'Edit':'Add'"
                     class="p-button"
-                    (click)="editMode?updateDesignation():addDesignation()"
+                    (click)="customModel.editMode?updateDesignation():addDesignation()"
                   ></button>
                 </div>
               </div>
@@ -93,14 +94,14 @@
   </div>
   <div class="row mt-2" *ngIf="showGrid">
     <app-default-grid     
-      [cols]="cols"
-      [data]="data"
+      [cols]="customModel.cols"
+      [data]="customModel.data"
       [hasGridDeleteButton]="false"
       [modifyButtonClass]="'p-button-primary p-button-rounded'"
       [actionStyle]="{'margin-left': '20px' }"
       [hasBtnPull]="true"
       [isShrinkGridData]="true"
-      [gridLoad]="gridLoad"
+      [gridLoad]="customModel.gridLoad"
       (modifyEvent)="viewData($event)" 
       (pullDataEvent)="pullData()"
       

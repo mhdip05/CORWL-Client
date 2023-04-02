@@ -77,7 +77,7 @@ export class UtilsService {
     return data;
   };
 
-  errorValidation: any = (e: any) => {
+  errorValidation = (e: any) => {
     if (e.error.errors) {
       return e.error.errors;
     } else if (e.error) {

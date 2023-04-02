@@ -19,7 +19,7 @@
                   pInputText
                   class="form-control form-control-sm"
                   name="departmentName"
-                  [(ngModel)]="model.departmentName"
+                  [(ngModel)]="customModel.model.departmentName"
                 />
                 <label for="departmentName">Name</label>
               </span>
@@ -31,7 +31,7 @@
                   pInputText
                   class="form-control form-control-sm"
                   name="abbreviation"
-                  [(ngModel)]="model.abbreviation"
+                  [(ngModel)]="customModel.model.abbreviation"
                 />
                 <label for="abbreviation">Abbreviation</label>
               </span>
@@ -43,7 +43,7 @@
                   pInputText
                   class="form-control form-control-sm"
                   name="departmentCode"
-                  [(ngModel)]="model.departmentCode"
+                  [(ngModel)]="customModel.model.departmentCode"
                 />
                 <label for="departmentCode">Code</label>
               </span>
@@ -54,15 +54,15 @@
                 <app-employee-dropdown
                   [employees]="[
                     {
-                      employeeName: model.departmentHeadName,
-                      employeeId: model.departmentHeadId
+                      employeeName: customModel.model.departmentHeadName,
+                      employeeId: customModel.model.departmentHeadId
                     }
                   ]"
                   [selectedEmployee]="
-                    editMode
+                    customModel.editMode
                       ? {
-                          employeeName: model.departmentHeadName,
-                          employeeId: model.departmentHeadId
+                          employeeName: customModel.model.departmentHeadName,
+                          employeeId: customModel.model.departmentHeadId
                         }
                       : undefined
                   "
@@ -72,8 +72,8 @@
                 <label
                   for="employee"
                   *ngIf="
-                    model.departmentHeadId == 0 ||
-                    model.departmentHeadId == null
+                    customModel.model.departmentHeadId == 0 ||
+                    customModel.model.departmentHeadId == null
                   "
                   >Dept. Head
                 </label>
@@ -87,22 +87,22 @@
                   [cols]="28"
                   name="address"
                   class="custom-textarea"
-                  [(ngModel)]="model.departmentAddress"
+                  [(ngModel)]="customModel.model.departmentAddress"
                 >
                 </textarea>
                 <label for="address">Address</label>
               </span>
             </div>
 
-            <div class="col-12 mb-3" *ngIf="isRemoved == false">
+            <div class="col-12 mb-3" *ngIf="customModel.isRemoved == false">
               <button
                 pButton
                 pRipple
-                [label]="editMode ? 'Edit' : 'Add'"
+                [label]="customModel.editMode ? 'Edit' : 'Add'"
                 class="p-button"
                 style="width: 100%"
-                [disabled]="disabled"
-                (click)="editMode ? updateDepartment() : addDepartment()"
+                [disabled]="customModel.disabled"
+                (click)="customModel.editMode ? updateDepartment() : addDepartment()"
               ></button>
             </div>
           </form>
@@ -114,14 +114,14 @@
       <div *ngIf="showGrid">
         <app-default-grid
           gridHeight="455px"
-          [cols]="cols"
-          [data]="data"
+          [cols]="customModel.cols"
+          [data]="customModel.data"
           [actionStyle]="{ 'margin-left': '10px' }"
           [hasGridDeleteButton]="false"
           [isShrinkGridData]="true"
           [hasBtnPull]="true"
           [hasGridViewButton]="true"
-          [gridLoad]="gridLoad"
+          [gridLoad]="customModel.gridLoad"
           (modifyEvent)="viewData($event, 'edit')"
           (viewEvent)="viewData($event, 'view')"
           (pullDataEvent)="pullData()"

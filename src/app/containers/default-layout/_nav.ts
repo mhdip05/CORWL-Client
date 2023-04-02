@@ -57,4 +57,22 @@ export const navItems: any[] = [
     iconComponent: { name: 'cilPeople' },
     children: [{ name: 'Appointment List', url: '/doctor/appointment-list' }],
   },
+
+  {
+    title: true,
+    name: 'Supply Chain Module',
+    role: ['store', 'admin', 'management'],
+  },
+  {
+    name: 'Supply Chain',
+    url: '/add-product',
+    role: ['store', 'admin', 'management'],
+    iconComponent: { name: 'cil-layers' },
+    children: [
+      { name: 'Settings', url:'/supply-chain/supply-chain-settings'},
+      { name: 'Add Supplier', url: '/supply-chain/add-supplier' },
+      { name: 'Add Product', url: '/supply-chain/add-product' },
+      { name: 'Requisition', url: '/supply-chain/requision' },
+    ],
+  },
 ];
