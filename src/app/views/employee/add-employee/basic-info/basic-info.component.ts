@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CustomModel } from './../../../../_models/CustomModel';
+import { EmployeeModel } from './../../../../_models/EmployeeModel';
+import { DateTimeService } from 'src/app/_services/date-time/date-time.service'
 
 @Component({
   selector: 'app-basic-info',
@@ -7,14 +9,19 @@ import { CustomModel } from './../../../../_models/CustomModel';
   styleUrls: ['./basic-info.component.scss'],
 })
 export class BasicInfoComponent implements OnInit {
-  //model: any = {};
-  @Input() employeeId = 0;
-  customModel = new CustomModel();
-  constructor() {}
 
-  ngOnInit(): void {}
+  customModel = new CustomModel();
+  employeeModel = new EmployeeModel();
+  maxDate = this.dateTimeService.subTractYears(new Date(), 15);
+
+  constructor(private dateTimeService:DateTimeService) {
+  }
+
+  ngOnInit(): void {
+   
+  }
 
   test() {
-    this.employeeId = 1;
+    console.log(this.customModel.model)
   }
 }

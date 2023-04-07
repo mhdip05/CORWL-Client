@@ -90,7 +90,6 @@ export class AddDesignationComponent implements OnInit {
           this.customModel.disabled = false;
         })
       )
-
       .subscribe({
         next: (v: any) => {
           this.messageService.add(
@@ -103,16 +102,6 @@ export class AddDesignationComponent implements OnInit {
       });
   }
 
-  viewData(data: any) {
-    console.log(data);
-    this.customModel.isAmend = true;
-    this.customModel.editMode = false;
-    this.customModel.model = { ...data };
-
-    setTimeout(() => {
-      this.customModel.editMode = true;
-    }, 0);
-  }
 
   updateDesignation() {
     //console.log(this.customModel.model)
@@ -131,9 +120,6 @@ export class AddDesignationComponent implements OnInit {
             this.utilService.successMessage(r.message, 2000)
           );
         },
-        complete: () => {
-          this.reset();
-        },
       });
   }
 
@@ -141,16 +127,5 @@ export class AddDesignationComponent implements OnInit {
     this.utilService.turnLoadingBarOn = false;
     this.customModel.gridLoad = true;
     this.getAllDesignation();
-  }
-
-  pullData() {
-    this.getAllDesignation();
-  }
-
-  reset() {
-    this.customModel.model = {};
-    this.customModel.editMode = false;
-    this.customModel.isAmend = false;
-    this.utilService.resetDropDown();
   }
 }

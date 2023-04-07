@@ -4,6 +4,7 @@
       <p class="custom-group-title">General Info</p>
     </div>
     <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="firstName">First Name</label>
       <span class="p-float-label">
         <input
           type="text"
@@ -12,92 +13,101 @@
           [class]="'form-control form-control-sm'"
           [(ngModel)]="customModel.model.firstName"
         />
-        <label for="firstName">First Name</label>
       </span>
     </div>
     <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="lastName">Last Name</label>
       <span class="p-float-label">
         <input
           type="text"
           pInputText
           name="Last Name"
           [class]="'form-control form-control-sm'"
-          [(ngModel)]="customModel.model.lastname"
+          [(ngModel)]="customModel.model.lastName"
         />
-        <label for="lastName">Last Name</label>
       </span>
     </div>
 
     <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="dateOfBirth">Date of Birth </label>
       <span class="p-float-label">
-        <input
-          type="text"
-          pInputText
-          name="dateOfBirth"
-          [class]="'form-control form-control-sm'"
+        <p-calendar
           [(ngModel)]="customModel.model.dateOfBirth"
-        />
-        <label for="dateOfBirth">Date of Birth</label>
+          name="'dateOfBirth'"
+          [showIcon]="true"
+          dateFormat="dd/mm/yy"
+          [maxDate]="maxDate"
+        ></p-calendar>
       </span>
     </div>
     <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="gender">Gender</label>
       <span class="p-float-label">
-        <input
-          type="text"
-          pInputText
-          name="gender"
-          [class]="'form-control form-control-sm'"
+        <p-dropdown
+          [options]="employeeModel.gender"
           [(ngModel)]="customModel.model.gender"
-        />
-        <label for="gender">Gender</label>
+          placeholder="Select Gender"
+          optionLabel="gender"
+          optionValue="gender"
+          [name]="'gender'"
+          [showClear]="true"
+        ></p-dropdown>
       </span>
     </div>
 
-    <div class="custom-group-clear" style="margin-top: 7px;"></div>
+    <div class="custom-group-clear" style="margin-top: 12px"></div>
 
     <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="bloodGroup">Blood Group</label>
       <span class="p-float-label">
-        <input
-          type="text"
-          pInputText
-          name="bloodGroup"
-          [class]="'form-control form-control-sm'"
+        <p-dropdown
+          [options]="employeeModel.bloodGroup"
           [(ngModel)]="customModel.model.bloodGroup"
-        />
-        <label for="bloodGroup">Blood Group</label>
+          optionLabel="bloodGroup"
+          optionValue="bloodGroup"
+          [name]="'bloodGroup'"
+          placeholder="Select Blood Group"
+          [showClear]="true"
+        ></p-dropdown>
       </span>
     </div>
     <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="maritalStatus">Marital Status</label>
       <span class="p-float-label">
-        <input
-          type="text"
-          pInputText
-          name="martialStatus"
-          [class]="'form-control form-control-sm'"
-          [(ngModel)]="customModel.model.martialStatus"
-        />
-        <label for="martialStatus">Martial Status</label>
+        <p-dropdown
+          [options]="employeeModel.maritalStatus"
+          [(ngModel)]="customModel.model.maritalStatus"
+          optionLabel="maritalStatus"
+          optionValue="maritalStatus"
+          placeholder="Select Marital Status"
+          [name]="'maritalStatus'"
+          [autoDisplayFirst]="false"
+          [showClear]="true"
+        ></p-dropdown>
       </span>
     </div>
 
-    <div class="custom-group-clear"></div>
-    <div class="custom-group">
+    <div class="custom-group-clear" style="margin-top:5px"></div>
+    <div class="custom-group" style="margin-top:8px">
       <p class="custom-group-title">Identification</p>
     </div>
 
     <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label>Id Type</label>
       <span class="p-float-label">
-        <input
-          type="text"
-          pInputText
-          name="idType"
-          [class]="'form-control form-control-sm'"
+        <p-dropdown
+          [options]="employeeModel.idType"
           [(ngModel)]="customModel.model.idType"
-        />
-        <label for="idType">ID Type</label>
+          optionLabel="idType"
+          optionValue="idType"          
+          [name]="'idType'"
+          placeholder="Select Id Type"
+          [showClear]="true"
+        ></p-dropdown>
       </span>
     </div>
     <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="idNo">ID No</label>
       <span class="p-float-label">
         <input
           type="text"
@@ -106,10 +116,8 @@
           [class]="'form-control form-control-sm'"
           [(ngModel)]="customModel.model.idNo"
         />
-        <label for="idNo">ID No</label>
       </span>
     </div>
-    
   </div>
   <hr />
   <div class="row">

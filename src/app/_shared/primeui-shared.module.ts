@@ -45,6 +45,7 @@ import { DesignationDropdownComponent } from '../_template/dropdown/designation-
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { SkeleteonLoaderComponent } from '../_template/utility/skeleteon-loader/skeleteon-loader.component';
 import { TabViewModule } from 'primeng/tabview';
+import { Calendar, CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { TabViewModule } from 'primeng/tabview';
     MenubarModule,
     NgxSkeletonLoaderModule,
     TabViewModule,
+    CalendarModule
   ],
   exports: [
     ButtonModule,
@@ -136,7 +138,7 @@ import { TabViewModule } from 'primeng/tabview';
     NgxSkeletonLoaderModule,
     SkeleteonLoaderComponent,
     TabViewModule,
-
+    CalendarModule,
   ],
   providers: [ConfirmationService, MessageService],
 })

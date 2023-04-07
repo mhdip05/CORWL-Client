@@ -27,6 +27,7 @@ export class CountryDropdownComponent implements OnInit {
   @Input() disabled = false;
   @Input() selectedCountry: any;
   @Input() cascade = true;
+  @Input() autoDisplayFirst = true;
   @Output() changeCountry = new EventEmitter();
 
   constructor(
@@ -82,14 +83,14 @@ export class CountryDropdownComponent implements OnInit {
       .subscribe({
         next: (res: any) => {
           //console.log(res)
-          const empty = [
-            {
-              countryName: this.utilService.dropdownDefaultText(),
-              countryId: -1,
-            },
-          ];
-          this.countries = [...empty, ...res];
-          this.currentCountries = [...empty, ...res];
+          // const empty = [
+          //   {
+          //     countryName: this.utilService.dropdownDefaultText(),
+          //     countryId: -1,
+          //   },
+          // ];
+          this.countries = [...res];
+          this.currentCountries = [...res];
         },
       });
   }

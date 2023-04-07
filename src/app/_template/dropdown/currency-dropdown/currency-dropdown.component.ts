@@ -22,6 +22,7 @@ export class CurrencyDropdownComponent implements OnInit {
 
   @Input() currencies: any = [];
   @Input() selectedCurrency: any;
+  @Input() placeholder = "Select Currency"
   @Output() changeCurrency = new EventEmitter();
 
   constructor(private currencyServices: CurrencyService, private utilService:UtilsService) {}
