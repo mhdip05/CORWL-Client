@@ -66,17 +66,18 @@
                         }
                       : undefined
                   "
+                  [placeholder]="'Dept Head.'"
                   (changeEmployee)="changeDropdown($event)"
                 >
                 </app-employee-dropdown>
-                <label
+                <!-- <label
                   for="employee"
                   *ngIf="
                     customModel.model.departmentHeadId == 0 ||
                     customModel.model.departmentHeadId == null
                   "
                   >Dept. Head
-                </label>
+                </label> -->
               </span>
             </div>
             <div class="col-12 mb-3">

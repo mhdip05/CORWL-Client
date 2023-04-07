@@ -12,6 +12,7 @@
           >
             <div class="row">
               <div class="col-xl-3 col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                <label for="countryName">Country</label>
                 <span class="p-float-label">
                   <input
                     type="text"
@@ -19,11 +20,11 @@
                     class="form-control form-control-sm"
                     name="countryName"
                     [(ngModel)]="customModel.model.countryName"
-                  />
-                  <label for="countryName">Country</label>
+                  />              
                 </span>
               </div>
               <div class="col-xl-3 col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                <label for="countryName">Country Alias</label>
                 <span class="p-float-label">
                   <input
                     type="text"
@@ -31,8 +32,7 @@
                     class="form-control form-control-sm"
                     name="countryAlias"
                     [(ngModel)]="customModel.model.countryAlias"
-                  />
-                  <label for="countryName">Country Alias</label>
+                  />               
                 </span>
               </div>
               <div

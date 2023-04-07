@@ -7,7 +7,10 @@
 
       <hr class="under-header" />
       <div class="utility-box">
-        <app-reset class="utility" (click)="customModel.reset(customModel.editMode, getBranchId())"></app-reset>
+        <app-reset
+          class="utility"
+          (click)="customModel.reset(customModel.editMode, getBranchId())"
+        ></app-reset>
         <app-validation-reset
           class="utility"
           (click)="customModel.validationReset()"
@@ -24,6 +27,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="branchName">Branch Name</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -32,7 +36,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.branchName"
               />
-              <label for="branchName">Branch Name</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -41,6 +44,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="branchCode">Branch Code</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -49,7 +53,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.branchCode"
               />
-              <label for="branchCode">Branch Code</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -58,6 +61,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="company">Company </label>
             <span class="p-float-label">
               <app-company-dropdown
                 [companies]="[
@@ -77,14 +81,6 @@
                 (changeCompany)="customModel.changeDropdown($event)"
               >
               </app-company-dropdown>
-              <label
-                for="company"
-                *ngIf="
-                  customModel.model.companyId == 0 ||
-                  customModel.model.companyId == null
-                "
-                >Select Company
-              </label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -93,6 +89,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="branchType">Branch type </label>
             <span class="p-float-label">
               <app-branch-type-dropdown
                 [branchTypes]="[
@@ -110,9 +107,6 @@
                 (changeBranchType)="customModel.changeDropdown($event)"
               >
               </app-branch-type-dropdown>
-              <label for="country" *ngIf="customModel.model.branchType == null"
-                >Select Branch type
-              </label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -121,6 +115,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="country">Country </label>
             <span class="p-float-label">
               <app-countryDropdown
                 [countries]="[
@@ -140,18 +135,11 @@
                 (changeCountry)="customModel.changeCountry($event)"
               >
               </app-countryDropdown>
-              <label
-                for="country"
-                *ngIf="
-                  customModel.model.countryId == 0 ||
-                  customModel.model.countryId == null
-                "
-                >Select Country
-              </label>
             </span>
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="city">City</label>
             <span class="p-float-label">
               <app-cityDropdown
                 [cities]="[
@@ -174,15 +162,6 @@
                 (changeCity)="customModel.changeDropdown($event)"
               >
               </app-cityDropdown>
-
-              <label
-                for="city"
-                *ngIf="
-                  customModel.model.cityId == 0 ||
-                  customModel.model.cityId == null
-                "
-                >Select City</label
-              >
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -196,6 +175,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="mobile">Mobile No.</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -204,7 +184,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.mobile"
               />
-              <label for="mobile">Mobile No.</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -213,6 +192,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="phone">Phone No.</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -221,7 +201,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.phone"
               />
-              <label for="phone">Phone No.</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -230,6 +209,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="email">Email</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -238,7 +218,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.email"
               />
-              <label for="email">Email</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -247,6 +226,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="web">Website</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -255,7 +235,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.web"
               />
-              <label for="web">Website</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -269,6 +248,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="address">Address</label>
             <span class="p-float-label">
               <textarea
                 pInputText
@@ -279,7 +259,6 @@
                 [(ngModel)]="customModel.model.address"
               >
               </textarea>
-              <label for="address">Address</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -288,6 +267,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="zipCode">Zip Code</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -296,7 +276,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.zipCode"
               />
-              <label for="zipCode">Zip Code</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -305,6 +284,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="employee">Branch Incharge </label>
             <span class="p-float-label">
               <app-employee-dropdown
                 [employees]="[
@@ -326,18 +306,11 @@
                 "
               >
               </app-employee-dropdown>
-              <label
-                for="employee"
-                *ngIf="
-                  customModel.model.branchInchargeId == 0 ||
-                  customModel.model.branchInchargeId == null
-                "
-                >Select Branch Incharge
-              </label>
             </span>
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="employee">Attention Person </label>
             <span class="p-float-label">
               <app-employee-dropdown
                 [employees]="[
@@ -360,14 +333,6 @@
                 "
               >
               </app-employee-dropdown>
-              <label
-                for="employee"
-                *ngIf="
-                  customModel.model.branchAttentionPersonId == 0 ||
-                  customModel.model.branchAttentionPersonId == null
-                "
-                >Select Attention Person
-              </label>
             </span>
           </div>
 

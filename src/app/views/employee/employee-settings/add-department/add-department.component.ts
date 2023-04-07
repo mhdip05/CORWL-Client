@@ -107,8 +107,8 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   updateDepartment() {
-    //console.log(this.customModel.model);
-    //return;
+    console.log(this.customModel.model);
+    return;
     this.customModel.disabled = true;
     this.departmentService
       .updateDepartment(this.customModel.model)
@@ -128,6 +128,7 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   viewData(data: any, eventType: string) {
+    console.log(data)
     this.customModel.editMode = false;
     this.customModel.model = { ...data };
 

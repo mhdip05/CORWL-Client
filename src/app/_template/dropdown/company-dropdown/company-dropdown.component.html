@@ -4,10 +4,11 @@
   optionLabel="companyName"
   [showClear]="showClear"
   [emptyMessage]="emptyMessage"
+  placeholder = "Select company"
   [autoDisplayFirst]="false"
   [filter]="true"
   (onShow)="onShow()"
-  (onChange)="onChange()"
+  
 >
   <ng-template pTemplate="selectedItem">
     <div *ngIf="selectedCompany">

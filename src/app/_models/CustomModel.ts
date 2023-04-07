@@ -3,13 +3,13 @@ export class CustomModel {
   rollbackModel: any = {};
   validationModel: any = {};
   cascadeCityModel: any = { disabledCity: true, load: false };
-
   isAmend = false;
   editMode = false;
   disabled = false;
   hasValidation = false;
   isRemoved = false;
   showDialog = false;
+  selected: any;
 
   changeCountry = (data: any) => {
     //console.log(data);
@@ -34,7 +34,14 @@ export class CustomModel {
     this.model = { ...this.model, ...data };
   };
 
+  changeStaticDropdown = (event:any) => {
+    //console.log(event)
+
+    //this.model = event.value;
+  }
+
   viewData = (data: any) => {
+    //console.log(data);
     this.editMode = false;
     this.model = { ...data };
     setTimeout(() => {
@@ -72,6 +79,19 @@ export class CustomModel {
     this.resetDropDown();
     if (editMode == false) this.model = {};
   };
+
+  resetAll = () => {
+    this.validationModel = {};
+    this.model = {};
+    this.isAmend = false;
+    this.editMode = false;
+    this.disabled = false;
+    this.hasValidation = false;
+    this.isRemoved = false;
+    this.showDialog = false;
+    this.resetDropDown();
+  };
+
 
   // permissionForEdit = (companyId: number) => {
   //   if (this.utilService.checkIntegerInUrl(companyId) == false) {

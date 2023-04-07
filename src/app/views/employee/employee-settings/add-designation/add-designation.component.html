@@ -84,7 +84,7 @@
           >
             <div class="utilityBtn">
               <span>
-                <app-reset (click)="reset()"></app-reset>
+                <app-reset (click)="customModel.resetAll()"></app-reset>
               </span>
             </div>
           </div>
@@ -102,8 +102,8 @@
       [hasBtnPull]="true"
       [isShrinkGridData]="true"
       [gridLoad]="customModel.gridLoad"
-      (modifyEvent)="viewData($event)" 
-      (pullDataEvent)="pullData()"
+      (modifyEvent)="customModel.viewData($event)" 
+      (pullDataEvent)="getAllDesignation()"
       
     >
     </app-default-grid>

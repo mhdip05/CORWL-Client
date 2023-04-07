@@ -17,6 +17,7 @@ export class EmployeeDropdownComponent implements OnInit {
   @Input() editMode = false;
   @Input() disabled = false;
   @Input() selectedEmployee: any;
+  @Input() placeholder = "Select Employee"
   @Output() changeEmployee = new EventEmitter();
 
   constructor(
@@ -35,7 +36,7 @@ export class EmployeeDropdownComponent implements OnInit {
       return;
     }
 
-    this.showClear = true;
+    //this.showClear = true;
     this.changeEmployee.emit(this.selectedEmployee);
   }
 

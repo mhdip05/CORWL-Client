@@ -7,7 +7,10 @@
 
       <hr class="under-header" />
       <div class="utility-box">
-        <app-reset class="utility" (click)="customModel.reset(customModel.editMode, getCompanyById())"></app-reset>
+        <app-reset
+          class="utility"
+          (click)="customModel.reset(customModel.editMode, getCompanyById())"
+        ></app-reset>
         <app-validation-reset
           class="utility"
           (click)="customModel.validationReset()"
@@ -23,6 +26,7 @@
             <p class="custom-group-title">General Info</p>
           </div>
           <div [class]="designModel.responsiveClass">
+            <label for="companyName">Company Name</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -31,7 +35,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.companyName"
               />
-              <label for="companyName">Company Name</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -40,6 +43,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="companyCode">Company Code</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -48,7 +52,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.companyCode"
               />
-              <label for="companyCode">Company Code</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -57,6 +60,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="country">Country</label>
             <span class="p-float-label">
               <app-countryDropdown
                 [countries]="[
@@ -76,19 +80,13 @@
                 (changeCountry)="customModel.changeCountry($event)"
               >
               </app-countryDropdown>
-              <label
-                for="country"
-                *ngIf="
-                  customModel.model.countryId == 0 ||
-                  customModel.model.countryId == null
-                "
-                >Select Country</label
-              >
             </span>
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="city">City</label>
             <span class="p-float-label">
+              
               <app-cityDropdown
                 [cities]="[
                   {
@@ -110,15 +108,6 @@
                 (changeCity)="customModel.changeDropdown($event)"
               >
               </app-cityDropdown>
-
-              <label
-                for="city"
-                *ngIf="
-                  customModel.model.cityId == 0 ||
-                  customModel.model.cityId == null
-                "
-                >Select City</label
-              >
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -132,6 +121,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="mobileNo">Mobile No.</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -140,7 +130,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.mobileNo"
               />
-              <label for="mobileNo">Mobile No.</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -149,6 +138,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="phone">Phone No.</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -157,7 +147,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.phoneNo"
               />
-              <label for="phone">Phone No.</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -166,6 +155,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="email">Email</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -174,7 +164,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.email"
               />
-              <label for="email">Email</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -183,6 +172,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="web">Website</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -191,7 +181,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.web"
               />
-              <label for="web">Website</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -205,6 +194,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="zipCode">Zip Code</label>
             <span class="p-float-label">
               <input
                 type="text"
@@ -213,7 +203,6 @@
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.zipCode"
               />
-              <label for="zipCode">Zip Code</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -222,6 +211,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="localCurrency">Local Currency </label>
             <span class="p-float-label">
               <app-currency-dropdown
                 [currencies]="[
@@ -243,18 +233,11 @@
                 "
               >
               </app-currency-dropdown>
-              <label
-                for="localCurrency"
-                *ngIf="
-                  customModel.model.localCurrencyId == 0 ||
-                  customModel.model.localCurrencyId == null
-                "
-                >Select Local Currency
-              </label>
             </span>
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="localCurrency">Int Currency </label>
             <span class="p-float-label">
               <app-currency-dropdown
                 [currencies]="[
@@ -277,18 +260,11 @@
                 "
               >
               </app-currency-dropdown>
-              <label
-                for="localCurrency"
-                *ngIf="
-                  customModel.model.interNationalCurrencyId == 0 ||
-                  customModel.model.interNationalCurrencyId == null
-                "
-                >Select Int Currency
-              </label>
             </span>
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="conversionRate">Conversion Rate</label>
             <span class="p-float-label">
               <p-inputNumber
                 mode="decimal"
@@ -299,7 +275,6 @@
                 [(ngModel)]="customModel.model.conversionRate"
               >
               </p-inputNumber>
-              <label for="conversionRate">Conversion Rate</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"
@@ -308,6 +283,7 @@
           </div>
 
           <div [class]="designModel.responsiveClass">
+            <label for="address">Address</label>
             <span class="p-float-label">
               <textarea
                 pInputText
@@ -318,7 +294,6 @@
                 [(ngModel)]="customModel.model.address"
               >
               </textarea>
-              <label for="address">Address</label>
             </span>
             <app-error-validation
               [hasValidation]="customModel.hasValidation"

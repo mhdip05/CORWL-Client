@@ -106,10 +106,12 @@ p-inputnumber,
 
 .custom-group {
   font-weight: bold;
+  margin-top:-6px;
 }
 
 .custom-group-title {
-  margin-bottom: 7px;
+  font-size: 18px;
+  margin-bottom: 4px;
 }
 
 .custom-group-clear {
@@ -179,4 +181,16 @@ p-inputnumber,
 
 .tabview-paragraph{
   margin-top: 10px;
+}
+
+.p-calendar {
+  width: 100%;
+}
+.p-dropdown-label {
+  color: rgba(0, 0, 0, 0.43);
+}
+
+
+label {
+  color: rgba(0, 0, 0, 0.6);
 }
