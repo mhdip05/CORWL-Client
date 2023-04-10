@@ -46,6 +46,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { SkeleteonLoaderComponent } from '../_template/utility/skeleteon-loader/skeleteon-loader.component';
 import { TabViewModule } from 'primeng/tabview';
 import { Calendar, CalendarModule } from 'primeng/calendar';
+import { BranchDropdownComponent } from '../_template/dropdown/branch-dropdown/branch-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { Calendar, CalendarModule } from 'primeng/calendar';
     DepartmentDropdownComponent,
     DesignationDropdownComponent,
     SkeleteonLoaderComponent,
+    BranchDropdownComponent,
   ],
   imports: [
     CommonModule,
@@ -139,6 +141,9 @@ import { Calendar, CalendarModule } from 'primeng/calendar';
     SkeleteonLoaderComponent,
     TabViewModule,
     CalendarModule,
+    CompanyDropdownComponent,
+    DesignationDropdownComponent,
+    DepartmentDropdownComponent
   ],
   providers: [ConfirmationService, MessageService],
 })

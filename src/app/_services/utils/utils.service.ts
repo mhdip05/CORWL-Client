@@ -18,7 +18,7 @@ export class UtilsService {
 
   dropdownDefaultText = (text?: string) => {
     if (text == undefined || text == null) {
-      return `========= Select =========`;
+      return `<===== Select =====>`;
     }
     return `========= Select ${text} =========`;
   };

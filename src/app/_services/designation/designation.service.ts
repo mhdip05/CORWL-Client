@@ -13,6 +13,10 @@ export class DesignationService {
     return this.http.get(environment.apiUrl + 'designation/getAllDesignation');
   }
 
+  getDesignationDropdown(){
+    return this.http.get(environment.apiUrl + 'designation/getDesignationDropdown');
+  }
+
   addDesignation(model: any) {
     return this.http.post(
       environment.apiUrl + 'designation/AddDesignation',

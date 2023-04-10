@@ -1,30 +1,36 @@
 <form autocomplete="off">
   <div class="row">
     <div class="custom-group">
-      <p class="custom-group-title">Company Details</p>
+      <p class="custom-group-title">General Info</p>
     </div>
-    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+    <div [class]="designModel.responsiveClass">
+      <label for="companyName">Company</label>
       <span class="p-float-label">
-        <input
-          type="text"
-          pInputText
-          name="Company Name"
-          [class]="'form-control form-control-sm'"
-          [(ngModel)]="model.companyName"
-        />
-        <label for="companyName">Company Name</label>
+        <app-company-dropdown
+                [companies]="[
+                  {
+                    companyName: customModel.model.companyName,
+                    companyId: customModel.model.companyId
+                  }
+                ]"
+                [selectedCompany]="
+                  customModel.editMode
+                    ? {
+                        companyName: customModel.model.companyName,
+                        companyId: customModel.model.companyId
+                      }
+                    : undefined
+                "
+                (changeCompany)="customModel.changeDropdown($event)"
+              >
+              </app-company-dropdown>    
       </span>
     </div>
     <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="branchName">Banch</label>
       <span class="p-float-label">
-        <input
-          type="text"
-          pInputText
-          name="Branch Name"
-          [class]="'form-control form-control-sm'"
-          [(ngModel)]="model.branchName"
-        />
-        <label for="branchName">Banch Name</label>
+        
+        
       </span>
     </div>
   </div>

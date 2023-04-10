@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomModel } from 'src/app/_models/CustomModel';
+import { DesignModel } from 'src/app/_models/DesignModel';
 
 @Component({
   selector: 'app-job-details',
@@ -7,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./job-details.component.scss']
 })
 export class JobDetailsComponent implements OnInit {
+  customModel = new CustomModel();
+  designModel = new DesignModel()
 
-  model:any = {}
   constructor() { }
 
   ngOnInit(): void {

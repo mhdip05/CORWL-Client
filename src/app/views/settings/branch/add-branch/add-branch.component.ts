@@ -40,8 +40,8 @@ export class AddBranchComponent implements OnInit {
   }
 
   addBranch() {
-     console.log(this.customModel.model);
-    return;
+    //console.log(this.customModel.model);
+    //return;
     this.customModel.disabled = true;
     this.branchService
       .addBranch(this.customModel.model)
