@@ -137,8 +137,6 @@ import { UtilityBoxComponent } from '../_template/utility/utility-box/utility-bo
     BackComponent,
     TopMenubarComponent,
     EmployeeDropdownComponent,
-    DepartmentDropdownComponent,
-    DesignationDropdownComponent,
     NgxSkeletonLoaderModule,
     SkeleteonLoaderComponent,
     TabViewModule,
@@ -146,7 +144,8 @@ import { UtilityBoxComponent } from '../_template/utility/utility-box/utility-bo
     CompanyDropdownComponent,
     DesignationDropdownComponent,
     DepartmentDropdownComponent,
-    UtilityBoxComponent
+    BranchDropdownComponent,
+    UtilityBoxComponent,
   ],
   providers: [ConfirmationService, MessageService],
 })

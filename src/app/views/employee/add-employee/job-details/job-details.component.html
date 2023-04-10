@@ -7,30 +7,176 @@
       <label for="companyName">Company</label>
       <span class="p-float-label">
         <app-company-dropdown
-                [companies]="[
-                  {
-                    companyName: customModel.model.companyName,
-                    companyId: customModel.model.companyId
-                  }
-                ]"
-                [selectedCompany]="
-                  customModel.editMode
-                    ? {
-                        companyName: customModel.model.companyName,
-                        companyId: customModel.model.companyId
-                      }
-                    : undefined
-                "
-                (changeCompany)="customModel.changeDropdown($event)"
-              >
-              </app-company-dropdown>    
+          [companies]="[
+            {
+              companyName: customModel.model.companyName,
+              companyId: customModel.model.companyId
+            }
+          ]"
+          [selectedCompany]="
+            customModel.editMode
+              ? {
+                  companyName: customModel.model.companyName,
+                  companyId: customModel.model.companyId
+                }
+              : undefined
+          "
+          (changeCompany)="customModel.changeDropdown($event)"
+        >
+        </app-company-dropdown>
       </span>
     </div>
-    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+    <div [class]="designModel.responsiveClass">
       <label for="branchName">Banch</label>
       <span class="p-float-label">
-        
-        
+        <app-branch-dropdown
+          [branches]="[
+            {
+              branchName: customModel.model.branchName,
+              branchId: customModel.model.branchId
+            }
+          ]"
+          [selectedBranch]="
+            customModel.editMode
+              ? {
+                  branchName: customModel.model.branchName,
+                  branchId: customModel.model.branchId
+                }
+              : undefined
+          "
+          (changeBranch)="customModel.changeDropdown($event)"
+        >
+        </app-branch-dropdown>
+      </span>
+    </div>
+    <div [class]="designModel.responsiveClass">
+      <label for="departmentName">Department</label>
+      <span class="p-float-label">
+        <app-department-dropdown
+          [departments]="[
+            {
+              departmentName: customModel.model.departmentName,
+              departmentId: customModel.model.departmentId
+            }
+          ]"
+          [selectedDepartment]="
+            customModel.editMode
+              ? {
+                  departmentName: customModel.model.departmentName,
+                  departmentId: customModel.model.departmentId
+                }
+              : undefined
+          "
+          (changeDepartment)="customModel.changeDropdown($event)"
+        >
+        </app-department-dropdown>
+      </span>
+    </div>
+    <div [class]="designModel.responsiveClass">
+      <label for="designationName">Designation</label>
+      <span class="p-float-label">
+        <app-designation-dropdown
+          [designations]="[
+            {
+              designationName: customModel.model.designationName,
+              designationId: customModel.model.designationId
+            }
+          ]"
+          [selectedDesignation]="
+            customModel.editMode
+              ? {
+                  designationName: customModel.model.designationName,
+                  designationId: customModel.model.designationId
+                }
+              : undefined
+          "
+          (changeDesignation)="customModel.changeDropdown($event)"
+        >
+        </app-designation-dropdown>
+      </span>
+    </div>
+    <div [class]="designModel.responsiveClass">
+      <label for="supervisor">Supervisor</label>
+      <span class="p-float-label">
+        <app-employee-dropdown
+          [employees]="[
+            {
+              employeeName: customModel.model.supervisorName,
+              employeeId: customModel.model.supervisorId
+            }
+          ]"
+          [selectedEmployee]="
+            customModel.editMode
+              ? {
+                  employeeName: customModel.model.supervisorName,
+                  employeeId: customModel.model.supervisorId
+                }
+              : undefined
+          "
+          (changeEmployee)="
+            customModel.changeDropdown($event, 'supervisorId', 'supervisorName')
+          "
+          [applyDefaultText]="true"
+        >
+        </app-employee-dropdown>
+      </span>
+    </div>
+
+    <div class="custom-group-clear"></div>
+    <div class="custom-group">
+      <p class="custom-group-title">Other</p>
+    </div>
+
+    <div [class]="designModel.responsiveClass">
+      <label>Staff Grade</label>
+      <span class="p-float-label">
+        <p-dropdown
+          [options]="employeeModel.staffGrade"
+          [(ngModel)]="customModel.model.staffGrade"
+          optionLabel="staffGrade"
+          optionValue="staffGrade"          
+          [name]="'staffGrade'"
+          placeholder="Select staff grade"
+          [showClear]="true"
+        ></p-dropdown>
+      </span>
+    </div>
+    <div [class]="designModel.responsiveClass">
+      <label for="confirmationDate">Confirmation Date</label>
+      <span class="p-float-label">
+        <p-calendar
+          [(ngModel)]="customModel.model.confirmationDate"
+          name="'dateOfBirth'"
+          [showIcon]="true"
+          dateFormat="dd/mm/yy"
+          [maxDate]="dateTimeService.today"        
+        ></p-calendar>
+      </span>
+    </div>
+    <div [class]="designModel.responsiveClass">
+      <label for="joiningDate">Joining Date</label>
+      <span class="p-float-label">
+        <p-calendar
+          [(ngModel)]="customModel.model.joiningDate"
+          name="'dateOfBirth'"
+          [showIcon]="true"
+          dateFormat="dd/mm/yy"
+          [maxDate]="dateTimeService.today"        
+        ></p-calendar>
+      </span>
+    </div>
+    <div [class]="designModel.responsiveClass">
+      <label for="reportingMethod">Reporting Method</label>
+      <span class="p-float-label">
+        <p-dropdown
+          [options]="employeeModel.reportingMethod"
+          [(ngModel)]="customModel.model.reportingMethod"
+          optionLabel="reportingMethod"
+          optionValue="reportingMethod"          
+          [name]="'reportingMethod'"
+          placeholder="Select reporting method"
+          [showClear]="true"
+        ></p-dropdown>
       </span>
     </div>
   </div>
@@ -38,9 +184,16 @@
   <div class="row">
     <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
       <div class="d-grid">
-        <button pButton pRipple label="Submit" class="p-button"></button>
-        <!-- <button (click)="rollback()">Rollback</button>  -->
+        <button
+          pButton
+          pRipple
+          label="Submit"
+          class="p-button"
+          (click)="addJobDetails()"
+        ></button>
       </div>
     </div>
   </div>
+  <hr>
+  <app-utility-box></app-utility-box>
 </form>

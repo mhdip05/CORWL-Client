@@ -30,15 +30,22 @@ export class CustomModel {
     this.cascadeCityModel.disabledCity = false;
   };
 
-  changeDropdown = (data: any) => {
+  changeDropdown = (data: any, objId?: any, objName?: any) => {
+    if (objId) {
+      const obj = {
+        [objId]: Object.values(data)[0],
+        [objName]: Object.values(data)[1],
+      };
+      this.model = { ...this.model, ...obj };
+      return;
+    }
     this.model = { ...this.model, ...data };
   };
 
-  changeStaticDropdown = (event:any) => {
+  changeStaticDropdown = (event: any) => {
     //console.log(event)
-
     //this.model = event.value;
-  }
+  };
 
   viewData = (data: any) => {
     //console.log(data);
@@ -91,7 +98,6 @@ export class CustomModel {
     this.showDialog = false;
     this.resetDropDown();
   };
-
 
   // permissionForEdit = (companyId: number) => {
   //   if (this.utilService.checkIntegerInUrl(companyId) == false) {

@@ -65,8 +65,8 @@ export class DesignationDropdownComponent implements OnInit {
               },
             ];
           }
-          this.designations = [...empty, , ...res];
-          this.currentDesignations = [...empty, ...res];
+          this.designations = [...empty,...res];
+          this.currentDesignations = [...empty,...res];
         },
       });
   }

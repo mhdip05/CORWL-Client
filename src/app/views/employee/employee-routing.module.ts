@@ -4,6 +4,7 @@ import { NotFoundComponent } from '../errors/not-found/not-found.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { EmployeeSettingsComponent } from './employee-settings/employee-settings.component';
 import { UserListComponent } from './user-list/user-list-component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,13 @@ const routes: Routes = [
           title: 'Add-Empoloyee',
         },
       },
-
+      {
+        path: 'employee-list',
+        component: EmployeeListComponent,
+        data: {
+          title: 'Employee-list',
+        },
+      },
       {
         path: 'user-list',
         component: UserListComponent,

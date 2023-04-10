@@ -1,4 +1,5 @@
 export class EmployeeModel {
+
   bloodGroup = [
     { bloodGroup: 'A+' },
     { bloodGroup: 'A-' },
@@ -21,5 +22,20 @@ export class EmployeeModel {
     {idType:'Passport'},
     {idType:'School/College Id'},
     {idType:'Cirtificate No'},
+  ]
+
+  staffGrade = [
+    {staffGrade:1},
+    {staffGrade:2},
+    {staffGrade:3},
+    {staffGrade:4},
+    {staffGrade:5},
+    {staffGrade:6},
+    {staffGrade:7},
+  ]
+
+  reportingMethod = [
+    {reportingMethod:'Direct'},
+    {reportingMethod:'Indirect'}
   ]
 }

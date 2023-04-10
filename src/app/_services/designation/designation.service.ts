@@ -14,7 +14,7 @@ export class DesignationService {
   }
 
   getDesignationDropdown(){
-    return this.http.get(environment.apiUrl + 'designation/getDesignationDropdown');
+    return this.http.get(environment.apiUrl + 'designation/GetDesignationDropdown');
   }
 
   addDesignation(model: any) {
