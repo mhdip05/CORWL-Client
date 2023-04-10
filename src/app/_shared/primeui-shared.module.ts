@@ -145,7 +145,8 @@ import { UtilityBoxComponent } from '../_template/utility/utility-box/utility-bo
     CalendarModule,
     CompanyDropdownComponent,
     DesignationDropdownComponent,
-    DepartmentDropdownComponent
+    DepartmentDropdownComponent,
+    UtilityBoxComponent
   ],
   providers: [ConfirmationService, MessageService],
 })
