@@ -41,7 +41,7 @@ export const navItems: any[] = [
     children: [
       { name: 'Settings', url: '/employee/employee-settings' },
       { name: 'Add Employee', url: '/employee/add-employee' },
-      { name: 'User Role Map', url: '/employee/user-role-map' },
+      { name: 'User List', url: '/employee/user-list' },
     ],
   },
 
