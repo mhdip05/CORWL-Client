@@ -47,6 +47,7 @@ import { SkeleteonLoaderComponent } from '../_template/utility/skeleteon-loader/
 import { TabViewModule } from 'primeng/tabview';
 import { Calendar, CalendarModule } from 'primeng/calendar';
 import { BranchDropdownComponent } from '../_template/dropdown/branch-dropdown/branch-dropdown.component';
+import { UtilityBoxComponent } from '../_template/utility/utility-box/utility-box.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { BranchDropdownComponent } from '../_template/dropdown/branch-dropdown/b
     DesignationDropdownComponent,
     SkeleteonLoaderComponent,
     BranchDropdownComponent,
+    UtilityBoxComponent,
   ],
   imports: [
     CommonModule,
