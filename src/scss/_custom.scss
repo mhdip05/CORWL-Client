@@ -29,11 +29,7 @@ body {
   background: rgba(234, 239, 240, 0.957);
 }
 
-@media screen and (max-width: 992px) {
-  .utilityBtn {
-    margin-top: 11px;
-  }
-}
+
 
 .utilityBtn {
   text-align: right;
@@ -193,4 +189,28 @@ p-inputnumber,
 
 label {
   color: rgba(0, 0, 0, 0.6);
+}
+
+.custom-btn-inline {
+  margin-top:25px;
+}
+
+.utility-btn-inline{
+  text-align: right;
+  margin-top:21px
+}
+
+@media screen and (max-width: 992px) {
+  .utilityBtn {
+    margin-top: 11px;
+  }
+  .custom-btn-inline {
+    margin-top:8px;
+  }
+  
+.utility-btn-inline{
+  text-align: right;
+
+  margin-top:8px
+}
 }
