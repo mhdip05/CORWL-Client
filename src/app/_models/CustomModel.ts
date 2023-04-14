@@ -10,6 +10,20 @@ export class CustomModel {
   isRemoved = false;
   showDialog = false;
   selected: any;
+  private uploadedFiles: any = [];
+
+  onFileUpload(event: any) {
+    //console.log(event);
+    
+    //console.log(event.files);
+
+    for (let file of event.files) {
+      this.uploadedFiles.push(file);
+    }
+    
+    const fileData = { file: this.uploadedFiles };
+    this.model = { ...this.model, ...fileData };
+  }
 
   changeCountry = (data: any) => {
     //console.log(data);

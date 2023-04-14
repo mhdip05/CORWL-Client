@@ -10,6 +10,7 @@ import { AddDesignationComponent } from './employee-settings/add-designation/add
 import { BasicInfoComponent } from './add-employee/basic-info/basic-info.component';
 import { JobDetailsComponent } from './add-employee/job-details/job-details.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { UserInfoComponent } from './add-employee/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
     BasicInfoComponent,
     JobDetailsComponent,
     EmployeeListComponent,
+    UserInfoComponent,
   ],
   imports: [
     CommonModule,

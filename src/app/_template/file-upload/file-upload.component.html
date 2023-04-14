@@ -1,0 +1,56 @@
+<!-- <p-fileUpload
+  mode="advanced"
+  chooseLabel="Browse"
+  name="myfile[]"
+  accept="image/*"
+  [maxFileSize]="1000000"
+  [customUpload]="true"
+  [fileLimit]="3"
+  [multiple]="true"
+  [auto]="true"
+  [showCancelButton]="true"
+  
+  (uploadHandler)="onUploadFile($event)"
+>
+</p-fileUpload> -->
+<p-fileUpload
+  name="myfile[]"
+  [showUploadButton]="false"
+  (onSelect)="handleFileSelect($event)"
+  mode="advanced"
+  [multiple]="true"
+  accept="image/*,.docx"
+  [previewWidth]="50"
+  [customUpload]="true"
+>
+  <ng-template pTemplate="toolbar">
+    <br>
+    <div>Upload 3 Files</div>
+  </ng-template>
+  <ng-template let-file pTemplate="file">
+    <div *ngIf="noContent">Custom UI to display a file</div>
+  </ng-template>
+  <ng-template pTemplate="content" let-files>
+    <div id="dip">
+      <div class="row">
+        <div class="col-md-3" *ngFor="let file of files">
+          <div class="thumbnail custom-image-thumbnail">
+            <img
+              [src]="file.objectURL"
+              [alt]="file.name"
+              class="mx-auto d-block custom-image"
+            />
+            <div class="caption custom-image-caption">
+              <p>
+
+
+                
+                File Size: {{(file.size/1000000).toFixed(3)}} MB
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-fileUpload>

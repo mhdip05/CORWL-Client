@@ -1,0 +1,26 @@
+#file-content {
+  border: 5px solid blue;
+}
+
+.custom-image-thumbnail {
+  border: 4px solid rgba(0, 0, 0, 0.04);
+  margin-bottom: 10px;
+  overflow: scroll;
+  border-radius: 8px;
+}
+
+.custom-image {
+  height: 300px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.custom-image-caption{
+    padding:0px 10px 10px 10px
+}
+
+.custom-image-caption p {
+    text-align: center;
+    font-weight: bold;
+}

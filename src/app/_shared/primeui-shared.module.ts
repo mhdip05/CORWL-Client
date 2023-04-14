@@ -48,7 +48,9 @@ import { TabViewModule } from 'primeng/tabview';
 import { Calendar, CalendarModule } from 'primeng/calendar';
 import { BranchDropdownComponent } from '../_template/dropdown/branch-dropdown/branch-dropdown.component';
 import { UtilityBoxComponent } from '../_template/utility/utility-box/utility-box.component';
-
+import { PasswordModule } from 'primeng/password';
+import { FileUploadModule } from 'primeng/fileupload';
+import { FileUploadComponent } from '../_template/file-upload/file-upload.component';
 @NgModule({
   declarations: [
     DefaultGridComponent,
@@ -76,6 +78,7 @@ import { UtilityBoxComponent } from '../_template/utility/utility-box/utility-bo
     SkeleteonLoaderComponent,
     BranchDropdownComponent,
     UtilityBoxComponent,
+    FileUploadComponent,
   ],
   imports: [
     CommonModule,
@@ -100,7 +103,9 @@ import { UtilityBoxComponent } from '../_template/utility/utility-box/utility-bo
     MenubarModule,
     NgxSkeletonLoaderModule,
     TabViewModule,
-    CalendarModule
+    CalendarModule,
+    PasswordModule,
+    FileUploadModule
   ],
   exports: [
     ButtonModule,
@@ -146,6 +151,9 @@ import { UtilityBoxComponent } from '../_template/utility/utility-box/utility-bo
     DepartmentDropdownComponent,
     BranchDropdownComponent,
     UtilityBoxComponent,
+    PasswordModule,
+    FileUploadModule,
+    FileUploadComponent
   ],
   providers: [ConfirmationService, MessageService],
 })

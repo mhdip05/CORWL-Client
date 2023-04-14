@@ -29,8 +29,6 @@ body {
   background: rgba(234, 239, 240, 0.957);
 }
 
-
-
 .utilityBtn {
   text-align: right;
 }
@@ -102,7 +100,7 @@ p-inputnumber,
 
 .custom-group {
   font-weight: bold;
-  margin-top:-6px;
+  margin-top: -6px;
 }
 
 .custom-group-title {
@@ -143,61 +141,59 @@ p-inputnumber,
   font-weight: bolder;
 }
 
-.utility{
+.utility {
   margin-left: 5px;
 }
 
-
-
 .custom-hr {
-  margin-top:5px
+  margin-top: 5px;
 }
 
 .utility-box {
-  margin-right:5px
+  margin-right: 5px;
 }
-
 
 .grid-btn-utility {
-   display: inline;
-   margin-right: 5px;
+  display: inline;
+  margin-right: 5px;
 }
 
-.custom-input-height{
-  height:40px;
+.custom-input-height {
+  height: 40px;
 }
 
-.custom-textarea{
-  width:100%
+.custom-textarea {
+  width: 100%;
 }
 
 :host ::ng-deep .custom-dd .p-dropdownd {
   height: 40px;
 }
 
-.tabview-paragraph{
+.tabview-paragraph {
   margin-top: 10px;
 }
 
-.p-calendar {
+.p-calendar,
+.p-password,
+.p-password-input {
   width: 100%;
 }
 .p-dropdown-label {
   color: rgba(0, 0, 0, 0.43);
 }
 
-
 label {
   color: rgba(0, 0, 0, 0.6);
 }
 
 .custom-btn-inline {
-  margin-top:25px;
+  margin-top: 25px;
 }
 
-.utility-btn-inline{
+.utility-btn-inline {
   text-align: right;
-  margin-top:21px
+  margin-top: 21px;
 }
 
 @media screen and (max-width: 992px) {
@@ -205,12 +201,14 @@ label {
     margin-top: 11px;
   }
   .custom-btn-inline {
-    margin-top:8px;
+    margin-top: 8px;
   }
-  
-.utility-btn-inline{
-  text-align: right;
 
-  margin-top:8px
-}
+  .utility-btn-inline {
+    text-align: right;
+
+    margin-top: 8px;
+  }
+
+ 
 }
