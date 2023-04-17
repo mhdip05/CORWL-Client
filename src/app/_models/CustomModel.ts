@@ -10,24 +10,24 @@ export class CustomModel {
   isRemoved = false;
   showDialog = false;
   selected: any;
-  private uploadedFiles: any = [];
 
   onFileUpload(event: any) {
     //console.log(event);
-    
-    //console.log(event.files);
-
-    for (let file of event.files) {
-      this.uploadedFiles.push(file);
+    var uploadedFiles: any = [];
+    for (let file of event) {
+      uploadedFiles.push(file);
     }
-    
-    const fileData = { file: this.uploadedFiles };
+    const fileData = { file: uploadedFiles };
     this.model = { ...this.model, ...fileData };
+   // console.log(uploadedFiles);
+  }
+
+  clearAllFiles() {
+    if (this.model.file) delete this.model.file;
   }
 
   changeCountry = (data: any) => {
     //console.log(data);
-
     this.model.countryId = data.countryId;
     this.model.countryName = data.countryName;
 
@@ -133,7 +133,6 @@ export class CustomModel {
     // console.log(this.rollbackModel)
     // console.log(this.customModel.model)
   }
-
   // @HostListener('window:keyup.w', ['$event']) w(e: KeyboardEvent) {
   //   console.log('w captured', e);
   // }

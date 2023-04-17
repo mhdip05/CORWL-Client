@@ -71,8 +71,10 @@
       <label for="phoneNo">User Primary Photo</label>
 
       <span class="p-float-label">
-        <app-file-upload (uploadFile)="customModel.onFileUpload($event)">
-
+        <app-file-upload
+          (uploadFile)="customModel.onFileUpload($event)"
+          (clearAllFile)="customModel.clearAllFiles()"
+        >
         </app-file-upload>
       </span>
     </div>

@@ -11,6 +11,10 @@ import { BasicInfoComponent } from './add-employee/basic-info/basic-info.compone
 import { JobDetailsComponent } from './add-employee/job-details/job-details.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { UserInfoComponent } from './add-employee/user-info/user-info.component';
+import { UserDocumentComponent } from './add-employee/user-document/user-document.component';
+import { ContactInfoComponent } from './add-employee/contact-info/contact-info.component';
+import { OtherComponent } from './add-employee/other/other.component';
+import { UserRoleComponent } from './add-employee/user-role/user-role.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,10 @@ import { UserInfoComponent } from './add-employee/user-info/user-info.component'
     JobDetailsComponent,
     EmployeeListComponent,
     UserInfoComponent,
+    UserDocumentComponent,
+    ContactInfoComponent,
+    OtherComponent,
+    UserRoleComponent,
   ],
   imports: [
     CommonModule,

@@ -17,8 +17,7 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {}
 
 
-
   addUserInfo(){
-    console.log(this.customModel.model.file)
+    console.log(this.customModel.model)
   }
 }
