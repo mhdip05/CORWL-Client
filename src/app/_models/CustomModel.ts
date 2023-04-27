@@ -10,16 +10,17 @@ export class CustomModel {
   isRemoved = false;
   showDialog = false;
   selected: any;
+  files!: File[];
 
   onFileUpload(event: any) {
     //console.log(event);
-    var uploadedFiles: any = [];
-    for (let file of event) {
-      uploadedFiles.push(file);
-    }
-    const fileData = { file: uploadedFiles };
-    this.model = { ...this.model, ...fileData };
-   // console.log(uploadedFiles);
+    this.files = event;
+    // for (let file of event) {
+    //   this.uploadedFiles.push(file);
+    // }
+    // const fileData = { file: uploadedFiles };
+    // this.model = { ...this.model, ...fileData };
+    //console.log(this.uploadedFiles);
   }
 
   clearAllFiles() {
@@ -76,9 +77,11 @@ export class CustomModel {
   };
 
   handleError = (e: any): any => {
+    //console.log(e)
     this.hasValidation = true;
     if (e.error.errors) {
       this.validationModel = { ...e.error.errors };
+      //console.log(this.validationModel);
       return { isDbError: false };
     } else if (e.error) {
       return { isDbError: true, dbError: e.error };
@@ -112,6 +115,30 @@ export class CustomModel {
     this.showDialog = false;
     this.resetDropDown();
   };
+
+  inputBlur(
+    event: any,
+    inputName: string,
+    isInputDropdown?: boolean,
+    dropdownName?: any
+  ) {
+    //console.log(this.validationModel)
+    const inputValue = event.target.value.trim();
+    if (isInputDropdown) {
+      if (this.model[dropdownName]) {
+        delete this.validationModel[inputName];
+      }
+    } else {
+      if (inputValue.length !== 0) {
+        if (this.validationModel.hasOwnProperty(inputName)) {
+          delete this.validationModel[inputName];
+        }
+        // else {
+        //   throw new Error(inputName + ' is not found in the validation model');
+        // }
+      }
+    }
+  }
 
   // permissionForEdit = (companyId: number) => {
   //   if (this.utilService.checkIntegerInUrl(companyId) == false) {

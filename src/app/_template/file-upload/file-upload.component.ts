@@ -25,6 +25,8 @@ export class FileUploadComponent implements OnInit {
   @Input() maxFileSize = 5000000;
   @Input() accept = "image/*"
   @Input() fileLimit = 1;
+  @Input() name = 'file[]'
+
 
   @Output() uploadFile = new EventEmitter();
   @Output() clearAllFile = new EventEmitter();
@@ -38,11 +40,11 @@ export class FileUploadComponent implements OnInit {
       const fileType = file.name.substring(lastDotIndex + 1).toLowerCase();
       file.fileType = fileType;
 
-      file.row = {};
-      const fileRow = file.row;
-      fileRow.file = file;
+      // file.row = {};
+      // const fileRow = file.row;
+      // fileRow.file = file;
 
-      this.files.push(fileRow);
+      this.files.push(file);
       //console.log(fileRow)
     }
     this.uploadFile.emit(event.currentFiles);

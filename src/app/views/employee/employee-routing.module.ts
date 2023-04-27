@@ -32,6 +32,13 @@ const routes: Routes = [
         },
       },
       {
+        path: 'edit-employee/:id',
+        component: AddEmployeeComponent,
+        data: {
+          title: 'Edit-Employee',
+        },
+      },
+      {
         path: 'employee-list',
         component: EmployeeListComponent,
         data: {

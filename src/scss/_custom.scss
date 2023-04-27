@@ -2,6 +2,7 @@
 body {
   font-family: "Roboto";
 }
+
 .custom-toast {
   font-weight: bold;
   font-family: Roboto;
@@ -57,6 +58,10 @@ label {
   color: rgba(0, 0, 0, 0.5);
   font-weight: 500;
   font-family: "Roboto";
+}
+
+.p-dropdown .p-dropdown-label.p-placeholder {
+   color: rgb(0 0 0 / 37%) !important
 }
 
 .p-dropdown-label {
@@ -210,5 +215,5 @@ label {
     margin-top: 8px;
   }
 
- 
+
 }

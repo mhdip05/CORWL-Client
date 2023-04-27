@@ -11,4 +11,12 @@ export class EmployeeService {
   getEmployeeDropdown() {
     return this.http.get(environment.apiUrl + 'employee/GetEmployeeDropdown');
   }
+
+  saveEmployeeBasicInfo(model:any){
+    return this.http.post(environment.apiUrl + 'employee/SaveEmployeeBasicInfo',model);
+  }
+
+  saveEmployeeDocumentInfo(model:any){
+    return this.http.post(environment.apiUrl + 'employee/SaveDocument',model)
+  }
 }
