@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if (this.authService.authUserdata != null)
       this.router.navigateByUrl('/dashboard');
-
+      
     sessionStorage.removeItem('forgot_password_email');
   }
 

@@ -1,5 +1,6 @@
 export class CustomModel {
   model: any = {};
+  editModel: any = {};
   rollbackModel: any = {};
   validationModel: any = {};
   cascadeCityModel: any = { disabledCity: true, load: false };
@@ -10,10 +11,25 @@ export class CustomModel {
   isRemoved = false;
   showDialog = false;
   selected: any;
+  files!: File[];
+
+  onFileUpload(event: any) {
+    //console.log(event);
+    this.files = event;
+    // for (let file of event) {
+    //   this.uploadedFiles.push(file);
+    // }
+    // const fileData = { file: uploadedFiles };
+    // this.model = { ...this.model, ...fileData };
+    //console.log(this.uploadedFiles);
+  }
+
+  clearAllFiles() {
+    if (this.model.file) delete this.model.file;
+  }
 
   changeCountry = (data: any) => {
     //console.log(data);
-
     this.model.countryId = data.countryId;
     this.model.countryName = data.countryName;
 
@@ -30,15 +46,22 @@ export class CustomModel {
     this.cascadeCityModel.disabledCity = false;
   };
 
-  changeDropdown = (data: any) => {
+  changeDropdown = (data: any, objId?: any, objName?: any) => {
+    if (objId) {
+      const obj = {
+        [objId]: Object.values(data)[0],
+        [objName]: Object.values(data)[1],
+      };
+      this.model = { ...this.model, ...obj };
+      return;
+    }
     this.model = { ...this.model, ...data };
   };
 
-  changeStaticDropdown = (event:any) => {
+  changeStaticDropdown = (event: any) => {
     //console.log(event)
-
     //this.model = event.value;
-  }
+  };
 
   viewData = (data: any) => {
     //console.log(data);
@@ -55,9 +78,11 @@ export class CustomModel {
   };
 
   handleError = (e: any): any => {
+    //console.log(e)
     this.hasValidation = true;
     if (e.error.errors) {
       this.validationModel = { ...e.error.errors };
+      //console.log(this.validationModel);
       return { isDbError: false };
     } else if (e.error) {
       return { isDbError: true, dbError: e.error };
@@ -65,6 +90,7 @@ export class CustomModel {
       return { isDbError: true, dbError: 'Something went wrong' };
     }
   };
+
 
   private resetDropDown = () => {
     var list: any = document.getElementsByClassName('p-dropdown-clear-icon');
@@ -76,8 +102,14 @@ export class CustomModel {
 
   reset = (editMode?: boolean, callback?: any) => {
     this.validationModel = {};
-    this.resetDropDown();
-    if (editMode == false) this.model = {};
+    if (editMode == false) {
+      this.model = {};
+      this.resetDropDown();
+    } else {
+      this.model = {...this.model, ...this.editModel}
+    }
+    //console.log(this.editModel)
+    //console.log(this.model)
   };
 
   resetAll = () => {
@@ -92,6 +124,29 @@ export class CustomModel {
     this.resetDropDown();
   };
 
+  inputBlur(
+    event: any,
+    inputName: string,
+    isInputDropdown?: boolean,
+    dropdownName?: any
+  ) {
+    //console.log(this.validationModel)
+    const inputValue = event.target.value.trim();
+    if (isInputDropdown) {
+      if (this.model[dropdownName]) {
+        delete this.validationModel[inputName];
+      }
+    } else {
+      if (inputValue.length !== 0) {
+        if (this.validationModel.hasOwnProperty(inputName)) {
+          delete this.validationModel[inputName];
+        }
+        // else {
+        //   throw new Error(inputName + ' is not found in the validation model');
+        // }
+      }
+    }
+  }
 
   // permissionForEdit = (companyId: number) => {
   //   if (this.utilService.checkIntegerInUrl(companyId) == false) {
@@ -113,7 +168,6 @@ export class CustomModel {
     // console.log(this.rollbackModel)
     // console.log(this.customModel.model)
   }
-
   // @HostListener('window:keyup.w', ['$event']) w(e: KeyboardEvent) {
   //   console.log('w captured', e);
   // }

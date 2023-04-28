@@ -1,0 +1,98 @@
+<form autocomplete="off">
+  <div class="custom-group" style="margin-top: 8px">
+    <p class="custom-group-title">Generl Info</p>
+  </div>
+  <div class="row">
+    <div [class]="designModel.responsiveClass">
+      <label for="username">Username</label>
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="userName"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.username"
+        />
+      </span>
+    </div>
+    <div [class]="designModel.responsiveClass">
+      <label for="password">Password</label>
+      <span class="p-float-label">
+        <p-password
+          [(ngModel)]="customModel.model.password"
+          [toggleMask]="true"
+          name="password"
+        ></p-password>
+      </span>
+    </div>
+    <div [class]="designModel.responsiveClass">
+      <label for="confirmPassword">Confirm Password</label>
+      <span class="p-float-label">
+        <p-password
+          [(ngModel)]="customModel.model.confirmPassword"
+          [toggleMask]="true"
+          name="confirmPassword"
+          [feedback]="false"
+        ></p-password>
+      </span>
+    </div>
+    <div [class]="designModel.responsiveClass">
+      <label for="email">Email</label>
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="email"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.email"
+        />
+      </span>
+    </div>
+
+    <!-- <div class="custom-group-clear"></div> -->
+
+    <div [class]="designModel.responsiveClass">
+      <label for="phoneNo">Primary Phone No</label>
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="phoneNumber"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.phoneNumber"
+        />
+      </span>
+    </div>
+
+    <div class="custom-group" style="margin-top: 10px">
+      <p class="custom-group-title">Image Upload</p>
+    </div>
+    <div [class]="'col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'">
+      <label for="phoneNo">User Primary Photo</label>
+
+      <span class="p-float-label">
+        <app-file-upload
+          (uploadFile)="customModel.onFileUpload($event)"
+          (clearAllFile)="customModel.clearAllFiles()"
+        >
+        </app-file-upload>
+      </span>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <div class="d-grid">
+        <button
+          pButton
+          pRipple
+          label="Submit"
+          class="p-button"
+          (click)="addUserInfo()"
+        ></button>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <app-utility-box></app-utility-box>
+</form>

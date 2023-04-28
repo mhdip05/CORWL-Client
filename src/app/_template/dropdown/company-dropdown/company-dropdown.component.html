@@ -8,7 +8,8 @@
   [autoDisplayFirst]="false"
   [filter]="true"
   (onShow)="onShow()"
-  
+  (onChange)="onChange()"
+  (onBlur)="blur($event)"
 >
   <ng-template pTemplate="selectedItem">
     <div *ngIf="selectedCompany">

@@ -13,6 +13,10 @@ export class BranchService {
     return this.http.get(environment.apiUrl + 'branch/getAllBranch');
   }
 
+  getBranchDropdown(){
+    return this.http.get(environment.apiUrl + 'branch/getBranchDropdown');
+  }
+
   addBranch(model: any) {
     return this.http.post(environment.apiUrl + 'branch/AddBranch', model);
   }

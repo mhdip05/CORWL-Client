@@ -1,0 +1,24 @@
+<p-dropdown
+  [options]="branches"
+  [(ngModel)]="selectedBranch"
+  optionLabel="branchName"
+  [showClear]="showClear"
+  [emptyMessage]="emptyMessage"
+  placeholder = "Select branch"
+  [autoDisplayFirst]="false"
+  [filter]="true"
+  (onShow)="onShow()"
+  (onChange)="onChange()"
+>
+  <ng-template pTemplate="selectedItem">
+    <div *ngIf="selectedBranch">
+      <div class="dropdown-selected-item">{{ selectedBranch.branchName }}</div>
+    </div>
+  </ng-template>
+  <ng-template let-branches pTemplate="item">
+    <div class="dropdown-text">
+      <div id="branch-dropdown">{{ branches.branchName }}</div>
+    </div>
+  </ng-template>
+</p-dropdown>
+

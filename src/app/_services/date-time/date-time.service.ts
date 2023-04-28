@@ -4,7 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class DateTimeService {
-  
+
+  today = new Date();
+
   constructor() {}
 
   subTractYears = (date: Date, years: number) => {

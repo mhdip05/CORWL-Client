@@ -17,7 +17,8 @@ export class EmployeeDropdownComponent implements OnInit {
   @Input() editMode = false;
   @Input() disabled = false;
   @Input() selectedEmployee: any;
-  @Input() placeholder = "Select Employee"
+  @Input() placeholder = 'Select Employee';
+  @Input() applyDefaultText = false;
   @Output() changeEmployee = new EventEmitter();
 
   constructor(
@@ -31,7 +32,10 @@ export class EmployeeDropdownComponent implements OnInit {
 
   onChange() {
     //console.log(this.selectedEmployee)
-    if (this.selectedEmployee == null || this.selectedEmployee.employeeId == -1) {
+    if (
+      this.selectedEmployee == null ||
+      this.selectedEmployee.employeeId == -1
+    ) {
       this.checkSelected();
       return;
     }
@@ -58,13 +62,15 @@ export class EmployeeDropdownComponent implements OnInit {
       //.pipe(filter((res: any) => res.length > 0))
       .subscribe({
         next: (res: any) => {
-          //console.log(res)
-          const empty = [
-            {
-              employeeName: this.utilService.dropdownDefaultText(),
-              employeeId: -1,
-            },
-          ];
+          let empty: any = [];
+          if (this.applyDefaultText == true) {
+            empty = [
+              {
+                employeeName: this.utilService.dropdownDefaultText(),
+                employeeId: -1,
+              },
+            ];
+          }
           this.employees = [...empty, ...res];
           this.currentEmployees = [...empty, ...res];
         },

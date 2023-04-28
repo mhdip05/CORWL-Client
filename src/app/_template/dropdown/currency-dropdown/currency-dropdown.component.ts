@@ -22,10 +22,14 @@ export class CurrencyDropdownComponent implements OnInit {
 
   @Input() currencies: any = [];
   @Input() selectedCurrency: any;
-  @Input() placeholder = "Select Currency"
+  @Input() placeholder = 'Select Currency';
+  @Input() applyDefaultText = false;
   @Output() changeCurrency = new EventEmitter();
 
-  constructor(private currencyServices: CurrencyService, private utilService:UtilsService) {}
+  constructor(
+    private currencyServices: CurrencyService,
+    private utilService: UtilsService
+  ) {}
 
   ngOnInit(): void {
     //console.log(this.selectedCurrency)
@@ -65,10 +69,15 @@ export class CurrencyDropdownComponent implements OnInit {
       .pipe(filter((res) => res.length > 0))
       .subscribe({
         next: (res: any) => {
-          //console.log(res);
-          let empty = [
-            { currencyName: this.utilService.dropdownDefaultText(), currencyId: -1 },
-          ];
+          let empty: any = [];
+          if (this.applyDefaultText == true) {
+            empty = [
+              {
+                currencyName: this.utilService.dropdownDefaultText(),
+                currencyId: -1,
+              },
+            ];
+          }
           this.currencies = [...empty, ...res];
           this.currentCurrencies = [...empty, ...res];
         },

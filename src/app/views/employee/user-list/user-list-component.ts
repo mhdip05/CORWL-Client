@@ -1,15 +1,15 @@
-import { PaginationModel } from './../../../_models/PaginationModel';
-import { IPagination } from './../../../_interface/IPagination';
-import { UserService } from './../../../_services/user/user.service';
+import { PaginationModel } from '../../../_models/PaginationModel';
+import { IPagination } from '../../../_interface/IPagination';
+import { UserService } from '../../../_services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { IUser } from 'src/app/_interface/IUser';
 
 @Component({
   selector: 'app-user-role-mapping',
-  templateUrl: './user-role-mapping.component.html',
-  styleUrls: ['./user-role-mapping.component.scss']
+  templateUrl: './user-list-component.html',
+  styleUrls: ['./user-list-component.scss']
 })
-export class UserRoleMappingComponent implements OnInit {
+export class UserListComponent implements OnInit {
 
   userPermission = ['admin']
   users: Partial<IUser[]> = []

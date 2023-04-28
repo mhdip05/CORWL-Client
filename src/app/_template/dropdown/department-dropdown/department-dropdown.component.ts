@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { filter, take } from 'rxjs';
 import { DepartmentService } from 'src/app/_services/department/department.service';
+import { UtilsService } from 'src/app/_services/utils/utils.service';
 
 @Component({
   selector: 'app-department-dropdown',
@@ -16,9 +17,13 @@ export class DepartmentDropdownComponent implements OnInit {
   @Input() disabledDepartment = false;
   @Input() load = false;
   @Input() selectedDepartment: any;
+  @Input() applyDefaultText = false;
   @Output() changeDepartment = new EventEmitter();
 
-  constructor(private departmentService: DepartmentService) {}
+  constructor(
+    private departmentService: DepartmentService,
+    private utilService: UtilsService
+  ) {}
 
   ngOnInit(): void {
     //console.log(this.selectedDepartment, this.departments)
@@ -51,8 +56,17 @@ export class DepartmentDropdownComponent implements OnInit {
       )
       .subscribe({
         next: (res: any) => {
-          this.departments = [...res];
-          this.currentdepartments = [...res];
+          let empty: any = [];
+          if (this.applyDefaultText == true) {
+            empty = [
+              {
+                departmentName: this.utilService.dropdownDefaultText(),
+                departmentId: -1,
+              },
+            ];
+          }
+          this.departments = [...empty,...res];
+          this.currentdepartments = [...empty,...res];
         },
       });
   }

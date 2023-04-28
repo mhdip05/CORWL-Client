@@ -46,7 +46,11 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { SkeleteonLoaderComponent } from '../_template/utility/skeleteon-loader/skeleteon-loader.component';
 import { TabViewModule } from 'primeng/tabview';
 import { Calendar, CalendarModule } from 'primeng/calendar';
-
+import { BranchDropdownComponent } from '../_template/dropdown/branch-dropdown/branch-dropdown.component';
+import { UtilityBoxComponent } from '../_template/utility/utility-box/utility-box.component';
+import { PasswordModule } from 'primeng/password';
+import { FileUploadModule } from 'primeng/fileupload';
+import { FileUploadComponent } from '../_template/file-upload/file-upload.component';
 @NgModule({
   declarations: [
     DefaultGridComponent,
@@ -72,6 +76,9 @@ import { Calendar, CalendarModule } from 'primeng/calendar';
     DepartmentDropdownComponent,
     DesignationDropdownComponent,
     SkeleteonLoaderComponent,
+    BranchDropdownComponent,
+    UtilityBoxComponent,
+    FileUploadComponent,
   ],
   imports: [
     CommonModule,
@@ -96,7 +103,9 @@ import { Calendar, CalendarModule } from 'primeng/calendar';
     MenubarModule,
     NgxSkeletonLoaderModule,
     TabViewModule,
-    CalendarModule
+    CalendarModule,
+    PasswordModule,
+    FileUploadModule
   ],
   exports: [
     ButtonModule,
@@ -133,12 +142,18 @@ import { Calendar, CalendarModule } from 'primeng/calendar';
     BackComponent,
     TopMenubarComponent,
     EmployeeDropdownComponent,
-    DepartmentDropdownComponent,
-    DesignationDropdownComponent,
     NgxSkeletonLoaderModule,
     SkeleteonLoaderComponent,
     TabViewModule,
     CalendarModule,
+    CompanyDropdownComponent,
+    DesignationDropdownComponent,
+    DepartmentDropdownComponent,
+    BranchDropdownComponent,
+    UtilityBoxComponent,
+    PasswordModule,
+    FileUploadModule,
+    FileUploadComponent
   ],
   providers: [ConfirmationService, MessageService],
 })

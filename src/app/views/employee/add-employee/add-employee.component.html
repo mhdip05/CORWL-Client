@@ -2,31 +2,45 @@
   <div class="card">
     <div class="card-body">
       <div class="feature-title">
-        <h6>{{ isAmend ? "Edit Employee" : "Set Employee" }}</h6>
+        <h6>{{ customModel.isAmend ? "Edit Employee" : "Set Employee" }}</h6>
         <hr class="under-header" />
       </div>
 
-      <div class="utility-box">
-        <app-reset class="utility" (click)="reset()"></app-reset>
-        <app-validation-reset
-          class="utility"
-          (click)="validationReset()"
-        ></app-validation-reset>
-        <app-content-help class="utility"></app-content-help>
-        <app-back class="utility" [url]="'settings/company'"></app-back>
-      </div>
-      <hr class="custom-hr" />
-
       <div class="row">
-        <p-tabView>
-          <p-tabPanel header="Basic Info" headerStyleClass="hellos">
+        <p-tabView (onChange)="changeTab($event)">
+          <p-tabPanel header="Basic Info">
             <p class="tabview-paragraph">
               <app-basic-info></app-basic-info>
             </p>
           </p-tabPanel>
-          <p-tabPanel header="Job Details">
+          <p-tabPanel header="Job Details" [disabled]="customModel.disabled">
             <p class="tabview-paragraph">
               <app-job-details></app-job-details>
+            </p>
+          </p-tabPanel>
+          <p-tabPanel header="User Info" [disabled]="customModel.disabled">
+            <p class="tabview-paragraph">
+              <app-user-info></app-user-info>
+            </p>
+          </p-tabPanel>
+          <p-tabPanel header="User Role" [disabled]="customModel.disabled">
+            <p class="tabview-paragraph">
+              <app-user-role></app-user-role>
+            </p>
+          </p-tabPanel>
+          <p-tabPanel header="Contact Info" [disabled]="customModel.disabled">
+            <p class="tabview-paragraph">
+              <app-contact-info></app-contact-info>
+            </p>
+          </p-tabPanel>
+          <p-tabPanel header="Document" [disabled]="customModel.disabled">
+            <p class="tabview-paragraph">
+              <app-user-document></app-user-document>
+            </p>
+          </p-tabPanel>
+          <p-tabPanel header="Others" [disabled]="customModel.disabled">
+            <p class="tabview-paragraph">
+              <app-other></app-other>
             </p>
           </p-tabPanel>
         </p-tabView>

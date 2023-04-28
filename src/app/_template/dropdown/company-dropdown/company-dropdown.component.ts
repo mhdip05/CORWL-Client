@@ -16,7 +16,9 @@ export class CompanyDropdownComponent implements OnInit {
   @Input() editMode = false;
   @Input() disabled = false;
   @Input() selectedCompany: any;
+  @Input() applyDefaultText = false;
   @Output() changeCompany = new EventEmitter();
+  @Output() onBlur = new EventEmitter();
 
   constructor(
     private companyService: CompanyService,
@@ -25,6 +27,10 @@ export class CompanyDropdownComponent implements OnInit {
 
   ngOnInit(): void {
     this.showClear = false;
+  }
+
+  blur(event:any){
+    this.onBlur.emit(event);
   }
 
   onChange() {
@@ -62,12 +68,16 @@ export class CompanyDropdownComponent implements OnInit {
       .subscribe({
         next: (res: any) => {
           //console.log(res)
-          const empty = [
-            {
-              companyName: this.utilService.dropdownDefaultText(),
-              companyId: -1,
-            },
-          ];
+          let empty: any = [];
+          if (this.applyDefaultText == true) {
+            empty = [
+              {
+                companyName: this.utilService.dropdownDefaultText(),
+                companyId: -1,
+              },
+            ];
+          }
+
           this.companies = [...empty, ...res];
           this.currentCompanies = [...empty, ...res];
         },
