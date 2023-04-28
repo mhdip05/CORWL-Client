@@ -1,5 +1,6 @@
 export class CustomModel {
   model: any = {};
+  editModel: any = {};
   rollbackModel: any = {};
   validationModel: any = {};
   cascadeCityModel: any = { disabledCity: true, load: false };
@@ -90,6 +91,7 @@ export class CustomModel {
     }
   };
 
+
   private resetDropDown = () => {
     var list: any = document.getElementsByClassName('p-dropdown-clear-icon');
     if (list.length === 0) return;
@@ -100,8 +102,14 @@ export class CustomModel {
 
   reset = (editMode?: boolean, callback?: any) => {
     this.validationModel = {};
-    this.resetDropDown();
-    if (editMode == false) this.model = {};
+    if (editMode == false) {
+      this.model = {};
+      this.resetDropDown();
+    } else {
+      this.model = {...this.model, ...this.editModel}
+    }
+    //console.log(this.editModel)
+    //console.log(this.model)
   };
 
   resetAll = () => {

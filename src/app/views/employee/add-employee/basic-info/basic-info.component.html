@@ -42,8 +42,8 @@
       <label for="Dob">Date of Birth </label>
       <span class="p-float-label">
         <p-calendar
-          [(ngModel)]="customModel.model.Dob"
-          name="Dob"
+          [(ngModel)]="customModel.model.dob"
+          name="dob"
           [showIcon]="true"
           dateFormat="dd/mm/yy"
           [maxDate]="maxDate"
@@ -147,14 +147,16 @@
               : undefined
           "
           (changeCompany)="customModel.changeDropdown($event)"
-          (onBlur)="customModel.inputBlur($event, 'CompanyId', true, 'companyId')"
+          (onBlur)="
+            customModel.inputBlur($event, 'CompanyId', true, 'companyId')
+          "
         >
         </app-company-dropdown>
       </span>
       <app-error-validation
-      [hasValidation]="customModel.hasValidation"
-      [validationModel]="customModel.validationModel.CompanyId"
-    ></app-error-validation>
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.CompanyId"
+      ></app-error-validation>
     </div>
 
     <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
@@ -206,7 +208,7 @@
           class="p-button"
           [disabled]="customModel.disabled"
           (click)="
-            customModel.editMode
+            customModel.isAmend
               ? editEmployeeBasicInfo()
               : saveEmployeeBasicInfo()
           "
@@ -239,8 +241,11 @@
   </div>
   <hr />
   <app-utility-box
-    (reset)="customModel.resetAll()"
+    (reset)="
+      this.customModel.editMode ? customModel.reset(true) : customModel.resetAll()
+    "
     (validationReset)="customModel.validationReset()"
+    [url]="'employee/employee-list'"
   >
   </app-utility-box>
 </form>

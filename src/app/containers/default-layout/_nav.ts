@@ -40,8 +40,8 @@ export const navItems: any[] = [
     iconComponent: { name: 'cilPeople' },
     children: [
       { name: 'Settings', url: '/employee/employee-settings' },
-      { name: 'Add Employee', url: '/employee/add-employee' },
       { name: 'Employee List', url: '/employee/employee-list' },
+      { name: 'Add Employee', url: '/employee/add-employee' },  
       { name: 'User List', url: '/employee/user-list' },
     ],
   },
