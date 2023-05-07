@@ -51,6 +51,7 @@ import { UtilityBoxComponent } from '../_template/utility/utility-box/utility-bo
 import { PasswordModule } from 'primeng/password';
 import { FileUploadModule } from 'primeng/fileupload';
 import { FileUploadComponent } from '../_template/file-upload/file-upload.component';
+import { FileViewComponent } from '../_template/file-upload/file-view/file-view.component';
 @NgModule({
   declarations: [
     DefaultGridComponent,
@@ -79,6 +80,7 @@ import { FileUploadComponent } from '../_template/file-upload/file-upload.compon
     BranchDropdownComponent,
     UtilityBoxComponent,
     FileUploadComponent,
+    FileViewComponent,
   ],
   imports: [
     CommonModule,
@@ -153,7 +155,8 @@ import { FileUploadComponent } from '../_template/file-upload/file-upload.compon
     UtilityBoxComponent,
     PasswordModule,
     FileUploadModule,
-    FileUploadComponent
+    FileUploadComponent,
+    FileViewComponent,
   ],
   providers: [ConfirmationService, MessageService],
 })

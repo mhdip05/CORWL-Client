@@ -2,15 +2,16 @@
   [(visible)]="display"
   [header]="header"
   [breakpoints]="breakpoints"
-  [style]="{ width: '30vw' }"
+  [style]="style"
   [modal]="true"
   [resizable]="false"
   [position]="position"
   (onHide)="onHide()"
 >
-  <div>
+  <div *ngIf="data.length > 0">
     <span *ngFor="let d of data">
       {{ d }}
     </span>
   </div>
+  <ng-content></ng-content>
 </p-dialog>

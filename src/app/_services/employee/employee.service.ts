@@ -61,7 +61,7 @@ export class EmployeeService {
     return this.http.post(environment.apiUrl + 'employee/SaveDocument', model);
   }
 
-  updateEmployeeDocumentInfo(model: any) {
+  UpdateEmployeeBasicInfo(model: any) {
     return this.http
       .put(environment.apiUrl + 'employee/UpdateEmployeeBasicInfo', model)
       .pipe(
@@ -77,5 +77,9 @@ export class EmployeeService {
           };
         })
       );
+  }
+
+  GetDocumentMasterInfoByEmployee(employeeId:number){
+    return this.http.get(environment.apiUrl + 'employee/GetDocumentInfoByEmployee/'+employeeId)
   }
 }

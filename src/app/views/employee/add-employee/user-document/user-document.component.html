@@ -9,11 +9,16 @@
         <input
           type="text"
           pInputText
-          name="fileName"
+          name="documentName"
           [class]="'form-control form-control-sm'"
           [(ngModel)]="customModel.model.documentName"
+          (blur)="customModel.inputBlur($event, 'DocumentName')"
         />
       </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.DocumentName"
+      ></app-error-validation>
     </div>
     <div [class]="designModel.responsiveClass">
       <label for="description">Description</label>
@@ -25,21 +30,39 @@
           name="address"
           [class]="designModel.inputClass"
           [(ngModel)]="customModel.model.description"
+          (blur)="customModel.inputBlur($event, 'Description')"
         >
         </textarea>
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.Description"
+      ></app-error-validation>
+    </div>
+    <div [class]="designModel.responsiveClass">
+      <label></label>
+      <span class="p-float-label">
+        <p-button
+          icon="pi pi-file"
+          styleClass="p-button-rounded p-button-info"
+          pTooltip="Show File"
+          tooltipPosition="bottom"
+          (onClick)="showFile()"
+        ></p-button>
       </span>
     </div>
 
     <div class="custom-group" style="margin-top: 10px">
       <p class="custom-group-title">Document Upload</p>
     </div>
-
     <div [class]="'col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'">
-      <!-- <label for="phoneNo">User Primary Photo</label> -->
-
+      <app-error-validation
+        *ngIf="customModel.files == undefined || customModel.files.length == 0"
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.Files"
+      ></app-error-validation>
       <span class="p-float-label">
         <app-file-upload
-          
           [fileLimit]="5"
           [accept]="'image/*, .pdf'"
           (uploadFile)="customModel.onFileUpload($event)"
@@ -60,9 +83,31 @@
           class="p-button"
           (click)="addDocumentInfo()"
         ></button>
+        <!-- <button
+          (click)="setDocumentInfoData()"
+          [hidden]="true"
+          id="setDocumentInfo"
+        >
+          Setup
+        </button> -->
       </div>
     </div>
   </div>
   <hr />
   <app-utility-box></app-utility-box>
 </form>
+
+<app-dialog-modal
+  [display]="customModel.displayModal"
+  [header]="'User Documents'"
+  [style]="{ width: '60%' }"
+  (hideModal)="customModel.hideModal()"
+>
+  <app-file-view
+    *ngIf="customModel.displayModal"
+    [files]="files"
+    [directory]="'employeedoc'"
+    [subdirectory]="'emp_' + this.customModel.model.employeeId"
+  >
+  </app-file-view>
+</app-dialog-modal>

@@ -9,6 +9,7 @@ export class ConfirmationDialogComponent implements OnInit {
 
   @Input() display = false;
   @Input() position = "top";
+  @Input() contentDetails = 'Are you sure to proceed ?'
   @Output() hideDialog = new EventEmitter()
   @Output() accept = new EventEmitter()
   constructor() { }

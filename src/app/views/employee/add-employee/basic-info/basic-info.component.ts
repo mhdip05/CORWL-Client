@@ -19,7 +19,7 @@ export class BasicInfoComponent implements OnInit {
   employeeModel = new EmployeeModel();
   maxDate = this.dateTimeService.subTractYears(new Date(), 15);
   isDataSaved = false;
-  employeeId = 1;
+  employeeId = 0;
 
   constructor(
     private dateTimeService: DateTimeService,
@@ -85,7 +85,7 @@ export class BasicInfoComponent implements OnInit {
   editEmployeeBasicInfo() {
     //console.log(this.customModel.model)
     this.customModel.disabled = true;
-    this.employeeService.updateEmployeeDocumentInfo(this.customModel.model)
+    this.employeeService.UpdateEmployeeBasicInfo(this.customModel.model)
     .pipe(
       finalize(() => {
         this.customModel.disabled = false;
