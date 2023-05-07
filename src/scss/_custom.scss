@@ -61,7 +61,7 @@ label {
 }
 
 .p-dropdown .p-dropdown-label.p-placeholder {
-   color: rgb(0 0 0 / 37%) !important
+  color: rgb(0 0 0 / 37%) !important;
 }
 
 .p-dropdown-label {
@@ -215,5 +215,7 @@ label {
     margin-top: 8px;
   }
 
-
+  .hidden-button {
+    display: none;
+  }
 }

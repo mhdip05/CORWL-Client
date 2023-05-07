@@ -9,23 +9,23 @@ export class CustomModel {
   disabled = false;
   hasValidation = false;
   isRemoved = false;
-  showDialog = false;
+  displayDialog = false;
+  displayModal = false;
   selected: any;
   files!: File[];
+
+  hideModal= () => this.displayModal = false;
+   
+  hideDialog = () => this.displayDialog = false;
 
   onFileUpload(event: any) {
     //console.log(event);
     this.files = event;
-    // for (let file of event) {
-    //   this.uploadedFiles.push(file);
-    // }
-    // const fileData = { file: uploadedFiles };
-    // this.model = { ...this.model, ...fileData };
-    //console.log(this.uploadedFiles);
   }
 
   clearAllFiles() {
     if (this.model.file) delete this.model.file;
+    this.files = []
   }
 
   changeCountry = (data: any) => {
@@ -58,10 +58,7 @@ export class CustomModel {
     this.model = { ...this.model, ...data };
   };
 
-  changeStaticDropdown = (event: any) => {
-    //console.log(event)
-    //this.model = event.value;
-  };
+
 
   viewData = (data: any) => {
     //console.log(data);
@@ -120,7 +117,6 @@ export class CustomModel {
     this.disabled = false;
     this.hasValidation = false;
     this.isRemoved = false;
-    this.showDialog = false;
     this.resetDropDown();
   };
 
@@ -141,9 +137,6 @@ export class CustomModel {
         if (this.validationModel.hasOwnProperty(inputName)) {
           delete this.validationModel[inputName];
         }
-        // else {
-        //   throw new Error(inputName + ' is not found in the validation model');
-        // }
       }
     }
   }

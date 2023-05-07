@@ -28,6 +28,11 @@ export class EmployeeListComponent implements OnInit {
   private employeeColumn() {
     this.customModel.cols = [
       {
+        field: 'id',
+        header: 'Emp Id',
+        style: { 'text-transform': 'capitalize' },
+      },
+      {
         field: 'firstName',
         header: 'First Name',
         style: { 'text-transform': 'capitalize' },
