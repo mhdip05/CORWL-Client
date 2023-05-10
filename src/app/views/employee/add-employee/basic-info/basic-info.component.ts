@@ -85,7 +85,7 @@ export class BasicInfoComponent implements OnInit {
   editEmployeeBasicInfo() {
     //console.log(this.customModel.model)
     this.customModel.disabled = true;
-    this.employeeService.UpdateEmployeeBasicInfo(this.customModel.model)
+    this.employeeService.updateEmployeeBasicInfo(this.customModel.model)
     .pipe(
       finalize(() => {
         this.customModel.disabled = false;

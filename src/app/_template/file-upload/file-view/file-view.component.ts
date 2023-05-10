@@ -1,4 +1,14 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, Renderer2, ViewChildren } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  Renderer2,
+  ViewChildren,
+} from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -15,29 +25,45 @@ export class FileViewComponent implements OnInit {
   @Input() subdirectory: string | null = null;
   @Output() deleteFile = new EventEmitter();
 
-  constructor(private renderer:Renderer2) {}
+  constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {}
 
-  removeFileFromTheDom(id:number){
-    const div = document.getElementById(`file_${id}`)
-    if(div){
-      this.renderer.removeChild(div.parentNode, div)
+  removeFileFromTheDom(id: number) {
+    const div = document.getElementById(`file_${id}`);
+    if (div) {
+      this.renderer.removeChild(div.parentNode, div);
     }
   }
 
-  showDialog(id:number){
+  showDialog(id: number) {
     this.display = true;
     this.fileId = id;
   }
 
-  hideDialog(){
+  hideDialog() {
     this.display = false;
     this.fileId = 0;
   }
 
-  removeFile(){
-    this.removeFileFromTheDom(this.fileId)
+  fileLengthAfterRemove(fileId: number) {
+    if (this.files.length > 0) {
+      for (let i = 0; i < this.files.length; i++) {
+        if (this.files[i].id === fileId) {
+          this.files.splice(i, 1);
+        }
+      }
+      return this.files.length;
+    }
+  }
+
+  removeFile() {
+    const fileInfo = {
+      fileId: this.fileId,
+      currentFileLength: this.fileLengthAfterRemove(this.fileId),
+    };
+    this.removeFileFromTheDom(this.fileId);
     this.display = false;
+    this.deleteFile.emit(fileInfo);
   }
 }

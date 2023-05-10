@@ -61,7 +61,7 @@ export class EmployeeService {
     return this.http.post(environment.apiUrl + 'employee/SaveDocument', model);
   }
 
-  UpdateEmployeeBasicInfo(model: any) {
+  updateEmployeeBasicInfo(model: any) {
     return this.http
       .put(environment.apiUrl + 'employee/UpdateEmployeeBasicInfo', model)
       .pipe(
@@ -73,13 +73,27 @@ export class EmployeeService {
           var data = { ...res.data, ...dateObj };
           return {
             data,
-            message:res.message
+            message: res.message,
           };
         })
       );
   }
 
-  GetDocumentMasterInfoByEmployee(employeeId:number){
-    return this.http.get(environment.apiUrl + 'employee/GetDocumentInfoByEmployee/'+employeeId)
+  getDocumentMasterInfoByEmployee(employeeId: number) {
+    return this.http.get(
+      environment.apiUrl + 'employee/GetDocumentInfoByEmployee/' + employeeId
+    );
+  }
+
+  updateDocumentMaster(model:any){
+    return this.http.put(
+      environment.apiUrl + 'employee/UpdateDocumentMaster/', model
+    );
+  }
+
+  deleteEmpoloyeeDoc(fileId: number, empId: number) {
+    return this.http.delete(
+      environment.apiUrl + 'employee/DeleteEmployeeDoc/' + fileId + '/' + empId
+    );
   }
 }

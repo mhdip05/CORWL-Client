@@ -42,7 +42,7 @@ export class AddEmployeeComponent implements OnInit {
 
   getDocumentInfo() {
     this.employeeService
-      .GetDocumentMasterInfoByEmployee(this.employeeId)
+      .getDocumentMasterInfoByEmployee(this.employeeId)
       .subscribe({
         next: (v: any) => {
           //console.log(v);
@@ -56,7 +56,7 @@ export class AddEmployeeComponent implements OnInit {
       var dom: any = document.getElementById(reference);
       if(dom)
         dom.click();  
-    }, 100);
+    }, 200);
   }
 
   changeTab(event: any) {

@@ -19,10 +19,9 @@ export class DialogModalComponent implements OnInit {
   ngOnInit(): void {}
 
   onHide(){
-    //console.log("hello")
     this.display = false;
     this.data = []
     this.hideModal.emit()
-    console.log(this.display)
+    //console.log(this.display)
   }
 }

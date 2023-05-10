@@ -39,16 +39,36 @@
         [validationModel]="customModel.validationModel.Description"
       ></app-error-validation>
     </div>
-    <div [class]="designModel.responsiveClass">
+
+    <div [class]="designModel.responsiveClass" *ngIf="isGeneralInfoButton">
       <label></label>
       <span class="p-float-label">
-        <p-button
-          icon="pi pi-file"
-          styleClass="p-button-rounded p-button-info"
-          pTooltip="Show File"
-          tooltipPosition="bottom"
-          (onClick)="showFile()"
-        ></p-button>
+        <div style="display: inline">
+          <button
+            icon="pi pi-info"
+            pButton
+            pRipple
+            type="button"
+            class="p-button-rounded p-button-help"
+            pTooltip="Update Generel info"
+            tooltipPosition="bottom"
+            style="border: 2px solid"
+            (click)="updateDocumentMasterData()"
+          ></button>
+        </div>
+        <div *ngIf="this.isFileAvailable" style="display: inline; margin-left: 10px;">
+          <button
+            icon="pi pi-file"
+            pButton
+            pRipple
+            type="button"
+            class="p-button-rounded p-button-info"
+            pTooltip="Show File"
+            tooltipPosition="bottom"
+            style="border: 2px solid"
+            (click)="showFile()"
+          ></button>
+        </div>
       </span>
     </div>
 
@@ -83,18 +103,22 @@
           class="p-button"
           (click)="addDocumentInfo()"
         ></button>
-        <!-- <button
+        <button
           (click)="setDocumentInfoData()"
           [hidden]="true"
           id="setDocumentInfo"
         >
           Setup
-        </button> -->
+        </button>
       </div>
     </div>
   </div>
   <hr />
-  <app-utility-box></app-utility-box>
+  <app-utility-box
+    [url]="'employee/employee-list'"
+  >
+
+  </app-utility-box>
 </form>
 
 <app-dialog-modal
@@ -108,6 +132,7 @@
     [files]="files"
     [directory]="'employeedoc'"
     [subdirectory]="'emp_' + this.customModel.model.employeeId"
+    (deleteFile)="deleteFile($event)"
   >
   </app-file-view>
 </app-dialog-modal>
