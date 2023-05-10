@@ -1,19 +1,5 @@
-<!-- <p-fileUpload
-  mode="advanced"
-  chooseLabel="Browse"
-  name="myfile[]"
-  accept="image/*"
-  [maxFileSize]="1000000"
-  [customUpload]="true"
-  [fileLimit]="3"
-  [multiple]="true"
-  [auto]="true"
-  [showCancelButton]="true"
-  
-  (uploadHandler)="onUploadFile($event)"
->
-</p-fileUpload> -->
 <p-fileUpload
+  #fileUpload
   name='files[]'
   [showUploadButton]="showUploadButton"
   [maxFileSize]="maxFileSize"
@@ -24,7 +10,9 @@
   [customUpload]="true"
   (onSelect)="handleFileSelect($event)"
   (onClear)="clearAllFiles()"
+  styleClass="my-file-upload"
 >
+
   <!-- <ng-template pTemplate="toolbar">
     <br />
     <div>Upload 3 Files</div>
@@ -84,3 +72,4 @@
     <button (click)="test()">Test</button>
   </ng-template> -->
 </p-fileUpload>
+

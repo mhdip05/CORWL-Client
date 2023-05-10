@@ -15,6 +15,7 @@ import { UserDocumentComponent } from './add-employee/user-document/user-documen
 import { ContactInfoComponent } from './add-employee/contact-info/contact-info.component';
 import { OtherComponent } from './add-employee/other/other.component';
 import { UserRoleComponent } from './add-employee/user-role/user-role.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserRoleComponent } from './add-employee/user-role/user-role.component'
   imports: [
     CommonModule,
     EmployeeRoutingModule,
-    PrimeuiSharedModule
+    PrimeuiSharedModule,
+    FileUploadModule
   ]
 })
 export class EmployeeModule { }
