@@ -66,6 +66,7 @@
                     [label]="customModel.editMode?'Edit':'Add'"
                     class="p-button"
                     (click)="customModel.editMode?updateDesignation():addDesignation()"
+                    [disabled]="customModel.disabled"
                   ></button>
                 </div>
               </div>
