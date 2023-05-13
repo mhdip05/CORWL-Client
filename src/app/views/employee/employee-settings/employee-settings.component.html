@@ -1,11 +1,9 @@
 <div class="container">
   <app-top-menubar [items]="items"></app-top-menubar>
-</div><br>
+</div>
+<br />
 
-<app-add-department 
-  *ngIf="selectedMenuItem == 'department'" 
-  [showGrid]="true"
->
+<app-add-department *ngIf="selectedMenuItem == 'department'" [showGrid]="true">
 </app-add-department>
 
 <app-add-designation
@@ -13,3 +11,6 @@
   [showGrid]="true"
 >
 </app-add-designation>
+
+<app-add-role *ngIf="selectedMenuItem == 'role'" [showGrid]="true">
+</app-add-role>

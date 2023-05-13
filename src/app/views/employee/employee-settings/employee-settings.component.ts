@@ -31,6 +31,13 @@ export class EmployeeSettingsComponent implements OnInit {
           this.selectedMenu('designation');
         },
       },
+      {
+        label: 'Set Role',
+        icon:'pi pi-fw pi-users',
+        command: () => {
+          this.selectedMenu('role');
+        },
+      },
     ]
   }
 

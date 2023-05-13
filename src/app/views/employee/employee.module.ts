@@ -16,6 +16,7 @@ import { ContactInfoComponent } from './add-employee/contact-info/contact-info.c
 import { OtherComponent } from './add-employee/other/other.component';
 import { UserRoleComponent } from './add-employee/user-role/user-role.component';
 import { FileUploadModule } from 'primeng/fileupload';
+import { AddRoleComponent } from './employee-settings/add-role/add-role.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FileUploadModule } from 'primeng/fileupload';
     ContactInfoComponent,
     OtherComponent,
     UserRoleComponent,
+    AddRoleComponent,
   ],
   imports: [
     CommonModule,
