@@ -5,6 +5,7 @@ import { finalize } from 'rxjs';
 import { CustomModel } from 'src/app/_models/CustomModel';
 import { DesignModel } from 'src/app/_models/DesignModel';
 import { EmployeeService } from 'src/app/_services/employee/employee.service';
+import { UserService } from 'src/app/_services/user/user.service';
 import { UtilsService } from 'src/app/_services/utils/utils.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class UserInfoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private utilService: UtilsService,
     private messageService: MessageService,
-    private employeeService: EmployeeService
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   getUserData() {
-    this.employeeService
+    this.userService
       .getUserData(this.activatedRoute.snapshot.params['id'])
       .subscribe({
         next: (v: any) => {
@@ -49,7 +50,7 @@ export class UserInfoComponent implements OnInit {
 
   addUserInfo() {
     this.customModel.disabled = true;
-    this.employeeService
+    this.userService
       .saveUserData(this.customModel.model)
       .pipe(
         finalize(() => {
@@ -62,8 +63,8 @@ export class UserInfoComponent implements OnInit {
             this.messageService.add(
               this.utilService.successMessage(v.message, 3000)
             );
-            this.customModel.model.password = null;
-            this.customModel.model.confirmPassword = null;
+            this.isUpdate = true;
+            this.hidePasswordModal();
           }
         },
         error: (e) => {
@@ -75,7 +76,7 @@ export class UserInfoComponent implements OnInit {
   updateUserInfo() {
     //console.log(this.customModel.model);
     this.customModel.disabled = true;
-    this.employeeService
+    this.userService
       .updateUserInfo(this.customModel.model)
       .pipe(
         finalize(() => {
@@ -103,7 +104,7 @@ export class UserInfoComponent implements OnInit {
     };
     console.log(passwordModel)
     this.customModel.disabled = true;
-    this.employeeService
+    this.userService
       .updateUserPassword(passwordModel)
       .pipe(
         finalize(() => {

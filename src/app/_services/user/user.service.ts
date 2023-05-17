@@ -26,4 +26,24 @@ export class UserService {
       environment.apiUrl + 'user/getAllUsers',params
     );
   }
+
+  getUserData = (employeeId: number) => {
+    return this.http.get(
+      environment.apiUrl + 'user/GetUserData/' + employeeId
+    );
+  };
+
+  saveUserData = (model: any) => {
+    return this.http.post(environment.apiUrl + 'user/SaveUserInfo', model);
+  };
+
+  updateUserInfo = (model:any) => {
+    //console.log(model)
+    return this.http.put(environment.apiUrl + 'user/UpdateUserInfo', model);
+  }
+
+  updateUserPassword = (model:any) => {
+    return this.http.put(environment.apiUrl + 'user/UpdateUserPassword', model);
+  }
+
 }
