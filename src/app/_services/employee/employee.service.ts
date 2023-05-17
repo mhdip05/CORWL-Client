@@ -98,22 +98,5 @@ export class EmployeeService {
     );
   };
 
-  getUserData = (employeeId: number) => {
-    return this.http.get(
-      environment.apiUrl + 'employee/GetUserData/' + employeeId
-    );
-  };
 
-  saveUserData = (model: any) => {
-    return this.http.post(environment.apiUrl + 'employee/SaveUserInfo', model);
-  };
-
-  updateUserInfo = (model:any) => {
-    //console.log(model)
-    return this.http.put(environment.apiUrl + 'employee/UpdateUserInfo', model);
-  }
-
-  updateUserPassword = (model:any) => {
-    return this.http.put(environment.apiUrl + 'employee/UpdateUserPassword', model);
-  }
 }
