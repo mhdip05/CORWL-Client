@@ -15,18 +15,18 @@ export class EmployeeService {
     private router: Router
   ) {}
 
-  getEmployeeDropdown() {
+  getEmployeeDropdown = () => {
     return this.http.get(environment.apiUrl + 'employee/GetEmployeeDropdown');
-  }
+  };
 
-  saveEmployeeBasicInfo(model: any) {
+  saveEmployeeBasicInfo = (model: any) => {
     return this.http.post(
       environment.apiUrl + 'employee/SaveEmployeeBasicInfo',
       model
     );
-  }
+  };
 
-  getEmployeeBasicInfo(employeeId: number) {
+  getEmployeeBasicInfo = (employeeId: number) => {
     return this.http
       .get(environment.apiUrl + 'employee/GetEmployeeBasicInfo/' + employeeId)
       .pipe(
@@ -43,9 +43,9 @@ export class EmployeeService {
           return data;
         })
       );
-  }
+  };
 
-  getAllEmployee(page: number, itemsPerPage: number) {
+  getAllEmployee = (page: number, itemsPerPage: number) => {
     let params = this.paginationServices.getPaginationHeaders(
       page,
       itemsPerPage
@@ -55,13 +55,13 @@ export class EmployeeService {
       environment.apiUrl + 'employee/GetAllEmployee',
       params
     );
-  }
+  };
 
-  saveEmployeeDocumentInfo(model: any) {
+  saveEmployeeDocumentInfo = (model: any) => {
     return this.http.post(environment.apiUrl + 'employee/SaveDocument', model);
-  }
+  };
 
-  updateEmployeeBasicInfo(model: any) {
+  updateEmployeeBasicInfo = (model: any) => {
     return this.http
       .put(environment.apiUrl + 'employee/UpdateEmployeeBasicInfo', model)
       .pipe(
@@ -77,23 +77,43 @@ export class EmployeeService {
           };
         })
       );
-  }
+  };
 
-  getDocumentMasterInfoByEmployee(employeeId: number) {
+  getDocumentMasterInfoByEmployee = (employeeId: number) => {
     return this.http.get(
       environment.apiUrl + 'employee/GetDocumentInfoByEmployee/' + employeeId
     );
-  }
+  };
 
-  updateDocumentMaster(model:any){
+  updateDocumentMaster = (model: any) => {
     return this.http.put(
-      environment.apiUrl + 'employee/UpdateDocumentMaster/', model
+      environment.apiUrl + 'employee/UpdateDocumentMaster/',
+      model
     );
-  }
+  };
 
-  deleteEmpoloyeeDoc(fileId: number, empId: number) {
+  deleteEmpoloyeeDoc = (fileId: number, empId: number) => {
     return this.http.delete(
       environment.apiUrl + 'employee/DeleteEmployeeDoc/' + fileId + '/' + empId
     );
+  };
+
+  getUserData = (employeeId: number) => {
+    return this.http.get(
+      environment.apiUrl + 'employee/GetUserData/' + employeeId
+    );
+  };
+
+  saveUserData = (model: any) => {
+    return this.http.post(environment.apiUrl + 'employee/SaveUserInfo', model);
+  };
+
+  updateUserInfo = (model:any) => {
+    //console.log(model)
+    return this.http.put(environment.apiUrl + 'employee/UpdateUserInfo', model);
+  }
+
+  updateUserPassword = (model:any) => {
+    return this.http.put(environment.apiUrl + 'employee/UpdateUserPassword', model);
   }
 }
