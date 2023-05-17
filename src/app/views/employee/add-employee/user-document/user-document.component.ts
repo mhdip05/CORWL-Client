@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { FileUpload } from 'primeng/fileupload';
+import { finalize } from 'rxjs';
 import { CustomModel } from 'src/app/_models/CustomModel';
 import { DesignModel } from 'src/app/_models/DesignModel';
 import { EmployeeService } from 'src/app/_services/employee/employee.service';
@@ -22,8 +22,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./user-document.component.scss'],
 })
 export class UserDocumentComponent implements OnInit, AfterViewInit {
-  @ViewChild('fileUpload') fileUpload!: FileUpload;
-
   customModel = new CustomModel();
   designModel = new DesignModel();
   env = environment.apiUrl;
@@ -51,17 +49,22 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {}
 
-  setDocumentInfoData() {
-    //console.log(this.documentInfoData);
-    if (this.documentInfoData != null) {
-      this.customModel.model = this.documentInfoData.docmasterData;
-      this.files = this.documentInfoData.docDetailsData;
-      this.files.length > 0
-        ? (this.isFileAvailable = true)
-        : (this.isFileAvailable = false);
-      this.showFileByModal = false;
-      this.isGeneralInfoButton = true;
-    }
+
+  getDocumentInfo() {
+    this.employeeService
+      .getDocumentMasterInfoByEmployee(this.customModel.model.employeeId)
+      .subscribe({
+        next: (v: any) => {
+          //console.log(v);
+          this.customModel.model = v.docmasterData;
+          this.files = v.docDetailsData;
+          this.files.length > 0
+            ? (this.isFileAvailable = true)
+            : (this.isFileAvailable = false);
+          this.showFileByModal = false;
+          this.isGeneralInfoButton = true;
+        },
+      });
   }
 
   updateDocumentMasterData() {
@@ -77,38 +80,33 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
   }
 
   addDocumentInfo() {
-    const formData = new FormData();
-    var files = this.customModel.files;
-
-    Object.entries(this.customModel.model).forEach(([key, value]: any) => {
-      formData.append(key, value);
-    });
-
-    if (files !== undefined) {
-      for (const file of files) {
-        formData.append('files', file, file.name);
-      }
-    }
-
-    this.employeeService.saveEmployeeDocumentInfo(formData).subscribe({
-      next: (v: any) => {
-        //console.log(v);
-        if (v.status == true) {
-          this.messageService.add(
-            this.utilService.successMessage(v.message, 2000)
-          );
-          this.isFileAvailable = true;
-          this.showFileByModal = true;
-          this.customModel.clearAllFiles();
-          this.clearFileFromCache();
-          this.isGeneralInfoButton = true;
-        }
-      },
-      error: (e) => {
-        //console.log(e);
-        this.displayError(e);
-      },
-    });
+    this.customModel.disabled = true;
+    this.employeeService
+      .saveEmployeeDocumentInfo(this.customModel.withFormData())
+      .pipe(
+        finalize(() => {
+          this.customModel.disabled = false;
+        })
+      )
+      .subscribe({
+        next: (v: any) => {
+          //console.log(v);
+          if (v.status == true) {
+            this.messageService.add(
+              this.utilService.successMessage(v.message, 2000)
+            );
+            this.isFileAvailable = true;
+            this.showFileByModal = true;
+            this.isGeneralInfoButton = true;
+            this.customModel.clearAllFiles();
+            this.clearFileFromCache();
+          }
+        },
+        error: (e) => {
+          //console.log(e);
+          this.displayError(e);
+        },
+      });
   }
 
   displayError(e: any) {

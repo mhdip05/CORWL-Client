@@ -14,19 +14,32 @@ export class CustomModel {
   selected: any;
   files!: File[];
 
-  hideModal= () => this.displayModal = false;
-   
-  hideDialog = () => this.displayDialog = false;
+  hideModal = () => (this.displayModal = false);
 
-  onFileUpload(event: any) {
-    //console.log(event);
-    this.files = event;
-  }
+  hideDialog = () => (this.displayDialog = false);
 
-  clearAllFiles() {
+  onFileUpload = (event: any) => (this.files = event);
+
+  clearAllFiles = () => {
     if (this.model.file) delete this.model.file;
-    this.files = []
-  }
+    this.files = [];
+  };
+
+  withFormData: any = () => {
+    const formData = new FormData();
+    var files = this.files;
+
+    Object.entries(this.model).forEach(([key, value]: any) => {
+      formData.append(key, value);
+    });
+
+    if (files !== undefined) {
+      for (const file of files) {
+        formData.append('files', file, file.name);
+      }
+    }
+    return formData;
+  };
 
   changeCountry = (data: any) => {
     //console.log(data);
@@ -58,8 +71,6 @@ export class CustomModel {
     this.model = { ...this.model, ...data };
   };
 
-
-
   viewData = (data: any) => {
     //console.log(data);
     this.editMode = false;
@@ -88,7 +99,6 @@ export class CustomModel {
     }
   };
 
-
   private resetDropDown = () => {
     var list: any = document.getElementsByClassName('p-dropdown-clear-icon');
     if (list.length === 0) return;
@@ -103,7 +113,7 @@ export class CustomModel {
       this.model = {};
       this.resetDropDown();
     } else {
-      this.model = {...this.model, ...this.editModel}
+      this.model = { ...this.model, ...this.editModel };
     }
     //console.log(this.editModel)
     //console.log(this.model)
@@ -120,24 +130,22 @@ export class CustomModel {
     this.resetDropDown();
   };
 
-  inputBlur(
-    event: any,
+  removeValidationMsg(
+    event: Event,
     inputName: string,
-    isInputDropdown?: boolean,
+    isInputDropdown = false,
     dropdownName?: any
-  ) {
-    //console.log(this.validationModel)
-    const inputValue = event.target.value.trim();
-    if (isInputDropdown) {
-      if (this.model[dropdownName]) {
-        delete this.validationModel[inputName];
-      }
-    } else {
-      if (inputValue.length !== 0) {
-        if (this.validationModel.hasOwnProperty(inputName)) {
-          delete this.validationModel[inputName];
-        }
-      }
+  ): void {
+    const inputValue = (event.target as HTMLInputElement).value.trim();
+
+    if (isInputDropdown && this.model[dropdownName]) {
+      delete this.validationModel[inputName];
+      return;
+    }
+
+    if (inputValue.length !== 0 && inputName in this.validationModel) {
+      delete this.validationModel[inputName];
+      return;
     }
   }
 

@@ -14,7 +14,6 @@ import { UtilsService } from 'src/app/_services/utils/utils.service';
 export class AddEmployeeComponent implements OnInit {
   customModel = new CustomModel();
   employeeId = 0;
-  documentInfoData = {};
 
   constructor(
     private router: Router,
@@ -40,23 +39,12 @@ export class AddEmployeeComponent implements OnInit {
     this.utilService.turnModalStateErrorOn = true;
   }
 
-  getDocumentInfo() {
-    this.employeeService
-      .getDocumentMasterInfoByEmployee(this.employeeId)
-      .subscribe({
-        next: (v: any) => {
-          //console.log(v);
-          this.documentInfoData = v;
-        },
-      });
-  }
-
   setInfo(reference: string) {
     setTimeout(() => {
       var dom: any = document.getElementById(reference);
       if(dom)
         dom.click();  
-    }, 200);
+    }, 100);
   }
 
   changeTab(event: any) {
@@ -67,7 +55,7 @@ export class AddEmployeeComponent implements OnInit {
         break;
 
       case 'user info':
-        console.log('user info');
+        this.setInfo('getUserData')
         break;
 
       case 'user role':
@@ -79,8 +67,7 @@ export class AddEmployeeComponent implements OnInit {
         break;
 
       case 'document':
-        this.getDocumentInfo();
-        this.setInfo('setDocumentInfo')
+        this.setInfo('getDocumentInfo')
         break;
 
       case 'others':

@@ -12,7 +12,7 @@
           name="documentName"
           [class]="'form-control form-control-sm'"
           [(ngModel)]="customModel.model.documentName"
-          (blur)="customModel.inputBlur($event, 'DocumentName')"
+          (blur)="customModel.removeValidationMsg($event, 'DocumentName')"
         />
       </span>
       <app-error-validation
@@ -30,7 +30,7 @@
           name="address"
           [class]="designModel.inputClass"
           [(ngModel)]="customModel.model.description"
-          (blur)="customModel.inputBlur($event, 'Description')"
+          (blur)="customModel.removeValidationMsg($event, 'Description')"
         >
         </textarea>
       </span>
@@ -102,11 +102,12 @@
           label="Submit"
           class="p-button"
           (click)="addDocumentInfo()"
+          [disabled]="customModel.disabled"
         ></button>
         <button
-          (click)="setDocumentInfoData()"
+          (click)="getDocumentInfo()"
           [hidden]="true"
-          id="setDocumentInfo"
+          id="getDocumentInfo"
         >
           Setup
         </button>
