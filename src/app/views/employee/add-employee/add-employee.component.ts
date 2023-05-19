@@ -51,7 +51,7 @@ export class AddEmployeeComponent implements OnInit {
     //console.log(event);
     switch (event.originalEvent.target.innerText.toLowerCase()) {
       case 'job details':
-        console.log('job details');
+        //console.log('job details');
         break;
 
       case 'user info':
@@ -59,7 +59,7 @@ export class AddEmployeeComponent implements OnInit {
         break;
 
       case 'user role':
-        console.log('user role');
+        this.setInfo('getAllRole')
         break;
 
       case 'contact info':
@@ -71,7 +71,7 @@ export class AddEmployeeComponent implements OnInit {
         break;
 
       case 'others':
-        console.log('others');
+        //console.log('others');
         break;
 
       default:

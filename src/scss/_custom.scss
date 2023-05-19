@@ -201,6 +201,19 @@ label {
   margin-top: 21px;
 }
 
+.custom-checkbox {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.custom-checkbox-label {
+  margin-top: 5px;
+  margin-left:10px;
+}
+.checkbox-hover:hover {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 992px) {
   .utilityBtn {
     margin-top: 11px;

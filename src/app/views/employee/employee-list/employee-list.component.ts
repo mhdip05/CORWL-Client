@@ -37,10 +37,17 @@ export class EmployeeListComponent implements OnInit {
         header: 'First Name',
         style: { 'text-transform': 'capitalize' },
       },
+  
       {
         field: 'lastName',
         header: 'Last Name',
         style: { 'text-transform': 'capitalize' },
+      },
+      {
+        field: 'userName',
+        header: 'User name',
+        style: { 'text-transform': 'capitalize'
+       },
       },
       {
         field: 'gender',
@@ -90,7 +97,7 @@ export class EmployeeListComponent implements OnInit {
   getAllEmployee(pageNumber: number, pageSize: number) {
     this.employeeService.getAllEmployee(pageNumber, pageSize).subscribe({
       next: (v: any) => {
-        //console.log(v);
+        console.log(v);
         this.customModel.data = v.result;
         this.pagination = v.pagination;
 
