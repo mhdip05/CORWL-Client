@@ -52,6 +52,7 @@ import { PasswordModule } from 'primeng/password';
 import { FileUploadModule } from 'primeng/fileupload';
 import { FileUploadComponent } from '../_template/file-upload/file-upload.component';
 import { FileViewComponent } from '../_template/file-upload/file-view/file-view.component';
+import { CheckboxModule } from 'primeng/checkbox';
 @NgModule({
   declarations: [
     DefaultGridComponent,
@@ -107,7 +108,8 @@ import { FileViewComponent } from '../_template/file-upload/file-view/file-view.
     TabViewModule,
     CalendarModule,
     PasswordModule,
-    FileUploadModule
+    FileUploadModule,
+    CheckboxModule 
   ],
   exports: [
     ButtonModule,
@@ -157,6 +159,7 @@ import { FileViewComponent } from '../_template/file-upload/file-view/file-view.
     FileUploadModule,
     FileUploadComponent,
     FileViewComponent,
+    CheckboxModule 
   ],
   providers: [ConfirmationService, MessageService],
 })

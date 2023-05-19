@@ -27,10 +27,10 @@ export class AddRoleComponent implements OnInit {
 
   private column() {
     this.customModel.cols = [
-      {
-        field: 'id',
-        header: 'Role Id',
-      },
+      // {
+      //   field: 'id',
+      //   header: 'Role Id',
+      // },
       {
         field: 'roleName',
         header: 'Role Name',
