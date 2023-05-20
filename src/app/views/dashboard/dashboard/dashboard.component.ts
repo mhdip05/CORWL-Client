@@ -7,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+   userRole = localStorage.getItem('user_role');
   constructor() { }
 
   ngOnInit(): void {
-    sessionStorage.removeItem('forgot_password_email')
+
   }
 
 }

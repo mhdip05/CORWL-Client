@@ -18,10 +18,10 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, public authService: AuthService) {}
 
   ngOnInit(): void {
-    if (this.authService.authUserdata != null)
-      this.router.navigateByUrl('/dashboard');
-      
     sessionStorage.removeItem('forgot_password_email');
+    
+    if (this.authService.authUserdata != null)
+      this.router.navigateByUrl('/dashboard');  
   }
 
   login() {
@@ -35,8 +35,9 @@ export class LoginComponent implements OnInit {
       )
       .subscribe({
         next: (v) => {
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/choose-role');
         },
       });
   }
+  
 }
