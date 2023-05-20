@@ -24,9 +24,16 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-      
-    if (this.authService.authUserdata != null) return true;
-    else {
+
+    const userRole = localStorage.getItem('user_role');
+
+    if (this.authService.authUserdata != null) {
+      if (userRole == null) {
+        this.router.navigateByUrl('/choose-role');
+        return false;
+      }
+      return true;
+    } else {
       this.router.navigateByUrl('/');
       return false;
     }

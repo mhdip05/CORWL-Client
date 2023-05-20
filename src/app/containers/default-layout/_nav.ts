@@ -4,6 +4,7 @@ export const navItems: any[] = [
   {
     name: 'Dashboard',
     url: '/dashboard',
+    
     iconComponent: { name: 'cil-speedometer' },
     badge: {
       color: 'info',

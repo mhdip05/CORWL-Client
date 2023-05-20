@@ -17,6 +17,7 @@ export class DefaultHeaderComponent extends HeaderComponent {
   public newMessages = new Array(4)
   public newTasks = new Array(5)
   public newNotifications = new Array(5)
+  userRole = localStorage.getItem('user_role'); 
   username!: string;
 
   constructor(public authService:AuthService, 
@@ -27,9 +28,5 @@ export class DefaultHeaderComponent extends HeaderComponent {
 
   logout(){
     this.authService.logout();
-    this.router.navigateByUrl('/')
-    .then(() => {
-      window.location.reload();
-    });
   }
 }

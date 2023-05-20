@@ -53,6 +53,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { FileUploadComponent } from '../_template/file-upload/file-upload.component';
 import { FileViewComponent } from '../_template/file-upload/file-view/file-view.component';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ChooseRoleComponent } from '../views/choose-role/choose-role.component';
 @NgModule({
   declarations: [
     DefaultGridComponent,
@@ -82,6 +83,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     UtilityBoxComponent,
     FileUploadComponent,
     FileViewComponent,
+    ChooseRoleComponent,
+
   ],
   imports: [
     CommonModule,

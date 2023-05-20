@@ -1,6 +1,6 @@
 import { ResetPasswordComponent } from './views/authentication/reset-password/reset-password.component';
 import { AuthGuard } from './_guards/auth.guard';
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DefaultLayoutComponent } from './containers';
@@ -9,6 +9,7 @@ import { NotFoundComponent } from './views/errors/not-found/not-found.component'
 import { ServerErrorComponent } from './views/errors/server-error/server-error.component';
 import { TestErrorComponent } from './views/errors/test-error/test-error.component';
 import { ForgotPasswordComponent } from './views/authentication/forgot-password/forgot-password.component';
+import { ChooseRoleComponent } from './views/choose-role/choose-role.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,11 @@ const routes: Routes = [
           ),
       },
     ],
+  },
+
+  {
+    path: 'choose-role',
+    component: ChooseRoleComponent,
   },
 
   {

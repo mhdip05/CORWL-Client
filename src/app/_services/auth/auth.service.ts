@@ -44,8 +44,10 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(this.item);
+    localStorage.removeItem('user_role')
     this.currentUserSource.next(null)
     this.authUserdata = null;
+    location.replace('/');
   }
 
   getDecodedToken(token: string) {
