@@ -19,6 +19,7 @@ export class DesignationDropdownComponent implements OnInit {
   @Input() selectedDesignation: any;
   @Input() applyDefaultText = false;
   @Output() changeDesignation = new EventEmitter();
+  @Output() onBlur = new EventEmitter();
 
   constructor(
     private designationService: DesignationService,
@@ -41,6 +42,10 @@ export class DesignationDropdownComponent implements OnInit {
 
     this.showClear = true;
     this.changeDesignation.emit(this.selectedDesignation);
+  }
+
+  onBlurEvent(event:any){
+    this.onBlur.emit(event);
   }
 
   onShow() {

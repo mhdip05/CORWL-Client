@@ -20,6 +20,7 @@ export class BranchDropdownComponent implements OnInit {
   @Input() selectedBranch: any;
   @Input() applyDefaultText = false;
   @Output() changeBranch = new EventEmitter();
+  @Output() onBlur = new EventEmitter();
 
   constructor(
     private branchService: BranchService,
@@ -42,6 +43,10 @@ export class BranchDropdownComponent implements OnInit {
 
     this.showClear = true;
     this.changeBranch.emit(this.selectedBranch);
+  }
+
+  onBlurEvent(event:any){
+    this.onBlur.emit(event);
   }
 
   onShow() {

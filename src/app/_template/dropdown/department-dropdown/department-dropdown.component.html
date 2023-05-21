@@ -9,6 +9,7 @@
   placeholder="Select department"
   (onShow)="onShow()"
   (onChange)="onChange()"
+  (onBlur)="onBlurEvent($event)"
 >
   <ng-template pTemplate="selectedItem">
     <div *ngIf="selectedDepartment">

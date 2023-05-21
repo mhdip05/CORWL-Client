@@ -22,8 +22,20 @@
               : undefined
           "
           (changeCompany)="customModel.changeDropdown($event)"
+          (onBlur)="
+            customModel.removeValidationMsg(
+              $event,
+              'CompanyId',
+              true,
+              'companyId'
+            )
+          "
         >
         </app-company-dropdown>
+        <app-error-validation
+          [hasValidation]="customModel.hasValidation"
+          [validationModel]="customModel.validationModel.CompanyId"
+        ></app-error-validation>
       </span>
     </div>
     <div [class]="designModel.responsiveClass">
@@ -45,8 +57,20 @@
               : undefined
           "
           (changeBranch)="customModel.changeDropdown($event)"
+          (onBlur)="
+            customModel.removeValidationMsg(
+              $event,
+              'BranchId',
+              true,
+              'branchId'
+            )
+          "
         >
         </app-branch-dropdown>
+        <app-error-validation
+          [hasValidation]="customModel.hasValidation"
+          [validationModel]="customModel.validationModel.BranchId"
+        ></app-error-validation>
       </span>
     </div>
     <div [class]="designModel.responsiveClass">
@@ -68,8 +92,20 @@
               : undefined
           "
           (changeDepartment)="customModel.changeDropdown($event)"
+          (onBlur)="
+            customModel.removeValidationMsg(
+              $event,
+              'DepartmentId',
+              true,
+              'departmentId'
+            )
+          "
         >
         </app-department-dropdown>
+        <app-error-validation
+          [hasValidation]="customModel.hasValidation"
+          [validationModel]="customModel.validationModel.DepartmentId"
+        ></app-error-validation>
       </span>
     </div>
     <div [class]="designModel.responsiveClass">
@@ -91,8 +127,20 @@
               : undefined
           "
           (changeDesignation)="customModel.changeDropdown($event)"
+          (onBlur)="
+            customModel.removeValidationMsg(
+              $event,
+              'DesignationId',
+              true,
+              'designationId'
+            )
+          "
         >
         </app-designation-dropdown>
+        <app-error-validation
+          [hasValidation]="customModel.hasValidation"
+          [validationModel]="customModel.validationModel.DesignationId"
+        ></app-error-validation>
       </span>
     </div>
     <div [class]="designModel.responsiveClass">
@@ -134,7 +182,7 @@
           [options]="employeeModel.staffGrade"
           [(ngModel)]="customModel.model.staffGrade"
           optionLabel="staffGrade"
-          optionValue="staffGrade"          
+          optionValue="staffGrade"
           [name]="'staffGrade'"
           placeholder="Select staff grade"
           [showClear]="true"
@@ -146,24 +194,36 @@
       <span class="p-float-label">
         <p-calendar
           [(ngModel)]="customModel.model.confirmationDate"
-          name="'dateOfBirth'"
+          name="'confirmationDate'"
           [showIcon]="true"
           dateFormat="dd/mm/yy"
-          [maxDate]="dateTimeService.today"        
+          [maxDate]="dateTimeService.today"
+          (onSelect)="
+            customModel.removeValidationMsg($event, 'ConfirmationDate')
+          "
         ></p-calendar>
       </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.ConfirmationDate"
+      ></app-error-validation>
     </div>
     <div [class]="designModel.responsiveClass">
       <label for="joiningDate">Joining Date</label>
       <span class="p-float-label">
         <p-calendar
           [(ngModel)]="customModel.model.joiningDate"
-          name="'dateOfBirth'"
+          name="'joiningDate'"
           [showIcon]="true"
           dateFormat="dd/mm/yy"
-          [maxDate]="dateTimeService.today"        
+          [maxDate]="dateTimeService.today"
+          (onSelect)="customModel.removeValidationMsg($event, 'JoiningDate')"
         ></p-calendar>
       </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.JoiningDate"
+      ></app-error-validation>
     </div>
     <div [class]="designModel.responsiveClass">
       <label for="reportingMethod">Reporting Method</label>
@@ -172,7 +232,7 @@
           [options]="employeeModel.reportingMethod"
           [(ngModel)]="customModel.model.reportingMethod"
           optionLabel="reportingMethod"
-          optionValue="reportingMethod"          
+          optionValue="reportingMethod"
           [name]="'reportingMethod'"
           placeholder="Select reporting method"
           [showClear]="true"
@@ -180,7 +240,7 @@
       </span>
     </div>
   </div>
-  <hr class="custom-hr"/>
+  <hr class="custom-hr" />
   <div class="row">
     <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
       <div class="d-grid">
@@ -189,11 +249,13 @@
           pRipple
           label="Submit"
           class="p-button"
-          (click)="addJobDetails()"
+          (click)="isUpdate ? updateJobDetails() : addJobDetails()"
+          [disabled]="customModel.disabled"
         ></button>
+        <button (click)="getEmployeeJobDetails()" [hidden]="true" id="getEmployeeJobDetails"></button>
       </div>
     </div>
   </div>
-  <hr>
+  <hr />
   <app-utility-box></app-utility-box>
 </form>

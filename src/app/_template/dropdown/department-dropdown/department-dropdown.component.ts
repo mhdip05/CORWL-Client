@@ -19,6 +19,7 @@ export class DepartmentDropdownComponent implements OnInit {
   @Input() selectedDepartment: any;
   @Input() applyDefaultText = false;
   @Output() changeDepartment = new EventEmitter();
+  @Output() onBlur = new EventEmitter();
 
   constructor(
     private departmentService: DepartmentService,
@@ -41,6 +42,10 @@ export class DepartmentDropdownComponent implements OnInit {
 
     this.showClear = true;
     this.changeDepartment.emit(this.selectedDepartment);
+  }
+
+  onBlurEvent(event:any){
+    this.onBlur.emit(event)
   }
 
   onShow() {

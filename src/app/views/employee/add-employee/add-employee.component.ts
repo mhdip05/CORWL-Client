@@ -42,8 +42,7 @@ export class AddEmployeeComponent implements OnInit {
   setInfo(reference: string) {
     setTimeout(() => {
       var dom: any = document.getElementById(reference);
-      if(dom)
-        dom.click();  
+      if (dom) dom.click();
     }, 100);
   }
 
@@ -51,23 +50,23 @@ export class AddEmployeeComponent implements OnInit {
     //console.log(event);
     switch (event.originalEvent.target.innerText.toLowerCase()) {
       case 'job details':
-        //console.log('job details');
+        this.setInfo('getEmployeeJobDetails');
         break;
 
       case 'user info':
-        this.setInfo('getUserData')
+        this.setInfo('getUserData');
         break;
 
       case 'user role':
-        this.setInfo('getAllRole')
+        this.setInfo('getAllRole');
         break;
 
       case 'contact info':
-        console.log('contact info');
+        //console.log('contact info');
         break;
 
       case 'document':
-        this.setInfo('getDocumentInfo')
+        this.setInfo('getDocumentInfo');
         break;
 
       case 'others':

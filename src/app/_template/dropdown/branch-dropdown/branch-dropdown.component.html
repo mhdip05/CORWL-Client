@@ -9,6 +9,7 @@
   [filter]="true"
   (onShow)="onShow()"
   (onChange)="onChange()"
+  (onBlur)="onBlurEvent($event)"
 >
   <ng-template pTemplate="selectedItem">
     <div *ngIf="selectedBranch">

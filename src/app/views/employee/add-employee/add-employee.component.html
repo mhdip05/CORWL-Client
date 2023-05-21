@@ -28,14 +28,15 @@
               <app-user-role></app-user-role>
             </p>
           </p-tabPanel>
-          <p-tabPanel header="Contact Info" [disabled]="customModel.disabled">
-            <p class="tabview-paragraph">
-              <app-contact-info></app-contact-info>
-            </p>
-          </p-tabPanel>
+
           <p-tabPanel header="Document" [disabled]="customModel.disabled">
             <p class="tabview-paragraph">
               <app-user-document> </app-user-document>
+            </p>
+          </p-tabPanel>
+          <p-tabPanel header="Contact Info" [disabled]="customModel.disabled">
+            <p class="tabview-paragraph">
+              <app-contact-info></app-contact-info>
             </p>
           </p-tabPanel>
           <p-tabPanel header="Others" [disabled]="customModel.disabled">

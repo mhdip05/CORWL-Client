@@ -130,13 +130,26 @@ export class CustomModel {
     this.resetDropDown();
   };
 
+  private isValidDate(value: any) {
+    const parsedDate = Date.parse(value);
+    return !isNaN(parsedDate);
+  }
+
   removeValidationMsg(
-    event: Event,
+    event: Event | any,
     inputName: string,
     isInputDropdown = false,
     dropdownName?: any
   ): void {
-    const inputValue = (event.target as HTMLInputElement).value.trim();
+    
+    let inputValue = '';
+
+    if (this.isValidDate(new Date(event)) == false) {
+      inputValue = (event.target as HTMLInputElement).value.trim();
+    } else {
+      delete this.validationModel[inputName];
+      return;
+    }
 
     if (isInputDropdown && this.model[dropdownName]) {
       delete this.validationModel[inputName];

@@ -31,7 +31,7 @@ export class DefaultLayoutComponent implements OnInit {
   }
 
   private navByRole() {
-    console.log(this.currentUserRole);
+    //console.log(this.currentUserRole);
     for (const [key, value] of Object.entries(this.navItems)) {
       if (typeof value.role == 'undefined') {
         continue;

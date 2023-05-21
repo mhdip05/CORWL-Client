@@ -79,6 +79,36 @@ export class EmployeeService {
       );
   };
 
+  saveEmployeeJobDetails = (model: any) => {
+    return this.http.post(
+      environment.apiUrl + 'employee/SaveEmployeeJobDetails',
+      model
+    );
+  };
+
+  getEmployeeJobDetails = (employeeId: number) => {
+    return this.http
+      .get(environment.apiUrl + 'employee/GetEmployeeJobDetails/' + employeeId)
+      .pipe(
+        map((res: any) => {
+          //console.log(res)
+          const dateObj = {
+            confirmationDate: new Date(res.confirmationDate),
+            joiningDate: new Date(res.joiningDate),
+          };
+          var data = { ...res, ...dateObj };
+          return data;
+        })
+      );
+  };
+
+  updateEmployeeJobDetails = (model: any) => {
+    return this.http.put(
+      environment.apiUrl + 'employee/UpdateEmployeeJobDetails',
+      model
+    );
+  };
+
   getDocumentMasterInfoByEmployee = (employeeId: number) => {
     return this.http.get(
       environment.apiUrl + 'employee/GetDocumentInfoByEmployee/' + employeeId
@@ -97,6 +127,4 @@ export class EmployeeService {
       environment.apiUrl + 'employee/DeleteEmployeeDoc/' + fileId + '/' + empId
     );
   };
-
-
 }
