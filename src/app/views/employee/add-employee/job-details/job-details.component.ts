@@ -30,12 +30,15 @@ export class JobDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.customModel.editMode = true;
-    this.customModel.model = {
-      ...this.customModel.model,
-      ...{ employeeId: this.activatedRoute.snapshot.params['id'] },
-    };
-    this.getEmployeeJobDetails();
+    if(this.activatedRoute.snapshot.params['id'] !== undefined){
+      this.customModel.editMode = true;
+      this.customModel.model = {
+        ...this.customModel.model,
+        ...{ employeeId: this.activatedRoute.snapshot.params['id'] },
+      };
+      this.getEmployeeJobDetails();
+    }
+
   }
 
   getEmployeeJobDetails() {

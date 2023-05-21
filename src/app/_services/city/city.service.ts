@@ -19,6 +19,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CityService {
+  apiUrl = environment.apiUrl + 'city/';
+  
   constructor(
     private httpClient: HttpClient,
     private store: Store<RootReducerState>
@@ -29,7 +31,7 @@ export class CityService {
       this.store.dispatch(new CityEmpty());
     }
     return this.httpClient
-      .get(environment.apiUrl + 'city/GetCityByCountry?countryId=' + countryId)
+      .get(this.apiUrl + 'GetCityByCountry?countryId=' + countryId)
       .pipe(
         map((res: any) => {
           //console.log(res);
@@ -51,23 +53,23 @@ export class CityService {
     const cityData$ = this.store.select(getCityByCountry);
 
     combineLatest([loaded$, loading$])
-    .pipe(take(1))
-    .subscribe((data) => {
-      if (!data[0] && !data[1]) {
-        this.store.dispatch(new CityListRequestAction());
-        this.getCityByCountryApi(countryId).subscribe((res) => {
-          this.store.dispatch(
-            new CityListByCountrySuccessAction({ data: res })
-          );
-        });
-      }
-    });
+      .pipe(take(1))
+      .subscribe((data) => {
+        if (!data[0] && !data[1]) {
+          this.store.dispatch(new CityListRequestAction());
+          this.getCityByCountryApi(countryId).subscribe((res) => {
+            this.store.dispatch(
+              new CityListByCountrySuccessAction({ data: res })
+            );
+          });
+        }
+      });
 
     return [loading$, cityData$];
   }
 
   getAllCity() {
-    return this.httpClient.get(environment.apiUrl + 'city/GetAllCity').pipe(
+    return this.httpClient.get(this.apiUrl + 'GetAllCity').pipe(
       map((res) => {
         //console.log(res)
         return res;
@@ -76,23 +78,19 @@ export class CityService {
   }
 
   editCity(model: any) {
-    return this.httpClient
-      .put(environment.apiUrl + 'city/update-city', model)
-      .pipe(
-        map((res) => {
-          //console.log(res);
-        })
-      );
+    return this.httpClient.put(this.apiUrl + 'update-city', model).pipe(
+      map((res) => {
+        //console.log(res);
+      })
+    );
   }
 
   addCity(model: any) {
-    return this.httpClient
-      .post(environment.apiUrl + 'city/add-city', model)
-      .pipe(
-        map((res) => {
-          //console.log(res);
-          return res;
-        })
-      );
+    return this.httpClient.post(this.apiUrl + 'add-city', model).pipe(
+      map((res) => {
+        //console.log(res);
+        return res;
+      })
+    );
   }
 }

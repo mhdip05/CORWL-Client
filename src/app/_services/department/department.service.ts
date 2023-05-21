@@ -6,32 +6,33 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class DepartmentService {
+  apiUrl = environment.apiUrl + 'department/'
   constructor(private http: HttpClient) {}
 
   getAllDepartment() {
-    return this.http.get(environment.apiUrl + 'department/getAllDepartment');
+    return this.http.get(this.apiUrl + 'getAllDepartment');
   }
 
   getDepartmentDropdown() {
-    return this.http.get(environment.apiUrl + 'department/GetDepartmentDropdown');
+    return this.http.get(this.apiUrl + 'GetDepartmentDropdown');
   }
 
   addDepartment(model: any) {
     return this.http.post(
-      environment.apiUrl + 'department/AddDepartment',
+      this.apiUrl + 'AddDepartment',
       model
     );
   }
 
   getDepartmentById(id: number) {
     return this.http.get(
-      environment.apiUrl + 'department/GetDepartmentById/' + id
+      this.apiUrl + 'GetDepartmentById/' + id
     );
   }
 
   updateDepartment(model: any) {
     return this.http.put(
-      environment.apiUrl + 'department/UpdateDepartment',
+      this.apiUrl + 'UpdateDepartment',
       model
     );
   }

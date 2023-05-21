@@ -10,6 +10,7 @@ import { map } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
+  apiUrl = environment.apiUrl + 'user/'
   paginatedResult: PaginatedResult<IUser[]> = new PaginatedResult<IUser[]>();
 
   constructor(
@@ -23,27 +24,27 @@ export class UserService {
       itemsPerPage
     );
     return this.paginationServices.getPaginatedResult<IUser[]>(
-      environment.apiUrl + 'user/getAllUsers',params
+      this.apiUrl + 'getAllUsers',params
     );
   }
 
   getUserData = (employeeId: number) => {
     return this.http.get(
-      environment.apiUrl + 'user/GetUserData/' + employeeId
+      this.apiUrl + 'GetUserData/' + employeeId
     );
   };
 
   saveUserData = (model: any) => {
-    return this.http.post(environment.apiUrl + 'user/SaveUserInfo', model);
+    return this.http.post(this.apiUrl + 'SaveUserInfo', model);
   };
 
   updateUserInfo = (model:any) => {
     //console.log(model)
-    return this.http.put(environment.apiUrl + 'user/UpdateUserInfo', model);
+    return this.http.put(this.apiUrl + 'UpdateUserInfo', model);
   }
 
   updateUserPassword = (model:any) => {
-    return this.http.put(environment.apiUrl + 'user/UpdateUserPassword', model);
+    return this.http.put(this.apiUrl + 'UpdateUserPassword', model);
   }
 
 }

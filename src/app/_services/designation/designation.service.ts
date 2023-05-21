@@ -7,32 +7,34 @@ import { environment } from 'src/environments/environment';
 })
 export class DesignationService {
 
+  apiUrl = environment.apiUrl + 'designation/'
+
   constructor(private http: HttpClient) { }
 
   getAllDesignation() {
-    return this.http.get(environment.apiUrl + 'designation/getAllDesignation');
+    return this.http.get(this.apiUrl + 'getAllDesignation');
   }
 
   getDesignationDropdown(){
-    return this.http.get(environment.apiUrl + 'designation/GetDesignationDropdown');
+    return this.http.get(this.apiUrl + 'GetDesignationDropdown');
   }
 
   addDesignation(model: any) {
     return this.http.post(
-      environment.apiUrl + 'designation/AddDesignation',
+      this.apiUrl + 'AddDesignation',
       model
     );
   }
 
   getDesignationById(id: number) {
     return this.http.get(
-      environment.apiUrl + 'designation/GetDesignationById/' + id
+      this.apiUrl + 'GetDesignationById/' + id
     );
   }
 
   updateDesignation(model: any) {
     return this.http.put(
-      environment.apiUrl + 'designation/UpdateDesignation',
+      this.apiUrl + 'UpdateDesignation',
       model
     );
   }

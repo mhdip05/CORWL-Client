@@ -6,29 +6,30 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class RoleService {
+  apiUrl = environment.apiUrl + 'Role/'
   constructor(private http: HttpClient) {}
 
   addRole(model: any) {
-    return this.http.post(environment.apiUrl + 'Role/addrole', model);
+    return this.http.post(this.apiUrl + 'addrole', model);
   }
 
   updateRole(model: any) {
-    return this.http.put(environment.apiUrl + 'Role/updateRole', model);
+    return this.http.put(this.apiUrl + 'updateRole', model);
   }
 
   getAllRole() {
-    return this.http.get(environment.apiUrl + 'Role/GetAllRoles');
+    return this.http.get(this.apiUrl + 'GetAllRoles');
   }
 
   getUserRoles(employeeId:number){
-    return this.http.get(environment.apiUrl + 'Role/GetUserRoles/'+employeeId);
+    return this.http.get(this.apiUrl + 'GetUserRoles/'+employeeId);
   }
 
   mapUserRole(model: any) {
-    return this.http.post(environment.apiUrl + 'Role/MapUserRole', model);
+    return this.http.post(this.apiUrl + 'MapUserRole', model);
   }
 
   removeUserRole(employeeId:number, roleId:number){
-    return this.http.delete(environment.apiUrl + 'Role/RemoveRoleMapping/'+employeeId+'/'+roleId)
+    return this.http.delete(this.apiUrl + 'RemoveRoleMapping/'+employeeId+'/'+roleId)
   }
 }

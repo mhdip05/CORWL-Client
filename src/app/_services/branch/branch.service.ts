@@ -7,25 +7,27 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class BranchService {
+  private apiUrl = environment.apiUrl + 'branch/';
+  
   constructor(private http: HttpClient) {}
 
   public getAllBranches() {
-    return this.http.get(environment.apiUrl + 'branch/getAllBranch');
+    return this.http.get(this.apiUrl + 'getAllBranch');
   }
 
   getBranchDropdown(){
-    return this.http.get(environment.apiUrl + 'branch/getBranchDropdown');
+    return this.http.get(this.apiUrl + 'getBranchDropdown');
   }
 
   addBranch(model: any) {
-    return this.http.post(environment.apiUrl + 'branch/AddBranch', model);
+    return this.http.post(this.apiUrl + 'AddBranch', model);
   }
 
   getBranchById(id: number) {
-    return this.http.get(environment.apiUrl + 'branch/GetBranchById/' + id);
+    return this.http.get(this.apiUrl + 'GetBranchById/' + id);
   }
 
   updateBranch(model: any) {
-    return this.http.put(environment.apiUrl + 'branch/UpdateBranch', model);
+    return this.http.put(this.apiUrl + 'UpdateBranch', model);
   }
 }

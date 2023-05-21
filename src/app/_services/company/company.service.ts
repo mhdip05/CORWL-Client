@@ -23,6 +23,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CompanyService {
+  apiUrl = environment.apiUrl + 'company/'
+  
   constructor(
     private http: HttpClient,
     private store: Store<RootReducerState>,
@@ -30,7 +32,7 @@ export class CompanyService {
   ) {}
 
   private getAllCompaniesApi() {
-    return this.http.get(environment.apiUrl + 'company/GetAllCompanies').pipe(
+    return this.http.get(this.apiUrl + 'GetAllCompanies').pipe(
       map((response: any) => {
         //console.log(response)
         return response;
@@ -61,7 +63,7 @@ export class CompanyService {
     company$.pipe(take(1)).subscribe((data) => {
       if (force || !data) {
         return this.http
-          .get(environment.apiUrl + 'company/getCompanyById/' + id)
+          .get(this.apiUrl + 'getCompanyById/' + id)
           .subscribe({
             next: (res) => {
               //console.log(res);
@@ -81,7 +83,7 @@ export class CompanyService {
   fetchCompanyById(id: number): any {
     //return of(123)
     return this.http
-      .get(environment.apiUrl + 'company/getCompanyById/' + id)
+      .get(this.apiUrl + 'getCompanyById/' + id)
       .pipe(
         map((data) => {
           return data;
@@ -90,12 +92,12 @@ export class CompanyService {
   }
 
   GetCompanyDropdown() {
-    return this.http.get(environment.apiUrl + 'company/GetCompanyDropdown');
+    return this.http.get(this.apiUrl + 'GetCompanyDropdown');
   }
 
   addCompany(model: any) {
     return this.http
-      .post(environment.apiUrl + 'company/add-company', model)
+      .post(this.apiUrl + 'add-company', model)
       .pipe(
         map((res) => {
           console.log(res);
@@ -109,7 +111,7 @@ export class CompanyService {
     //console.log(id)
     //return;
     return this.http
-      .put(environment.apiUrl + 'company/update-company', data)
+      .put(this.apiUrl + 'update-company', data)
       .pipe(
         map((res) => {
           //console.log(res)
@@ -121,7 +123,7 @@ export class CompanyService {
 
   deleteCompany(id: number) {
     return this.http
-      .get(environment.apiUrl + 'company/DeleteCompany?id=' + id)
+      .get(this.apiUrl + 'DeleteCompany?id=' + id)
       .pipe(
         map((res) => {
           //console.log(res)

@@ -20,13 +20,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CountryService {
+  apiUrl = environment.apiUrl + 'country/';
+  
   constructor(
     private http: HttpClient,
     private store: Store<RootReducerState>
   ) {}
 
   getAllCountriesApi() {
-    return this.http.get(environment.apiUrl + 'country/getAllCountries');
+    return this.http.get(this.apiUrl + 'getAllCountries');
   }
 
   getAllCountries(): [Observable<boolean>, Observable<any>] {
@@ -48,12 +50,12 @@ export class CountryService {
   }
 
   getCountries() {
-    return this.http.get(environment.apiUrl + 'country/GetCountryDropdown');
+    return this.http.get(this.apiUrl + 'GetCountryDropdown');
   }
 
   addCountry(model: any) {
     return this.http
-      .post(environment.apiUrl + 'country/add-country', model)
+      .post(this.apiUrl + 'add-country', model)
       .pipe(
         map((res: any) => {
           this.store.dispatch(new CountryAddAction({ data: res.data }));
@@ -64,7 +66,7 @@ export class CountryService {
 
   updateCountry(id:number, model: any) {
     return this.http
-      .put(environment.apiUrl + 'country/update-country', model)
+      .put(this.apiUrl + 'update-country', model)
       .pipe(
         map((res: any) => {
           this.store.dispatch(new CountryUpdateAction({ id, data: res.data }));

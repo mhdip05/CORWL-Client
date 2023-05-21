@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class EmployeeService {
+  apiUrl = environment.apiUrl + 'employee/'
   constructor(
     private http: HttpClient,
     private paginationServices: PaginationService,
@@ -16,19 +17,19 @@ export class EmployeeService {
   ) {}
 
   getEmployeeDropdown = () => {
-    return this.http.get(environment.apiUrl + 'employee/GetEmployeeDropdown');
+    return this.http.get(this.apiUrl + 'GetEmployeeDropdown');
   };
 
   saveEmployeeBasicInfo = (model: any) => {
     return this.http.post(
-      environment.apiUrl + 'employee/SaveEmployeeBasicInfo',
+      this.apiUrl + 'SaveEmployeeBasicInfo',
       model
     );
   };
 
   getEmployeeBasicInfo = (employeeId: number) => {
     return this.http
-      .get(environment.apiUrl + 'employee/GetEmployeeBasicInfo/' + employeeId)
+      .get(this.apiUrl + 'GetEmployeeBasicInfo/' + employeeId)
       .pipe(
         map((res: any) => {
           //console.log(res)
@@ -53,18 +54,18 @@ export class EmployeeService {
     );
 
     return this.paginationServices.getPaginatedResult<any>(
-      environment.apiUrl + 'employee/GetAllEmployee',
+      this.apiUrl + 'GetAllEmployee',
       params
     );
   };
 
   saveEmployeeDocumentInfo = (model: any) => {
-    return this.http.post(environment.apiUrl + 'employee/SaveDocument', model);
+    return this.http.post(this.apiUrl + 'SaveDocument', model);
   };
 
   updateEmployeeBasicInfo = (model: any) => {
     return this.http
-      .put(environment.apiUrl + 'employee/UpdateEmployeeBasicInfo', model)
+      .put(this.apiUrl + 'UpdateEmployeeBasicInfo', model)
       .pipe(
         map((res: any) => {
           //console.log(res)         
@@ -82,14 +83,14 @@ export class EmployeeService {
 
   saveEmployeeJobDetails = (model: any) => {
     return this.http.post(
-      environment.apiUrl + 'employee/SaveEmployeeJobDetails',
+      this.apiUrl + 'SaveEmployeeJobDetails',
       model
     );
   };
 
   getEmployeeJobDetails = (employeeId: number) => {
     return this.http
-      .get(environment.apiUrl + 'employee/GetEmployeeJobDetails/' + employeeId)
+      .get(this.apiUrl + 'GetEmployeeJobDetails/' + employeeId)
       .pipe(
         map((res: any) => {
           //console.log(res)
@@ -106,27 +107,27 @@ export class EmployeeService {
 
   updateEmployeeJobDetails = (model: any) => {
     return this.http.put(
-      environment.apiUrl + 'employee/UpdateEmployeeJobDetails',
+      this.apiUrl + 'UpdateEmployeeJobDetails',
       model
     );
   };
 
   getDocumentMasterInfoByEmployee = (employeeId: number) => {
     return this.http.get(
-      environment.apiUrl + 'employee/GetDocumentInfoByEmployee/' + employeeId
+      this.apiUrl + 'GetDocumentInfoByEmployee/' + employeeId
     );
   };
 
   updateDocumentMaster = (model: any) => {
     return this.http.put(
-      environment.apiUrl + 'employee/UpdateDocumentMaster/',
+      this.apiUrl + 'UpdateDocumentMaster/',
       model
     );
   };
 
   deleteEmpoloyeeDoc = (fileId: number, empId: number) => {
     return this.http.delete(
-      environment.apiUrl + 'employee/DeleteEmployeeDoc/' + fileId + '/' + empId
+      this.apiUrl + 'DeleteEmployeeDoc/' + fileId + '/' + empId
     );
   };
 }
