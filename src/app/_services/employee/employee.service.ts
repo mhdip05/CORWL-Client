@@ -32,6 +32,7 @@ export class EmployeeService {
       .pipe(
         map((res: any) => {
           //console.log(res)
+          if (res == null) return res.data;
           if (res.status == false) {
             this.router.navigateByUrl('/404');
             return;
@@ -66,7 +67,7 @@ export class EmployeeService {
       .put(environment.apiUrl + 'employee/UpdateEmployeeBasicInfo', model)
       .pipe(
         map((res: any) => {
-          //console.log(res)
+          //console.log(res)         
           const dateObj = {
             dob: new Date(res.data.dob),
           };
@@ -92,6 +93,7 @@ export class EmployeeService {
       .pipe(
         map((res: any) => {
           //console.log(res)
+          if (res == null) return res;
           const dateObj = {
             confirmationDate: new Date(res.confirmationDate),
             joiningDate: new Date(res.joiningDate),
