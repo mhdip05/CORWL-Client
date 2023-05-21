@@ -49,13 +49,13 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {}
 
-
   getDocumentInfo() {
     this.employeeService
       .getDocumentMasterInfoByEmployee(this.customModel.model.employeeId)
       .subscribe({
         next: (v: any) => {
           //console.log(v);
+          if (v == null) return;
           this.customModel.model = v.docmasterData;
           this.files = v.docDetailsData;
           this.files.length > 0
