@@ -79,7 +79,7 @@ export class JobDetailsComponent implements OnInit {
   }
 
   updateJobDetails() {
-    console.log(this.customModel.model);
+    //console.log(this.customModel.model);
     this.customModel.disabled = true;
     this.employeeService
       .updateEmployeeJobDetails(this.customModel.model)

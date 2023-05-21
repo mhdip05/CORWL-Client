@@ -72,7 +72,7 @@ export class BranchComponent implements OnInit {
   }
 
   pullData(){
-    console.log("hello world")
+    //console.log("hello world")
     this.getAllBranches();
   }
 }
