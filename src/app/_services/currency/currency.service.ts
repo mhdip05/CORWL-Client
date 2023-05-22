@@ -41,7 +41,7 @@ export class CurrencyService {
     return this.httpClient
       .get(environment.apiUrl + 'currency/GetAllCurrencies')
       .pipe(
-        map((res: any, index) => {
+        map((res: any, index) => {         
           return res;
         })
       );
@@ -53,11 +53,12 @@ export class CurrencyService {
     const currenciesData$ = this.store.select(getCurrencies);
 
     combineLatest([loaded$, loading$])
-      .pipe(take(1))
+      //.pipe(take(1))
       .subscribe((data) => {
         if (!data[0] && !data[1]) {
           this.store.dispatch(new CurrencyListRequestAction());
           this.getAllCurrenciesApi().subscribe((res) => {
+            //console.log(res)
             this.store.dispatch(new CurrencyListSuccessAction({ data: res }));
           });
         }

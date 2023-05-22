@@ -60,7 +60,7 @@ export class CountryComponent implements OnInit {
         format: 'dd/MM/yyyy',
         style: { 'margin-left': '5px' },
       },
-      { field: 'createdBy', header: 'Created By' },
+      { field: 'createdByName', header: 'Created By' },
     ];
   }
 
@@ -68,6 +68,7 @@ export class CountryComponent implements OnInit {
     var data = this.countryService.getAllCountries()[1];
     data.pipe(filter((res) => res.length > 0)).subscribe({
       next: (r: any) => {
+        //console.log(r)
         if (!this.customModel.isInsert) this.customModel.data = r;
         else this.customModel.data = this.utilService.lastInsertedData(r);
       },

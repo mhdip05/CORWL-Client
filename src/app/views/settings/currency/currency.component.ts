@@ -51,7 +51,7 @@ export class CurrencyComponent implements OnInit {
         format: 'dd/MM/yyyy',
         style: { 'margin-left': '5px' },
       },
-      { field: 'createdBy', header: 'Created By' },
+      { field: 'createdByName', header: 'Created By' },
     ];
   }
 
