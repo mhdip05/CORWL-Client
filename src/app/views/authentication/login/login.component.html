@@ -1,111 +1,89 @@
-<div 
-    class="bg-light min-vh-100 d-flex flex-row align-items-center"
+<div
+  class="min-vh-100 d-flex flex-row align-items-center"
+  style="background-image: url('assets/images/cloth-pattern.jpg')"
 >
-    <c-container style="background-color: bg-light">
-        <c-row class="justify-content-center">
-            <c-col
-                xl="5"
-                lg="5"
-                md="12"
-                sm="12"
-                xs="12"
-                class="mb-1"
+  <c-container style="background-color: bg-light; margin-bottom: 18%">
+    <c-row class="justify-content-center">
+      <c-col xl="5" lg="5" md="12" sm="12" xs="12" class="mb-1">
+        <c-card-group>
+          <c-card
+            class="p-4 auth-card"
+          >
+            <div
+              class="container d-flex align-items-center justify-content-center"
+              style="border-radius: 5%"
             >
-                <c-card-group>
-                    <c-card class="p-4">
-                        <div class="container d-flex align-items-center justify-content-center" style="border-radius: 5%">
-                            <img
-                              src="../../../../assets/images/CORWL.png"
-                              alt="..."
-                              class="img-thumbnail"
-                              style="background: black; width: 58%; height: 85px; border-radius:50px"
-    
-                            />
-                          </div>
-                        <hr/>
-                        <c-card-body>
-                            <form
-                                #loginForm="ngForm"
-                                cForm
-                                autocomplete="off"
-                                (ngSubmit)="login()"
-                                ngNativeValidate
-                            >
-                                <h2>Login</h2>
-                                <p class="text-medium-emphasis">Sign In to your account</p>
-                                <c-input-group class="mb-3">
-                                    <span cInputGroupText>
-                                        <svg
-                                            cIcon
-                                            name="cilUser"
-                                        ></svg>
-                                    </span>
-                                    <input
-                                        class="form-control form-control-sm"
-                                        type="text"
-                                        placeholder="Username"
-                                        name="UserName"
-                                        [(ngModel)]="model.UserName"
-                                    >
-                                </c-input-group>
-                                <c-input-group class="mb-4">
-                                    <span cInputGroupText>
-                                        <svg
-                                            cIcon
-                                            name="cilLockLocked"
-                                        ></svg>
-                                    </span>
-                                    <input
-                                        class="form-control form-control-sm"
-                                        placeholder="Password"
-                                        type="password"
-                                        name="Password"
-                                        [(ngModel)]="model.Password"
-                                    >
-                                </c-input-group>
-                                <c-row>
-                                    <c-col
-                                        xl="6"
-                                        lg="12"
-                                        md="12"
-                                        sm="12"
-                                        xs="12"
-                                        class="mb-1"
-                                    >
-                                        <button
-                                            cButton
-                                            class="px-4 btn-block"
-                                            color="primary"
-                                            type="submit"
-                                            [disabled]="disabled"
-                                        >
-                                            Login
-                                        </button>
-                                    </c-col>
-                                    <c-col
-                                        xl="6"
-                                        lg="12"
-                                        md="12"
-                                        sm="12"
-                                        xs="12"
-                                    >
-                                        <button
-                                            cButton
-                                            class="px-3 btn"
-                                            color="dark"
-                                            routerLink="forgot-password"
-                                        >
-                                            Forgot password
-                                        </button>
-                                    </c-col>
-                                </c-row>
-                            </form>
-                        </c-card-body>
-                    </c-card>
-                </c-card-group>
-            </c-col>
-        </c-row>
-        <c-row class="justify-content-center mt-1">
+              <img
+                src="../../../../assets/images/CORWL.png"
+                alt="..."
+                class="img-thumbnail my-company-logo"
+              />
+            </div>
+            <hr />
+            <c-card-body>
+              <form
+                #loginForm="ngForm"
+                cForm
+                autocomplete="off"
+                (ngSubmit)="login()"
+                ngNativeValidate
+              >
+                <h2>Login</h2>
+                <p class="text-medium-emphasis">Sign In to your account</p>
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilUser"></svg>
+                  </span>
+                  <input
+                    class="form-control form-control-sm"
+                    type="text"
+                    placeholder="Username"
+                    name="UserName"
+                    [(ngModel)]="model.UserName"
+                  />
+                </c-input-group>
+                <c-input-group class="mb-4">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilLockLocked"></svg>
+                  </span>
+                  <input
+                    class="form-control form-control-sm"
+                    placeholder="Password"
+                    type="password"
+                    name="Password"
+                    [(ngModel)]="model.Password"
+                  />
+                </c-input-group>
+                <c-row>
+                  <c-col xl="6" lg="12" md="12" sm="12" xs="12" class="mb-1">
+                    <button
+                      cButton
+                      class="px-4 btn-block"
+                      color="dark"
+                      type="submit"
+                      [disabled]="disabled"
+                    >
+                      Login
+                    </button>
+                  </c-col>
+                  <c-col xl="6" lg="12" md="12" sm="12" xs="12">
+                    <button
+                      cButton
+                      class="px-3 btn"
+                      color="warning"
+                      routerLink="forgot-password"
+                    >
+                      Forgot Password
+                    </button>
+                  </c-col>
+                </c-row>
+              </form>
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+    <!-- <c-row class="justify-content-center mt-1">
             <c-col
                 xl="5"
                 lg="5"
@@ -130,7 +108,6 @@
                     </c-card>
                 </c-card-group>
             </c-col>
-        </c-row>
-    </c-container>
-
-
+        </c-row> -->
+  </c-container>
+</div>

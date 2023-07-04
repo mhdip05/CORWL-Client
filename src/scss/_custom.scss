@@ -214,6 +214,19 @@ label {
   cursor: pointer;
 }
 
+.auth-card {
+  background: #e0e0e09c;
+  border-radius: 9%;
+  border: 6px solid #74268930;
+}
+
+.my-company-logo {
+  background: black;
+  width: 58%;
+  height: 85px;
+  border-radius: 50px;
+}
+
 @media screen and (max-width: 992px) {
   .utilityBtn {
     margin-top: 11px;
