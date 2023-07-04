@@ -14,7 +14,7 @@ import { PrimeNGConfig } from 'primeng/api';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  title = 'NMS';
+  title = 'Concord Raiment Wear Ltd.';
 
   constructor(
     private router: Router,

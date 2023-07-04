@@ -33,3 +33,5 @@ export class ChangeEmailComponent implements OnInit {
       });
   }
 }
+
+
