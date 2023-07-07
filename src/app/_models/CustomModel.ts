@@ -142,6 +142,8 @@ export class CustomModel {
     dropdownName?: any
   ): void {
     
+    console.log(this.validationModel)
+    
     let inputValue = '';
 
     if (this.isValidDate(new Date(event)) == false) {

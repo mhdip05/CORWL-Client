@@ -28,6 +28,7 @@ export class CityDropdownComponent implements OnInit {
   @Input() countryId = 0;
   @Input() selectedCity: any;
   @Output() changeCity = new EventEmitter();
+  @Output() onBlur = new EventEmitter();
 
   constructor(private cityServices: CityService) {}
 
@@ -47,6 +48,10 @@ export class CityDropdownComponent implements OnInit {
 
     this.showClear = true;
     this.changeCity.emit(this.selectedCity);
+  }
+
+  blur(event:any){
+    this.onBlur.emit(event)
   }
 
   onShow(event: any) {

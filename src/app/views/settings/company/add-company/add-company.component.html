@@ -34,6 +34,7 @@
                 name="companyName"
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.companyName"
+                (blur)="customModel.removeValidationMsg($event, 'CompanyName')"
               />
             </span>
             <app-error-validation
@@ -51,6 +52,7 @@
                 name="companyCode"
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.companyCode"
+                (blur)="customModel.removeValidationMsg($event, 'CompanyCode')"
               />
             </span>
             <app-error-validation
@@ -78,6 +80,7 @@
                     : undefined
                 "
                 (changeCountry)="customModel.changeCountry($event)"
+               
               >
               </app-countryDropdown>
             </span>
@@ -86,7 +89,6 @@
           <div [class]="designModel.responsiveClass">
             <label for="city">City</label>
             <span class="p-float-label">
-              
               <app-cityDropdown
                 [cities]="[
                   {
@@ -106,6 +108,7 @@
                     : undefined
                 "
                 (changeCity)="customModel.changeDropdown($event)"
+                (onBlur)="customModel.removeValidationMsg($event, 'CityId', true, 'cityId')"
               >
               </app-cityDropdown>
             </span>
@@ -129,6 +132,7 @@
                 name="mobileNo"
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.mobileNo"
+                
               />
             </span>
             <app-error-validation

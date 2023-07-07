@@ -12,6 +12,7 @@
   optionLabel="cityName"
   (onChange)="onCityChange()"
   (onShow)="onShow($event)"
+  (onBlur)="blur($event)"
 >
   <ng-template pTemplate="selectedItem">
     <div *ngIf="selectedCity">
