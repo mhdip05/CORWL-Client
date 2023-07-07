@@ -17,6 +17,7 @@ import {
   getCurrencyLoading,
   RootReducerState,
 } from 'src/app/_redux/reducer';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,8 @@ import {
 export class CurrencyService {
   constructor(
     private httpClient: HttpClient,
-    private store: Store<RootReducerState>
+    private store: Store<RootReducerState>,
+    private authService: AuthService 
   ) {}
 
   getCurrencies() {
@@ -71,6 +73,7 @@ export class CurrencyService {
       .put(environment.apiUrl + 'currency/updatecurrency', model)
       .pipe(
         map((res: any) => {
+          res.createdByName = this.authService.authUserdata.userName.toUpperCase()
           this.store.dispatch(new CurrencyUpdateAction({ id, data: res }));
           //console.log(res);
         })
@@ -81,8 +84,9 @@ export class CurrencyService {
     return this.httpClient
       .post(environment.apiUrl + 'currency/setcurrency', model)
       .pipe(
-        map((res) => {
+        map((res:any) => {
           //console.log(res);
+          res.createdByName = this.authService.authUserdata.userName.toUpperCase()
           this.store.dispatch(new CurrencyAddAction({ data: res }));
           return res;
         })
@@ -94,6 +98,7 @@ export class CurrencyService {
       .delete(environment.apiUrl + 'currency/DeleteCurrency?id=' + id)
       .pipe(
         map((res) => {
+
           this.store.dispatch(new CurrencyDeleteAction({ id }));
           return res;
         })

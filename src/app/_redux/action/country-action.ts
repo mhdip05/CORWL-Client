@@ -12,12 +12,14 @@ export class CountryListRequestAction {
 
 export class CountryListSuccessAction {
   readonly type = COUNTRY_LIST_SUCCESS;
-  constructor(public payload?: { data: [] }) {}
+  constructor(public payload?: { data: [] }) {
+  }
 }
 
 export class CountryAddAction {
   readonly type = COUNTRY_ADD;
-  constructor(public payload?: { data: any }) {}
+  constructor(public payload?: { data: any }) {
+  }
 }
 
 export class CountryUpdateAction {

@@ -90,6 +90,7 @@ export function CountryReduer(
       const entity = { [countryData.id]: countryData };
       const updateEntities = { ...state.entities, ...entity };
       return { ...state, ...{ entities: updateEntities } };
+      
     }
     default: {
       return state;

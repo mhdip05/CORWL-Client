@@ -15,6 +15,7 @@ import {
   RootReducerState,
 } from 'src/app/_redux/reducer';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,8 @@ export class CountryService {
   
   constructor(
     private http: HttpClient,
-    private store: Store<RootReducerState>
+    private store: Store<RootReducerState>,
+    private authService: AuthService 
   ) {}
 
   getAllCountriesApi() {
@@ -58,6 +60,7 @@ export class CountryService {
       .post(this.apiUrl + 'add-country', model)
       .pipe(
         map((res: any) => {
+          res.data.createdByName = this.authService.authUserdata.userName.toUpperCase()
           this.store.dispatch(new CountryAddAction({ data: res.data }));
           return res;
         })
@@ -69,6 +72,7 @@ export class CountryService {
       .put(this.apiUrl + 'update-country', model)
       .pipe(
         map((res: any) => {
+          res.data.createdByName = this.authService.authUserdata.userName.toUpperCase()
           this.store.dispatch(new CountryUpdateAction({ id, data: res.data }));
           return res;
         })
