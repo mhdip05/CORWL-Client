@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate {
     const userRole = localStorage.getItem('user_role');
 
     if (this.authService.authUserdata != null) {
-      if (userRole == null) {
+      if (userRole == null) { 
         this.router.navigateByUrl('/choose-role');
         return false;
       }

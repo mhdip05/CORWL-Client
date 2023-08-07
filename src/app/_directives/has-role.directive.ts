@@ -27,13 +27,13 @@ export class HasRoleDirective implements OnInit {
       this.user = user;
     });
     //console.log(this.user);
-  }
+  } 
 
   ngOnInit(): void {
     this.hasRole();
   }
 
-  hasRole() {
+  hasRole() { 
     if (!this.user?.roles || this.user == null) {
       this.viewContainerRef.clear();
       return;

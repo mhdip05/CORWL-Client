@@ -18,6 +18,7 @@ import {
   RootReducerState,
 } from 'src/app/_redux/reducer';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,8 @@ export class CompanyService {
   constructor(
     private http: HttpClient,
     private store: Store<RootReducerState>,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   private getAllCompaniesApi() {
@@ -99,8 +101,9 @@ export class CompanyService {
     return this.http
       .post(this.apiUrl + 'add-company', model)
       .pipe(
-        map((res) => {
-          console.log(res);
+        map((res:any) => {
+          //console.log(res);
+          res.createdByName = this.authService.authUserdata.userName.toUpperCase();
           this.store.dispatch(new CompanyAddAction({ data: res }));
           return res;
         })
@@ -113,8 +116,9 @@ export class CompanyService {
     return this.http
       .put(this.apiUrl + 'update-company', data)
       .pipe(
-        map((res) => {
+        map((res:any) => {
           //console.log(res)
+          res.createdByName = this.authService.authUserdata.userName.toUpperCase();
           this.store.dispatch(new CompanyUpdateAction({ id, data: res }));
           return res;
         })

@@ -7,9 +7,11 @@
   placeholder = "Select company"
   [autoDisplayFirst]="false"
   [filter]="true"
+  [readonly]="readonly"
   (onShow)="onShow()"
   (onChange)="onChange()"
   (onBlur)="blur($event)"
+  
 >
   <ng-template pTemplate="selectedItem">
     <div *ngIf="selectedCompany">

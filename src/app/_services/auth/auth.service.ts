@@ -5,19 +5,20 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { ReplaySubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { PresenceService } from '../signalr/presence/presence.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  item =
+    '0F340967EE56C835881A40DA48CE1D472C3DD368217A83DCB5074EB97BB367FBB3CB008FC9F7C86D075392F3D44DC97008BD04F328B36DED48DEC57230581E91';
 
-  item = '0F340967EE56C835881A40DA48CE1D472C3DD368217A83DCB5074EB97BB367FBB3CB008FC9F7C86D075392F3D44DC97008BD04F328B36DED48DEC57230581E91'
-
-  private currentUserSource = new ReplaySubject<IUser | null>(1)
+  private currentUserSource = new ReplaySubject<IUser | null>(1);
   currentUser$ = this.currentUserSource.asObservable();
-  authUserdata = JSON.parse(localStorage.getItem(this.item)!) || null
+  authUserdata = JSON.parse(localStorage.getItem(this.item)!) || null;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private presence:PresenceService) {}
 
   login(model: any) {
     return this.http.post(environment.apiUrl + 'auth/login', model).pipe(
@@ -25,7 +26,8 @@ export class AuthService {
         //console.log(response)
         const user = response;
         if (user) {
-          this.setCurrentUser(user)
+          this.setCurrentUser(user);
+          this.presence.CreateHubConnect(user)
         }
       })
     );
@@ -33,25 +35,28 @@ export class AuthService {
 
   setCurrentUser(user: IUser) {
     if (user) {
-      user.roles = []
+      user.roles = [];
       const userRoles = this.getDecodedToken(user.token).role;
-      Array.isArray(userRoles) ? user.roles = userRoles : user.roles.push(userRoles);
-      localStorage.setItem(this.item, JSON.stringify(user))
-      this.currentUserSource.next(user)
-      this.authUserdata = JSON.parse(localStorage.getItem(this.item)!)
+      Array.isArray(userRoles)
+        ? (user.roles = userRoles)
+        : user.roles.push(userRoles);
+      localStorage.setItem(this.item, JSON.stringify(user));
+      this.currentUserSource.next(user);
+      this.authUserdata = JSON.parse(localStorage.getItem(this.item)!);
+      this.presence.CreateHubConnect(user)
     }
   }
 
   logout() {
     localStorage.removeItem(this.item);
-    localStorage.removeItem('user_role')
-    this.currentUserSource.next(null)
+    localStorage.removeItem('user_role');
+    this.currentUserSource.next(null);
     this.authUserdata = null;
     location.replace('/');
+    this.presence.stopHubConnection();
   }
 
   getDecodedToken(token: string) {
-    return JSON.parse(atob(token.split('.')[1]))
+    return JSON.parse(atob(token.split('.')[1]));
   }
-
 }

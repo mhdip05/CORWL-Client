@@ -27,7 +27,5 @@ export class CompanyResolver implements Resolve<any> {
       ) 
 
      return of(cd)
-
-     
   }
 }

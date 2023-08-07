@@ -32,7 +32,12 @@ export class JobDetailsComponent implements OnInit {
   ngOnInit(): void {
     if(this.activatedRoute.snapshot.params['id'] !== undefined){
       this.customModel.editMode = true;
+      var companyInfo = {
+        companyName:'CONCORD RAIMENT WEAR LTD',
+        companyId: 2
+      }
       this.customModel.model = {
+        ...companyInfo,
         ...this.customModel.model,
         ...{ employeeId: this.activatedRoute.snapshot.params['id'] },
       };

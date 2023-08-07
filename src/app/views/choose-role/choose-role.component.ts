@@ -18,7 +18,8 @@ export class ChooseRoleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.currentUser$.pipe(take(1)).subscribe({
+    this.authService.currentUser$
+    .pipe(take(1)).subscribe({
       next: (user: any) => {
         //console.log(user.roles)
         this.roles = user?.roles;
@@ -31,7 +32,7 @@ export class ChooseRoleComponent implements OnInit {
     location.replace('/dashboard');
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
 }

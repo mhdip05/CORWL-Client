@@ -17,6 +17,7 @@ export class CompanyDropdownComponent implements OnInit {
   @Input() disabled = false;
   @Input() selectedCompany: any;
   @Input() applyDefaultText = false;
+  @Input() readonly = false;
   @Output() changeCompany = new EventEmitter();
   @Output() onBlur = new EventEmitter();
 

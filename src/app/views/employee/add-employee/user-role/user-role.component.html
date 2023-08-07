@@ -55,10 +55,9 @@
 >
 </app-utility-box>
 <app-confirmation-dialog
- [display]="customModel.displayDialog"
- [contentDetails]="'Are you sure to remove the role'"
- (accept)="acceptRemoveMapping()"
- (hideDialog)="customModel.displayDialog = false"
+  [display]="customModel.displayDialog"
+  [contentDetails]="'Are you sure to remove the role'"
+  (accept)="acceptRemoveMapping()"
+  (hideDialog)="customModel.displayDialog = false"
 >
-
 </app-confirmation-dialog>

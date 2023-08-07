@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { AuthService } from './_services/auth/auth.service';
 import { IUser } from './_interface/IUser';
 import { PrimeNGConfig } from 'primeng/api';
+import { PresenceService } from './_services/signalr/presence/presence.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit {
     private iconSetService: IconSetService,
 
     private authService: AuthService,
-    private primengConfig: PrimeNGConfig
+    private primengConfig: PrimeNGConfig,
+    private presence: PresenceService
   ) {
     titleService.setTitle(this.title);
     // iconSet singleton
@@ -47,6 +49,7 @@ export class AppComponent implements OnInit {
     );
     if (user) {
       this.authService.setCurrentUser(user);
+      //this.presence.CreateHubConnect(user);
     }
 
     //console.log(user)

@@ -14,7 +14,7 @@ import { ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
 
 @Component({
-  selector: 'app-default-grid',
+  selector: 'app-default-grid', 
   templateUrl: './default-grid.component.html',
   styleUrls: ['./default-grid.component.scss'],
 })

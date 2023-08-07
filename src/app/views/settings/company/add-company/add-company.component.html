@@ -132,7 +132,8 @@
                 name="mobileNo"
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.mobileNo"
-                
+                (blur)="customModel.removeValidationMsg($event, 'MobileNo')"
+
               />
             </span>
             <app-error-validation
@@ -150,6 +151,7 @@
                 name="phone"
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.phoneNo"
+               
               />
             </span>
             <app-error-validation
@@ -167,6 +169,7 @@
                 name="email"
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.email"
+                (blur)="customModel.removeValidationMsg($event, 'Email')"
               />
             </span>
             <app-error-validation
@@ -206,6 +209,7 @@
                 name="zipCode"
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.zipCode"
+                (blur)="customModel.removeValidationMsg($event, 'ZipCode')"
               />
             </span>
             <app-error-validation
@@ -298,6 +302,7 @@
                 name="address"
                 [class]="designModel.inputClass"
                 [(ngModel)]="customModel.model.address"
+                (blur)="customModel.removeValidationMsg($event, 'Address')"
               >
               </textarea>
             </span>
