@@ -16,7 +16,7 @@ import { AuthService } from '../_services/auth/auth.service';
 export class HasRoleDirective implements OnInit {
   @Input() appHasRole!: string[];
   user!: IUser | null;
-
+  
   constructor(
     private viewContainerRef: ViewContainerRef,
     private templateRef: TemplateRef<any>,
@@ -27,13 +27,13 @@ export class HasRoleDirective implements OnInit {
       this.user = user;
     });
     //console.log(this.user);
-  } 
+  }
 
   ngOnInit(): void {
     this.hasRole();
   }
 
-  hasRole() { 
+  hasRole() {
     if (!this.user?.roles || this.user == null) {
       this.viewContainerRef.clear();
       return;
@@ -43,7 +43,7 @@ export class HasRoleDirective implements OnInit {
       this.viewContainerRef.createEmbeddedView(this.templateRef);
     } else {
       this.viewContainerRef.clear();
-      this.router.navigateByUrl('/not-found')
+      this.router.navigateByUrl('/not-found');
     }
   }
 }

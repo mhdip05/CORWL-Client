@@ -109,24 +109,20 @@
       </tr>
     </ng-template>
 
-  
     <ng-template pTemplate="body" let-rowIndex="rowIndex" let-rowData>
       <span>
         <app-skeleteon-loader
-          [isLoaderShow]="true"          
+          [isLoaderShow]="true"
           *ngIf="gridLoad == true"
-          
         ></app-skeleteon-loader>
-       </span>
-      <tr [pSelectableRow]="rowIndex + 1" *ngIf="gridLoad==false">
+      </span>
+      <tr [pSelectableRow]="rowIndex + 1" *ngIf="gridLoad == false">
         <td
           *ngFor="let col of cols"
           (click)="overLay(op, $event)"
           [style]="shrinkGridData()"
         >
-         
           <span [ngStyle]="col.style">
-            
             {{
               col.type == "date"
                 ? getRowData(rowData[col.field]) !== null
@@ -149,7 +145,7 @@
           </p-overlayPanel>
         </td>
 
-        <td class="action" *ngIf="hasAction && gridLoad==false">
+        <td class="action" *ngIf="hasAction && gridLoad == false">
           <span [ngStyle]="actionStyle">
             <button
               pButton
