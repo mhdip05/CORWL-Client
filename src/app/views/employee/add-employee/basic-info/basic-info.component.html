@@ -1,0 +1,251 @@
+<form autocomplete="off">
+  <div class="row">
+    <div class="custom-group">
+      <p class="custom-group-title">General Info</p>
+    </div>
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="firstName">First Name</label>
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="firstName"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.firstName"
+          (blur)="customModel.removeValidationMsg($event, 'FirstName')"
+        />
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.FirstName"
+      ></app-error-validation>
+    </div>
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="lastName">Last Name</label>
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="lastName"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.lastName"
+          (blur)="customModel.removeValidationMsg($event, 'LastName')"
+        />
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.LastName"
+      ></app-error-validation>
+    </div>
+
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="Dob">Date of Birth </label>
+      <span class="p-float-label">
+        <p-calendar
+          [(ngModel)]="customModel.model.dob"
+          name="dob"
+          [showIcon]="true"
+          dateFormat="dd/mm/yy"
+          [maxDate]="maxDate"
+          (onBlur)="customModel.removeValidationMsg($event, 'Dob')"
+        ></p-calendar>
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.Dob"
+      ></app-error-validation>
+    </div>
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="gender">Gender</label>
+      <span class="p-float-label">
+        <p-dropdown
+          [options]="employeeModel.gender"
+          [(ngModel)]="customModel.model.gender"
+          placeholder="Select Gender"
+          optionLabel="gender"
+          optionValue="gender"
+          [name]="'gender'"
+          [showClear]="true"
+          (onBlur)="customModel.removeValidationMsg($event, 'Gender', true, 'gender')"
+        ></p-dropdown>
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.Gender"
+      ></app-error-validation>
+    </div>
+
+    <div class="custom-group-clear" style="margin-top: 12px"></div>
+
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="bloodGroup">Blood Group</label>
+      <span class="p-float-label">
+        <p-dropdown
+          [options]="employeeModel.bloodGroup"
+          [(ngModel)]="customModel.model.bloodGroup"
+          optionLabel="bloodGroup"
+          optionValue="bloodGroup"
+          [name]="'bloodGroup'"
+          placeholder="Select Blood Group"
+          [showClear]="true"
+        ></p-dropdown>
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.BloodGroup"
+      ></app-error-validation>
+    </div>
+
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="maritalStatus">Marital Status</label>
+      <span class="p-float-label">
+        <p-dropdown
+          [options]="employeeModel.maritalStatus"
+          [(ngModel)]="customModel.model.maritalStatus"
+          optionLabel="maritalStatus"
+          optionValue="maritalStatus"
+          placeholder="Select Marital Status"
+          [name]="'maritalStatus'"
+          [autoDisplayFirst]="false"
+          [showClear]="true"
+          (onBlur)="
+            customModel.removeValidationMsg(
+              $event,
+              'MaritalStatus',
+              true,
+              'maritalStatus'
+            )
+          "
+        ></p-dropdown>
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.MaritalStatus"
+      ></app-error-validation>
+    </div>
+
+    <div class="custom-group-clear" style="margin-top: 5px"></div>
+    <div class="custom-group" style="margin-top: 8px">
+      <p class="custom-group-title">Identification</p>
+    </div>
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="companyName">Company</label>
+      <span class="p-float-label">
+        <app-company-dropdown
+          [companies]="[
+            {
+              companyName: customModel.model.companyName,
+              companyId: customModel.model.companyId
+            }
+          ]"
+          [selectedCompany]="
+            customModel.editMode
+              ? {
+                  companyName: customModel.model.companyName,
+                  companyId: customModel.model.companyId
+                }
+              : undefined
+          "
+          (changeCompany)="customModel.changeDropdown($event)"
+          (onBlur)="
+            customModel.removeValidationMsg($event, 'CompanyId', true, 'companyId')
+          "
+        >
+        </app-company-dropdown>
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.CompanyId"
+      ></app-error-validation>
+    </div>
+
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label>Id Type</label>
+      <span class="p-float-label">
+        <p-dropdown
+          [options]="employeeModel.idType"
+          [(ngModel)]="customModel.model.idType"
+          optionLabel="idType"
+          optionValue="idType"
+          [name]="'idType'"
+          placeholder="Select Id Type"
+          [showClear]="true"
+          (onBlur)="customModel.removeValidationMsg($event, 'IdType', true, 'idType')"
+        ></p-dropdown>
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.IdType"
+      ></app-error-validation>
+    </div>
+    <div [class]="'col-xl-3 col-lg-6 col-md-12 col-sm-12 col-xs-12'">
+      <label for="idNo">ID No</label>
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="idNo"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.idNo"
+          (blur)="customModel.removeValidationMsg($event, 'IdNo')"
+        />
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.IdNo"
+      ></app-error-validation>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <div class="d-grid">
+        <button
+          *ngIf="isDataSaved == false"
+          pButton
+          pRipple
+          [label]="customModel.editMode ? 'Edit' : 'Submit'"
+          class="p-button"
+          [disabled]="customModel.disabled"
+          (click)="
+            customModel.isAmend
+              ? editEmployeeBasicInfo()
+              : saveEmployeeBasicInfo()
+          "
+        ></button>
+      </div>
+    </div>
+    <div
+      class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12"
+      *ngIf="isDataSaved"
+    >
+      <div class="col d-flex justify-content-center">
+        <span class="p-buttonset">
+          <button
+            pButton
+            pRipple
+            label="Add More Details"
+            class="p-button-success"
+            (click)="addMoreDetails()"
+          ></button>
+          <button
+            pButton
+            pRipple
+            label="Cancel"
+            class="p-button-warning"
+            (click)="cancel()"
+          ></button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <app-utility-box
+    (reset)="
+      this.customModel.editMode ? customModel.reset(true) : customModel.resetAll()
+    "
+    (validationReset)="customModel.validationReset()"
+    [url]="'employee/employee-list'"
+  >
+  </app-utility-box>
+</form>

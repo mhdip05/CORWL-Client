@@ -1,0 +1,25 @@
+<p-dropdown
+  [options]="designations"
+  [(ngModel)]="selectedDesignation"
+  [showClear]="showClear"
+  [emptyMessage]="emptyMessage"
+  [filter]="true"
+  optionLabel="designationName"
+  placeholder="Select designation"
+  (onShow)="onShow()"
+  (onChange)="onChange()"
+  (onBlur)="onBlurEvent($event)"
+>
+  <ng-template pTemplate="selectedItem">
+    <div *ngIf="selectedDesignation">
+      <div class="dropdown-selected-item">
+        {{ selectedDesignation.designationName }}
+      </div>
+    </div>
+  </ng-template>
+  <ng-template let-designations pTemplate="item">
+    <div class="dropdown-text">
+      <div id="designation-dropdown">{{ designations.designationName }}</div>
+    </div>
+  </ng-template>
+</p-dropdown>

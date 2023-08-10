@@ -1,0 +1,28 @@
+<p-dropdown
+  #cityDropdown
+  [options]="cities"
+  [(ngModel)]="selectedCity"
+  [showClear]="showClear"
+  [emptyMessage]="emptyMessage"
+  [disabled]="disabledCity"
+  [placeholder]="'Select City'"
+  [autoDisplayFirst]="false"
+  [filter]="true"
+  
+  optionLabel="cityName"
+  (onChange)="onCityChange()"
+  (onShow)="onShow($event)"
+  (onBlur)="blur($event)"
+>
+  <ng-template pTemplate="selectedItem">
+    <div *ngIf="selectedCity">
+      <div class="dropdown-selected-item">{{ selectedCity.cityName }}</div>
+    </div>
+  </ng-template>
+
+  <ng-template let-cities pTemplate="item">
+    <div class="dropdown-text">
+      <div id="city-drpdown">{{ cities.cityName }}</div>
+    </div>
+  </ng-template>
+</p-dropdown>

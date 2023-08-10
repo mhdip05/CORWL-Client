@@ -1,0 +1,187 @@
+<form autocomplete="off">
+  <div class="custom-group" style="margin-top: 8px">
+    <p class="custom-group-title">Generl Info</p>
+  </div>
+  <div class="row">
+    <div [class]="designModel.responsiveClass">
+      <label for="username">Username</label>
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="userName"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.username"
+          (blur)="customModel.removeValidationMsg($event, 'Username')"
+        />
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.Username"
+      ></app-error-validation>
+    </div>
+    <div [class]="designModel.responsiveClass" *ngIf="isUpdate == false">
+      <label for="password">Password</label>
+      <span class="p-float-label">
+        <p-password
+          [(ngModel)]="customModel.model.password"
+          [toggleMask]="true"
+          name="password"
+          (onBlur)="customModel.removeValidationMsg($event, 'Password')"
+        ></p-password>
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.Password"
+      ></app-error-validation>
+    </div>
+    <div [class]="designModel.responsiveClass" *ngIf="isUpdate == false">
+      <label for="confirmPassword">Confirm Password</label>
+      <span class="p-float-label">
+        <p-password
+          [(ngModel)]="customModel.model.confirmPassword"
+          [toggleMask]="true"
+          name="confirmPassword"
+          [feedback]="false"
+          (onBlur)="customModel.removeValidationMsg($event, 'ConfirmPassword')"
+        ></p-password>
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.ConfirmPassword"
+      ></app-error-validation>
+    </div>
+    <div [class]="designModel.responsiveClass">
+      <label for="email">Email</label>
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="email"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.email"
+          (blur)="customModel.removeValidationMsg($event, 'Email')"
+        />
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.Email"
+      ></app-error-validation>
+    </div>
+
+    <!-- <div class="custom-group-clear"></div> -->
+
+    <div [class]="designModel.responsiveClass">
+      <label for="phoneNo">Primary Phone No</label>
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          name="phoneNumber"
+          [class]="'form-control form-control-sm'"
+          [(ngModel)]="customModel.model.phoneNumber"
+          (blur)="customModel.removeValidationMsg($event, 'PhoneNumber')"
+        />
+      </span>
+      <app-error-validation
+        [hasValidation]="customModel.hasValidation"
+        [validationModel]="customModel.validationModel.PhoneNumber"
+      ></app-error-validation>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <div class="d-grid">
+        <button
+          pButton
+          pRipple
+          label="Submit"
+          class="p-button"
+          (click)="isUpdate ? updateUserInfo() : addUserInfo()"
+          [disabled]="customModel.disabled"
+        ></button>
+        <button
+          (click)="getUserData()"
+          [hidden]="true"
+          id="getUserData"
+        ></button>
+      </div>
+    </div>
+    <div
+      class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12"
+      *ngIf="isUpdate == true"
+    >
+      <div class="d-grid">
+        <button
+          icon="pi pi-info"
+          pButton
+          pRipple
+          type="button"
+          class="p-button-rounded p-button-help"
+          pTooltip="Update Password"
+          tooltipPosition="bottom"
+          style="border: 2px solid"
+          (click)="customModel.displayModal = true"
+        ></button>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <app-utility-box [url]="'employee/employee-list'"> </app-utility-box>
+</form>
+
+<app-dialog-modal
+  *ngIf="customModel.displayModal"
+  [display]="customModel.displayModal"
+  [header]="'Update User Password'"
+  [style]="{ width: '30%' }"
+  (hideModal)="hidePasswordModal()"
+>
+  <div [class]="'col-6'">
+    <label for="password">Password</label>
+    <span class="p-float-label">
+      <p-password
+        [(ngModel)]="customModel.model.password"
+        [toggleMask]="true"
+        name="password"
+        (onBlur)="customModel.removeValidationMsg($event, 'Password')"
+      ></p-password>
+    </span>
+    <app-error-validation
+      [hasValidation]="customModel.hasValidation"
+      [validationModel]="customModel.validationModel.Password"
+    ></app-error-validation>
+  </div><br>
+  <div [class]="'col-6'">
+    <label for="confirmPassword">Confirm Password</label>
+    <span class="p-float-label">
+      <p-password
+        [(ngModel)]="customModel.model.confirmPassword"
+        [toggleMask]="true"
+        name="confirmPassword"
+        [feedback]="false"
+        (onBlur)="customModel.removeValidationMsg($event, 'ConfirmPassword')"
+      ></p-password>
+    </span>
+    <app-error-validation
+      [hasValidation]="customModel.hasValidation"
+      [validationModel]="customModel.validationModel.ConfirmPassword"
+    ></app-error-validation>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
+      <div class="d-grid">
+        <button
+          pButton
+          pRipple
+          label="Update"
+          class="p-button"
+          (click)="updatePassword()"
+          [disabled]="customModel.disabled"
+        ></button>
+      </div>
+    </div>
+  </div>
+</app-dialog-modal>

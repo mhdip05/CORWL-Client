@@ -1,0 +1,26 @@
+
+<p-dropdown
+  [options]="currencies"
+  [(ngModel)]="selectedCurrency"
+  [showClear]="showClear"
+  [emptyMessage]="emptyMessage"
+  [autoDisplayFirst]="false"
+  [filter]="true"
+  optionLabel="currencyName"
+  [placeholder]="placeholder"
+  (onShow)="onShow()"
+  (onChange)="onChange()"
+>
+  <ng-template pTemplate="selectedItem">
+    <div *ngIf="selectedCurrency">
+      <div class="dropdown-selected-item">{{ selectedCurrency.currencyName }}</div>
+    </div>
+  </ng-template>
+  <ng-template let-currencies pTemplate="item">
+    <div class="dropdown-text">
+      <div id="currency-dropdown">{{ currencies.currencyName }}</div>
+    </div>
+  </ng-template>
+</p-dropdown>
+
+

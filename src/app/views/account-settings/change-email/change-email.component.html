@@ -1,0 +1,38 @@
+<div class="col-12">
+  <div class="card quarter-card">
+    <div class="card-body">
+      <div class="feature-title">
+        <h6>Change Email</h6>
+      </div>
+      <hr class="under-header" />
+        <div class="quarter-card-input">
+        <span class="p-float-label">
+          <input
+            type="text"
+            pInputText
+            name="email"
+            class="form-control form-control-sm"
+            [(ngModel)]="model.email"
+          />
+          <label for="email">Email</label>
+        </span>
+      </div>
+
+      <div>
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Save Changes"
+          class="p-button p-button-primary "
+          [disabled]="disabled"
+          (click)="changeEmail()"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

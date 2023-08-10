@@ -1,0 +1,26 @@
+<p-dropdown
+  [options]="departments"
+  [(ngModel)]="selectedDepartment"
+  [showClear]="showClear"
+  [emptyMessage]="emptyMessage"
+  [autoDisplayFirst]="false"
+  [filter]="true"
+  optionLabel="departmentName"
+  placeholder="Select department"
+  (onShow)="onShow()"
+  (onChange)="onChange()"
+  (onBlur)="onBlurEvent($event)"
+>
+  <ng-template pTemplate="selectedItem">
+    <div *ngIf="selectedDepartment">
+      <div class="dropdown-selected-item">
+        {{ selectedDepartment.departmentName }}
+      </div>
+    </div>
+  </ng-template>
+  <ng-template let-departments pTemplate="item">
+    <div class="dropdown-text">
+      <div id="department-dropdown">{{ departments.departmentName }}</div>
+    </div>
+  </ng-template>
+</p-dropdown>

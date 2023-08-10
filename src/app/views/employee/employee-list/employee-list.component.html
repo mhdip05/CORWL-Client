@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <div class="feature-title" style="margin-bottom: -13px;">
+        <h6>Employee List</h6>
+      </div>
+    </div>
+    <div class="row mt-2">
+        <app-default-grid     
+          [cols]="customModel.cols"
+          [data]="customModel.data"
+          [hasGridDeleteButton]="false"
+          [modifyButtonClass]="'p-button-primary p-button-rounded'"
+          [actionStyle]="{'margin-left': '20px' }"
+          [hasBtnPull]="true"
+          [isShrinkGridData]="true"
+          [gridLoad]="customModel.gridLoad"
+          (modifyEvent)="edit($event)"
+          [hasBtnSetData]="true"
+          btnSetDataLabel="Add Employee"
+          (setDataEvent)="url()"     
+        >
+        </app-default-grid>
+      </div>
+      <br />
+      <div>
+        <p-paginator
+          [rows]="pagination?.ItemsPerPage"
+          [totalRecords]="pagination?.TotalItems"
+          [pageLinkSize]="pagination?.TotalPages"
+          (onPageChange)="paginate($event)"
+        ></p-paginator>
+      </div>
+  </div>
+</div>

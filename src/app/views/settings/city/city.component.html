@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="feature-title">
+        <h6>Set City</h6>
+      </div>
+      <hr class="under-header" />
+      <form
+        #addForm="ngForm"
+        autocomplete="off"
+        (ngSubmit)="customModel.isAmend ? updateCity() : addCity()"
+      >
+        <div class="row">
+          <div
+            class="col-xxl-10 col-xl-10 col-lg-9 col-md-12 col-sm-12 col-xs-12"
+          >
+            <div class="row">
+              <div class="col-xl-3 col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                <label for="cityName">City</label>
+                <span class="p-float-label">
+                  <input
+                    type="text"
+                    pInputText
+                    class="form-control form-control-sm"
+                    name="cityName"
+                    [(ngModel)]="customModel.model.cityName"
+                  />
+                </span>
+              </div>
+              <div class="col-xl-3 col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                <label for="country">Country</label>
+                <span class="p-float-label">
+                  <app-countryDropdown
+                    (changeCountry)="changeCountry($event)"
+                    [countries]="[
+                      {
+                        countryName: customModel.model.countryName,
+                        countryId: customModel.model.countryId
+                      }
+                    ]"
+                    [selectedCountry]="
+                      customModel.editMode
+                        ? {
+                            countryName: customModel.model.countryName,
+                            countryId: customModel.model.countryId
+                          }
+                        : undefined
+                    "
+                    [cascade]="false"
+                  >
+                  </app-countryDropdown>
+                </span>
+              </div>
+              <div
+                class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-xs-12 custom-btn-inline"
+                *ngIf="!customModel.isAmend"
+              >
+                <div class="d-grid gap-2">
+                  <button
+                    pButton
+                    pRipple
+                    type="submit"
+                    label="Add"
+                    class="p-button"
+                    [disabled]="customModel.disabled"
+                  ></button>
+                </div>
+              </div>
+              <div
+                class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-xs-12 custom-btn-inline"
+                *ngIf="customModel.isAmend"
+              >
+                <div class="d-grid">
+                  <button
+                    pButton
+                    pRipple
+                    type="submit"
+                    label="Edit"
+                    class="p-button"
+                    [disabled]="customModel.disabled"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-xxl-2 col-xl-2 col-lg-3 col-md-12 col-sm-12 col-xs-12"
+          >
+            <div class="utility-btn-inline">
+              <span>
+                <app-reset (click)="reset()"></app-reset>
+              </span>
+              <span style="margin-left: 5px">
+                <app-toggle
+                  (isToggle)="isToggle()"
+                  [isHide]="showGrid"
+                ></app-toggle>
+              </span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-2" *ngIf="showGrid">
+    <app-default-grid
+      [cols]="customModel.cols"
+      [data]="customModel.data"
+      [hasGridDeleteButton]="false"
+      [modifyButtonClass]="'p-button-primary p-button-rounded'"
+      [actionStyle]="{ 'margin-left': '20px' }"
+      [hasBtnPull]="true"
+      [isShrinkGridData]="true"
+      (modifyEvent)="viewData($event)"
+      (pullDataEvent)="pullData()"
+    >
+    </app-default-grid>
+  </div>
+</div>

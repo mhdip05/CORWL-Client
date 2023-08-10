@@ -1,0 +1,26 @@
+<p-dropdown
+  [options]="companies"
+  [(ngModel)]="selectedCompany"
+  optionLabel="companyName"
+  [showClear]="showClear"
+  [emptyMessage]="emptyMessage"
+  placeholder = "Select company"
+  [autoDisplayFirst]="false"
+  [filter]="true"
+  [readonly]="readonly"
+  (onShow)="onShow()"
+  (onChange)="onChange()"
+  (onBlur)="blur($event)"
+  
+>
+  <ng-template pTemplate="selectedItem">
+    <div *ngIf="selectedCompany">
+      <div class="dropdown-selected-item">{{ selectedCompany.companyName }}</div>
+    </div>
+  </ng-template>
+  <ng-template let-companies pTemplate="item">
+    <div class="dropdown-text">
+      <div id="company-dropdown">{{ companies.companyName }}</div>
+    </div>
+  </ng-template>
+</p-dropdown>

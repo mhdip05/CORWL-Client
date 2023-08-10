@@ -1,0 +1,375 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="feature-title">
+        <h6>{{ customModel.isAmend ? "Edit Company" : "Add Company" }}</h6>
+      </div>
+
+      <hr class="under-header" />
+      <div class="utility-box">
+        <app-reset
+          class="utility"
+          (click)="customModel.reset(customModel.editMode, getCompanyById())"
+        ></app-reset>
+        <app-validation-reset
+          class="utility"
+          (click)="customModel.validationReset()"
+        ></app-validation-reset>
+        <app-content-help class="utility"></app-content-help>
+        <app-back class="utility" [url]="'settings/company'"></app-back>
+      </div>
+      <hr class="custom-hr" />
+
+      <form #addForm="ngForm" autocomplete="off">
+        <div class="row">
+          <div class="custom-group">
+            <p class="custom-group-title">General Info</p>
+          </div>
+          <div [class]="designModel.responsiveClass">
+            <label for="companyName">Company Name</label>
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="companyName"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.companyName"
+                (blur)="customModel.removeValidationMsg($event, 'CompanyName')"
+              />
+            </span>
+            <app-error-validation
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.CompanyName"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <label for="companyCode">Company Code</label>
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="companyCode"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.companyCode"
+                (blur)="customModel.removeValidationMsg($event, 'CompanyCode')"
+              />
+            </span>
+            <app-error-validation
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.CompanyCode"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <label for="country">Country</label>
+            <span class="p-float-label">
+              <app-countryDropdown
+                [countries]="[
+                  {
+                    countryName: customModel.model.countryName,
+                    countryId: customModel.model.countryId
+                  }
+                ]"
+                [selectedCountry]="
+                  customModel.editMode
+                    ? {
+                        countryName: customModel.model.countryName,
+                        countryId: customModel.model.countryId
+                      }
+                    : undefined
+                "
+                (changeCountry)="customModel.changeCountry($event)"
+               
+              >
+              </app-countryDropdown>
+            </span>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <label for="city">City</label>
+            <span class="p-float-label">
+              <app-cityDropdown
+                [cities]="[
+                  {
+                    cityName: customModel.model.cityName,
+                    cityId: customModel.model.cityId
+                  }
+                ]"
+                [countryId]="customModel.model.countryId"
+                [load]="customModel.cascadeCityModel.load"
+                [disabledCity]="customModel.cascadeCityModel.disabledCity"
+                [selectedCity]="
+                  customModel.editMode
+                    ? {
+                        cityName: customModel.model.cityName,
+                        cityId: customModel.model.cityId
+                      }
+                    : undefined
+                "
+                (changeCity)="customModel.changeDropdown($event)"
+                (onBlur)="customModel.removeValidationMsg($event, 'CityId', true, 'cityId')"
+              >
+              </app-cityDropdown>
+            </span>
+            <app-error-validation
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.CityId"
+            ></app-error-validation>
+          </div>
+          <div class="custom-group-clear"></div>
+
+          <div class="custom-group">
+            <p class="custom-group-title">Contact Info</p>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <label for="mobileNo">Mobile No.</label>
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="mobileNo"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.mobileNo"
+                (blur)="customModel.removeValidationMsg($event, 'MobileNo')"
+
+              />
+            </span>
+            <app-error-validation
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.MobileNo"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <label for="phone">Phone No.</label>
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="phone"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.phoneNo"
+               
+              />
+            </span>
+            <app-error-validation
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.PhoneNo"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <label for="email">Email</label>
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="email"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.email"
+                (blur)="customModel.removeValidationMsg($event, 'Email')"
+              />
+            </span>
+            <app-error-validation
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.Email"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <label for="web">Website</label>
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="web"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.web"
+              />
+            </span>
+            <app-error-validation
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.Web"
+            ></app-error-validation>
+          </div>
+          <div class="custom-group-clear"></div>
+
+          <div class="custom-group">
+            <p class="custom-group-title">Address & Misc</p>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <label for="zipCode">Zip Code</label>
+            <span class="p-float-label">
+              <input
+                type="text"
+                pInputText
+                name="zipCode"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.zipCode"
+                (blur)="customModel.removeValidationMsg($event, 'ZipCode')"
+              />
+            </span>
+            <app-error-validation
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.ZipCode"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <label for="localCurrency">Local Currency </label>
+            <span class="p-float-label">
+              <app-currency-dropdown
+                [currencies]="[
+                  {
+                    currencyId: customModel.model.localCurrencyId,
+                    currencyName: customModel.model.localCurrencyName
+                  }
+                ]"
+                [selectedCurrency]="
+                  customModel.editMode
+                    ? {
+                        currencyId: customModel.model.localCurrencyId,
+                        currencyName: customModel.model.localCurrencyName
+                      }
+                    : undefined
+                "
+                (changeCurrency)="
+                  changeCurrencyDropDown($event, 'localCurrency')
+                "
+                [applyDefaultText]="true"
+              >
+              </app-currency-dropdown>
+            </span>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <label for="localCurrency">Int Currency </label>
+            <span class="p-float-label">
+              <app-currency-dropdown
+                [currencies]="[
+                  {
+                    currencyName: customModel.model.interNationalCurrencyName,
+                    currencyId: customModel.model.interNationalCurrencyId
+                  }
+                ]"
+                [selectedCurrency]="
+                  customModel.editMode
+                    ? {
+                        currencyName:
+                          customModel.model.interNationalCurrencyName,
+                        currencyId: customModel.model.interNationalCurrencyId
+                      }
+                    : undefined
+                "
+                (changeCurrency)="
+                  changeCurrencyDropDown($event, 'internationalCurrency')
+                "
+                [applyDefaultText]="true"
+              >
+              </app-currency-dropdown>
+            </span>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <label for="conversionRate">Conversion Rate</label>
+            <span class="p-float-label">
+              <p-inputNumber
+                mode="decimal"
+                name="conversionRate"
+                [useGrouping]="false"
+                [minFractionDigits]="2"
+                [maxFractionDigits]="4"
+                [(ngModel)]="customModel.model.conversionRate"
+              >
+              </p-inputNumber>
+            </span>
+            <app-error-validation
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.ConversionRate"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <label for="address">Address</label>
+            <span class="p-float-label">
+              <textarea
+                pInputText
+                [rows]="4"
+                [cols]="30"
+                name="address"
+                [class]="designModel.inputClass"
+                [(ngModel)]="customModel.model.address"
+                (blur)="customModel.removeValidationMsg($event, 'Address')"
+              >
+              </textarea>
+            </span>
+            <app-error-validation
+              [hasValidation]="customModel.hasValidation"
+              [validationModel]="customModel.validationModel.Address"
+            ></app-error-validation>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <div class="row">
+              <div class="col-6">
+                <label class="switch-label">Is Active</label>
+              </div>
+              <div class="col-2">
+                <p-inputSwitch
+                  name="isActive"
+                  [(ngModel)]="customModel.model.isActive"
+                ></p-inputSwitch>
+              </div>
+            </div>
+          </div>
+
+          <div [class]="designModel.responsiveClass">
+            <div class="row">
+              <div class="col-6">
+                <label class="switch-label">Is Parent Company</label>
+              </div>
+              <div class="col-2">
+                <p-inputSwitch
+                  name="isParentCompany"
+                  [(ngModel)]="customModel.model.isParentCompany"
+                ></p-inputSwitch>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
+            <div class="d-grid">
+              <button
+                *ngIf="!customModel.isAmend"
+                pButton
+                pRipple
+                label="Submit"
+                class="p-button"
+                [disabled]="customModel.disabled"
+                (click)="addCompany()"
+              ></button>
+              <!-- <button (click)="rollback()">Rollback</button>  -->
+            </div>
+            <div class="d-grid">
+              <button
+                *ngIf="customModel.isAmend"
+                pButton
+                pRipple
+                label="Edit"
+                class="p-button"
+                [disabled]="customModel.disabled"
+                (click)="editCompany()"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-default-toast></app-default-toast>

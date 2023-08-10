@@ -1,0 +1,26 @@
+<div class="card" *appHasRole="userPermission">
+  <div class="card-header .custom-card-header-font">User List</div>
+  <div class="card-body">
+    <div class="col-12" *ngIf="users.length > 0">
+      <app-default-grid
+        [cols]="cols"
+        [data]="users"
+        (modifyEvent)="selectUsername($event)"
+        [hasGridDeleteButton]="false"
+        [scrollable]="true"
+        [showOverlay]="false"
+        [turnDataFilterOn]="true"
+      >
+      </app-default-grid>
+      <br />
+      <div>
+        <p-paginator
+          [rows]="pagination.ItemsPerPage"
+          [totalRecords]="pagination.TotalItems"
+          [pageLinkSize]="pagination.TotalPages"
+          (onPageChange)="paginate($event)"
+        ></p-paginator>
+      </div>
+    </div>
+  </div>
+</div>

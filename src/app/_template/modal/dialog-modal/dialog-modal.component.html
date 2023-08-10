@@ -1,0 +1,18 @@
+<p-dialog
+  [(visible)]="display"
+  [header]="header"
+  [breakpoints]="breakpoints"
+  [style]="style"
+  [modal]="true"
+  [dismissableMask]="true"
+  [resizable]="false"
+  [position]="position"
+  (onHide)="onHide()"
+>
+  <div *ngIf="data.length > 0">
+    <span *ngFor="let d of data">
+      {{ d }}
+    </span>
+  </div>
+  <ng-content></ng-content>
+</p-dialog>

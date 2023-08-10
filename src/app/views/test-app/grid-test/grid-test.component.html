@@ -1,0 +1,22 @@
+<app-default-grid
+  [cols]="cols"
+  [data]="employees"
+  gridHeight="700px"
+  [scrollable]="false"
+  [showOverlay]="true"
+  [isShrinkGridHeader]="true"
+  (showDialogEvent)="showDialog()"
+>
+</app-default-grid>
+
+<p-dialog header="Title" [(visible)]="display">
+  <ng-template pTemplate="header">
+    Header content here
+</ng-template>
+<input type="text" pInputText >
+    <input type="text" pInputText >
+    <button type="button" pButton autofocus></button>
+<ng-template pTemplate="footer">
+    //buttons
+</ng-template>
+</p-dialog>

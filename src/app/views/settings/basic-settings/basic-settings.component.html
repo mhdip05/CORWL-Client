@@ -1,0 +1,18 @@
+<div class="container">
+  <app-top-menubar [items]="items"> </app-top-menubar>
+</div>
+<br />
+
+<app-country
+  *ngIf="selectedMenuItem == 'country'"
+  [showGrid]="true"
+></app-country>
+
+<app-city *ngIf="selectedMenuItem == 'city'" [showGrid]="true"></app-city>
+
+<app-currency
+  *ngIf="selectedMenuItem == 'currency'"
+  [showGrid]="true"
+></app-currency>
+<app-default-toast></app-default-toast>
+

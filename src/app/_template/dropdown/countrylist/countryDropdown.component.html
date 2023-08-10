@@ -1,0 +1,26 @@
+<p-dropdown
+  id="country-dropdown"
+  [options]="countries"
+  [(ngModel)]="selectedCountry"
+  [showClear]="showClear"
+  [filter]="true"
+  [emptyMessage]="emptyMessage"
+  [placeholder]="'Select Country'"
+  [autoDisplayFirst]="false"
+  optionLabel="countryName"
+  (onChange)="onChange()"
+  (onShow)="onShow($event)"
+>
+
+
+<ng-template pTemplate="selectedItem">
+  <div *ngIf="selectedCountry">
+    <div class="dropdown-selected-item">{{ selectedCountry.countryName }}</div>
+  </div>
+</ng-template>
+<ng-template let-countries pTemplate="item">
+  <div class="dropdown-text">
+    <div id="country-dropdown">{{ countries.countryName }}</div>
+  </div>
+</ng-template>
+</p-dropdown>

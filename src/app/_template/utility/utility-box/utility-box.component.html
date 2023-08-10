@@ -1,0 +1,12 @@
+<div class="utility-box">
+    <app-reset
+      class="utility"
+      (click)="onReset()"
+    ></app-reset>
+    <app-validation-reset
+      class="utility"
+      (click)="onValidationReset()"
+    ></app-validation-reset>
+    <app-content-help class="utility" (click)="onHelp()"></app-content-help>
+    <app-back class="utility" [url]="url"></app-back>
+  </div>

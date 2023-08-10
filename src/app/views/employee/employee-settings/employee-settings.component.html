@@ -1,0 +1,16 @@
+<div class="container">
+  <app-top-menubar [items]="items"></app-top-menubar>
+</div>
+<br />
+
+<app-add-department *ngIf="selectedMenuItem == 'department'" [showGrid]="true">
+</app-add-department>
+
+<app-add-designation
+  *ngIf="selectedMenuItem == 'designation'"
+  [showGrid]="true"
+>
+</app-add-designation>
+
+<app-add-role *ngIf="selectedMenuItem == 'role'" [showGrid]="true">
+</app-add-role>

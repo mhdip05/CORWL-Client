@@ -1,0 +1,75 @@
+<p-fileUpload
+  #fileUpload
+  name='files[]'
+  [showUploadButton]="showUploadButton"
+  [maxFileSize]="maxFileSize"
+  mode="advanced"
+  [multiple]="fileLimit > 1 ? true : false"
+  [accept]="accept"
+  [fileLimit]="fileLimit"
+  [customUpload]="true"
+  (onSelect)="handleFileSelect($event)"
+  (onClear)="clearAllFiles()"
+  styleClass="my-file-upload"
+>
+
+  <!-- <ng-template pTemplate="toolbar">
+    <br />
+    <div>Upload 3 Files</div>
+  </ng-template>
+  <ng-template let-file pTemplate="file">
+    <div *ngIf="noContent">Custom UI to display a file</div>
+  </ng-template>
+  <ng-template pTemplate="content" let-files #uploadContent>
+    <div #imageContainer>
+      <div class="row">
+        <div
+          class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-xs-12 col-sm-12"
+          *ngFor="let file of files;let i = index"
+          [attr.data-fileid] = "file.name"
+        >
+          <div
+            
+            class="thumbnail custom-image-thumbnail"
+            *ngIf="
+              file.fileType == 'jpg' ||
+              file.fileType == 'jpeg' ||
+              file.fileType == 'png'
+            "
+            
+          >
+            <img
+              [src]="file.objectURL"
+              [alt]="file.name"
+              class="mx-auto d-block custom-image"
+            />
+            <div class="caption custom-image-caption">
+              <p>{{ file.name }} ({{ (file.size / 1000000).toFixed(3) }} MB)</p>
+            </div>
+            
+          </div>
+
+          <div
+            class="thumbnail custom-image-thumbnail doc-thumbnail"
+            *ngIf="file.fileType == 'docx' || file.fileType == 'pdf'"
+          >
+            <img
+              [src]="
+                file.fileType == 'pdf'
+                  ? '../../../assets/images/pdf-icon-2.png'
+                  : '../../../assets/images/doc-icon-3.png'
+              "
+              [alt]="file.name"
+              class="mx-auto d-block custom-image doc-image"
+            />
+            <div class="caption custom-image-caption">
+              <p>{{ file.name }} ({{ (file.size / 1000000).toFixed(3) }} MB)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button (click)="test()">Test</button>
+  </ng-template> -->
+</p-fileUpload>
+
