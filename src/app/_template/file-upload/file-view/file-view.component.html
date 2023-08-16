@@ -5,7 +5,6 @@
     *ngFor="let file of files; let i = index"
     [attr.data-fileid]="file.id"
   >
-  
     <div
       class="thumbnail custom-image-thumbnail"
       *ngIf="file.fileType == 'image'"
@@ -15,7 +14,14 @@
       </div>
 
       <img
-        [src]="url + directory + '/' + file.fileName + '/' + subdirectory"
+        [src]="
+          url +
+          file.filePath +
+          '/' +
+          file.fileName +
+          '?' +
+          azureBlobContainerToken
+        "
         [alt]="file.fileName"
         class="mx-auto d-block custom-image"
       />
@@ -23,7 +29,6 @@
       <div class="caption custom-image-caption">
         <p>{{ file.fileName }} ({{ file.fileSize }} {{ file.fileUnit }})</p>
       </div>
-      
     </div>
 
     <div
@@ -34,7 +39,14 @@
         <button pRipple (click)="showDialog(file.id)">X</button>
       </div>
       <a
-        [href]="url + directory + '/' + file.fileName + '/' + subdirectory"
+        [href]="
+          url +
+          file.filePath +
+          '/' +
+          file.fileName +
+          '?' +
+          azureBlobContainerToken
+        "
         target="_blank"
       >
         <img
@@ -50,7 +62,6 @@
         <div class="caption custom-image-caption">
           <p>{{ file.fileName }} ({{ file.fileSize }} {{ file.fileUnit }})</p>
         </div>
-       
       </a>
     </div>
   </div>
@@ -62,5 +73,4 @@
   (hideDialog)="hideDialog()"
   (accept)="removeFile()"
 >
-
 </app-confirmation-dialog>

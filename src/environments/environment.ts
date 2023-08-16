@@ -2,10 +2,14 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+var currentURL = 'https://localhost:7214'
+//var currentURL ='https://corwl-api-app.politecliff-c1771108.eastus.azurecontainerapps.io';
+
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7214/api/v1/',
-  hubUrl: 'https://localhost:7214/hubs/',
+  apiUrl: currentURL + '/api/v1/',
+  hubUrl: currentURL + '/hubs/',
+  fileUrl: "https://stcorwl.blob.core.windows.net/rootcontainer/",
   testDataUrl: 'http://localhost:1665/',
 };
 
