@@ -62,7 +62,6 @@ export class AddEmployeeComponent implements OnInit {
         break;
 
       case 'contact info':
-        //console.log('contact info');
         break;
 
       case 'document':
@@ -70,7 +69,6 @@ export class AddEmployeeComponent implements OnInit {
         break;
 
       case 'others':
-        //console.log('others');
         break;
 
       default:

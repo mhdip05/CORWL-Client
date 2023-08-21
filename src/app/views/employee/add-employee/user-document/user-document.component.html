@@ -118,7 +118,6 @@
   <app-utility-box
     [url]="'employee/employee-list'"
   >
-
   </app-utility-box>
 </form>
 
@@ -133,7 +132,8 @@
     [files]="files"
     [directory]="'employeedoc'"
     [subdirectory]="'emp_' + this.customModel.model.employeeId"
-    (deleteFile)="deleteFile($event)"
+    [azureBlobContainerToken]="azureBlobContainerToken"
+    (deleteFile)="DeleteEmployeeDocsFromAzure($event)"
   >
   </app-file-view>
 </app-dialog-modal>

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class EmployeeService {
-  apiUrl = environment.apiUrl + 'employee/'
+  apiUrl = environment.apiUrl + 'employee/';
   constructor(
     private http: HttpClient,
     private paginationServices: PaginationService,
@@ -21,10 +21,7 @@ export class EmployeeService {
   };
 
   saveEmployeeBasicInfo = (model: any) => {
-    return this.http.post(
-      this.apiUrl + 'SaveEmployeeBasicInfo',
-      model
-    );
+    return this.http.post(this.apiUrl + 'SaveEmployeeBasicInfo', model);
   };
 
   getEmployeeBasicInfo = (employeeId: number) => {
@@ -64,28 +61,23 @@ export class EmployeeService {
   };
 
   updateEmployeeBasicInfo = (model: any) => {
-    return this.http
-      .put(this.apiUrl + 'UpdateEmployeeBasicInfo', model)
-      .pipe(
-        map((res: any) => {
-          //console.log(res)         
-          const dateObj = {
-            dob: new Date(res.data.dob),
-          };
-          var data = { ...res.data, ...dateObj };
-          return {
-            data,
-            message: res.message,
-          };
-        })
-      );
+    return this.http.put(this.apiUrl + 'UpdateEmployeeBasicInfo', model).pipe(
+      map((res: any) => {
+        //console.log(res)
+        const dateObj = {
+          dob: new Date(res.data.dob),
+        };
+        var data = { ...res.data, ...dateObj };
+        return {
+          data,
+          message: res.message,
+        };
+      })
+    );
   };
 
   saveEmployeeJobDetails = (model: any) => {
-    return this.http.post(
-      this.apiUrl + 'SaveEmployeeJobDetails',
-      model
-    );
+    return this.http.post(this.apiUrl + 'SaveEmployeeJobDetails', model);
   };
 
   getEmployeeJobDetails = (employeeId: number) => {
@@ -106,10 +98,7 @@ export class EmployeeService {
   };
 
   updateEmployeeJobDetails = (model: any) => {
-    return this.http.put(
-      this.apiUrl + 'UpdateEmployeeJobDetails',
-      model
-    );
+    return this.http.put(this.apiUrl + 'UpdateEmployeeJobDetails', model);
   };
 
   getDocumentMasterInfoByEmployee = (employeeId: number) => {
@@ -119,15 +108,18 @@ export class EmployeeService {
   };
 
   updateDocumentMaster = (model: any) => {
-    return this.http.put(
-      this.apiUrl + 'UpdateDocumentMaster/',
-      model
-    );
+    return this.http.put(this.apiUrl + 'UpdateDocumentMaster/', model);
   };
 
   deleteEmpoloyeeDoc = (fileId: number, empId: number) => {
     return this.http.delete(
       this.apiUrl + 'DeleteEmployeeDoc/' + fileId + '/' + empId
+    );
+  };
+
+  DeleteEmployeeDocsFromAzure = (fileId: number) => {
+    return this.http.delete(
+      this.apiUrl + 'DeleteEmployeeDocsFromAzure/' + fileId
     );
   };
 }

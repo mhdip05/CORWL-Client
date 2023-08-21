@@ -15,6 +15,7 @@ import { CustomModel } from 'src/app/_models/CustomModel';
 import { DesignModel } from 'src/app/_models/DesignModel';
 import { EmployeeService } from 'src/app/_services/employee/employee.service';
 import { UtilsService } from 'src/app/_services/utils/utils.service';
+import { FileService } from 'src/app/_services/file/file.service';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-user-document',
@@ -22,6 +23,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./user-document.component.scss'],
 })
 export class UserDocumentComponent implements OnInit, AfterViewInit {
+  @Input() documentInfoData: any;
   customModel = new CustomModel();
   designModel = new DesignModel();
   env = environment.apiUrl;
@@ -29,13 +31,14 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
   isFileAvailable = false;
   showFileByModal = false;
   isGeneralInfoButton = false;
-  @Input() documentInfoData: any;
+  azureBlobContainerToken = '';
 
   constructor(
     private employeeService: EmployeeService,
     private messageService: MessageService,
     private utilService: UtilsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private fileService: FileService
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +53,7 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {}
 
   getDocumentInfo() {
+    this.getAzureBlobToken();
     this.employeeService
       .getDocumentMasterInfoByEmployee(this.customModel.model.employeeId)
       .subscribe({
@@ -58,6 +62,7 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
           if (v == null) return;
           this.customModel.model = v.docmasterData;
           this.files = v.docDetailsData;
+
           this.files.length > 0
             ? (this.isFileAvailable = true)
             : (this.isFileAvailable = false);
@@ -65,6 +70,15 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
           this.isGeneralInfoButton = true;
         },
       });
+  }
+
+  getAzureBlobToken() {
+    this.fileService.getAzureToken().subscribe({
+      next: (v: any) => {
+        this.azureBlobContainerToken = v.azureBlobContainerToken;
+        //console.log(this.azureBlobContainerToken);
+      },
+    });
   }
 
   updateDocumentMasterData() {
@@ -90,7 +104,7 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
       )
       .subscribe({
         next: (v: any) => {
-          //console.log(v);
+          console.log(v);
           if (v.status == true) {
             this.messageService.add(
               this.utilService.successMessage(v.message, 2000)
@@ -148,6 +162,15 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
     this.employeeService
       .deleteEmpoloyeeDoc(fileId, this.customModel.model.employeeId)
       .subscribe();
+    if (data.currentFileLength == 0) {
+      this.customModel.displayModal = false;
+      this.isFileAvailable = false;
+    }
+  }
+
+  DeleteEmployeeDocsFromAzure(data: any) {
+    const fileId = data.fileId;
+    this.employeeService.DeleteEmployeeDocsFromAzure(fileId).subscribe();
     if (data.currentFileLength == 0) {
       this.customModel.displayModal = false;
       this.isFileAvailable = false;

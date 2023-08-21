@@ -9,6 +9,7 @@ import {
   Renderer2,
   ViewChildren,
 } from '@angular/core';
+import { FileService } from 'src/app/_services/file/file.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,12 +21,13 @@ export class FileViewComponent implements OnInit {
   display = false;
   fileId = 0;
   @Input() files: any = [];
-  @Input() url: string = environment.apiUrl + 'file/getfile/';
+  @Input() url: string = environment.fileUrl;
   @Input() directory: string = '';
   @Input() subdirectory: string | null = null;
+  @Input() azureBlobContainerToken = "";
   @Output() deleteFile = new EventEmitter();
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, public fileServie:FileService) {}
 
   ngOnInit(): void {}
 
@@ -66,4 +68,6 @@ export class FileViewComponent implements OnInit {
     this.display = false;
     this.deleteFile.emit(fileInfo);
   }
+
+  
 }
