@@ -76,7 +76,7 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
     this.fileService.getAzureToken().subscribe({
       next: (v: any) => {
         this.azureBlobContainerToken = v.azureBlobContainerToken;
-        console.log(this.azureBlobContainerToken);
+        //console.log(this.azureBlobContainerToken);
       },
     });
   }
@@ -104,7 +104,7 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
       )
       .subscribe({
         next: (v: any) => {
-          //console.log(v);
+          console.log(v);
           if (v.status == true) {
             this.messageService.add(
               this.utilService.successMessage(v.message, 2000)

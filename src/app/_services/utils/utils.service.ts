@@ -42,14 +42,22 @@ export class UtilsService {
     };
   };
 
-  dangerMessage = (detail: string, lifeSpan?: number | null) => {
+  dangerMessage = (detail: any, lifeSpan?: number | null) => {
+    let message = 'Please contact admin';
+    switch (detail.statusCode) {
+      case 500:
+        message = 'Internal Server Error';
+        break;
+      default:
+        message = detail;
+    }
     return {
       icon: 'pi-times-circle',
       severity: 'error',
       summary: 'Validation',
       sticky: false,
       life: lifeSpan == (null || undefined) ? 1700 : lifeSpan,
-      detail: detail,
+      detail: message,
     };
   };
 
