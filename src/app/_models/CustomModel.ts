@@ -86,7 +86,7 @@ export class CustomModel {
   };
 
   handleError = (e: any): any => {
-    //console.log(e)
+    //console.log(e);
     this.hasValidation = true;
     if (e.error.errors) {
       this.validationModel = { ...e.error.errors };
@@ -141,7 +141,6 @@ export class CustomModel {
     isInputDropdown = false,
     dropdownName?: any
   ): void {
-    
     let inputValue = '';
 
     if (this.isValidDate(new Date(event)) == false) {

@@ -97,19 +97,19 @@ export function CityReduer(
       return { ...state, ...{ entities: newEntities, ids: newIds } };
     }
     case CITY_EMPTY: {
-      return {...state, ...{ byCountryEntities: {}, ids: [] }};
+      return { ...state, ...{ byCountryEntities: {}, ids: [] } };
     }
     default: {
       return state;
     }
   }
-
 }
 
 export const getLoaded = (state: CityReducerState) => state.loaded;
 export const getLoading = (state: CityReducerState) => state.loading;
 export const getEntities = (state: CityReducerState) => state.entities;
-export const getByCountryEntities = (state: CityReducerState) =>state.byCountryEntities;
+export const getByCountryEntities = (state: CityReducerState) =>
+  state.byCountryEntities;
 export const getIds = (state: CityReducerState) => state.ids;
 export const getCities = createSelector(
   getEntities,

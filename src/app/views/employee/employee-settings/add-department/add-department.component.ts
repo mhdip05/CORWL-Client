@@ -107,8 +107,7 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   updateDepartment() {
-    console.log(this.customModel.model);
-    return;
+    //console.log(this.customModel.model);
     this.customModel.disabled = true;
     this.departmentService
       .updateDepartment(this.customModel.model)
@@ -119,7 +118,7 @@ export class AddDepartmentComponent implements OnInit {
       )
       .subscribe({
         next: (v: any) => {
-          console.log(v);
+          //console.log(v);
           this.messageService.add(
             this.utilService.successMessage(v.message, 2000)
           );
@@ -128,7 +127,7 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   viewData(data: any, eventType: string) {
-    console.log(data)
+    //console.log(data)
     this.customModel.editMode = false;
     this.customModel.model = { ...data };
 

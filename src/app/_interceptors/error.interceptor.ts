@@ -51,17 +51,18 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.showModal = true;
                 if (e.error.errors) {
                   for (const key in e.error.errors) {
+                    
                     var errors = e.error.errors[key];
                     //console.log(e.error);
                     //this.modalData.message.push(e.error.errors[key]);
-                    if(errors.length == 1){
+                    if (errors.length == 1) {
                       this.modalData.message.push(e.error.errors[key]);
                     }
-                    if(errors.length > 1) {
-                      //console.log(e.error.errors[key]);                     
-                      for(const er in e.error.errors[key]){
-                         //console.log(e.error.errors[key][er])
-                         this.modalData.message.push(e.error.errors[key][er]);
+                    if (errors.length > 1) {
+                      //console.log(e.error.errors[key]);
+                      for (const er in e.error.errors[key]) {
+                        //console.log(e.error.errors[key][er])
+                        this.modalData.message.push(e.error.errors[key][er]);
                       }
                     }
                   }

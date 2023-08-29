@@ -90,7 +90,6 @@ export function CountryReduer(
       const entity = { [countryData.id]: countryData };
       const updateEntities = { ...state.entities, ...entity };
       return { ...state, ...{ entities: updateEntities } };
-      
     }
     default: {
       return state;
@@ -101,7 +100,8 @@ export function CountryReduer(
 export const getLoaded = (state: CountryReducerState) => state.loaded;
 export const getLoading = (state: CountryReducerState) => state.loading;
 export const getEntities = (state: CountryReducerState) => state.entities;
-export const getByCountryEntities = (state: CountryReducerState) =>state.byCountryEntities;
+export const getByCountryEntities = (state: CountryReducerState) =>
+  state.byCountryEntities;
 export const getIds = (state: CountryReducerState) => state.ids;
 export const getCountries = createSelector(
   getEntities,
@@ -110,5 +110,3 @@ export const getCountries = createSelector(
     return ids.map((id) => entities[id]);
   }
 );
-
-

@@ -30,16 +30,15 @@ export class EmployeeService {
       .pipe(
         map((res: any) => {
           //console.log(res)
+          const dateObj = {
+            dob: new Date(res.data.dob),
+          };
           if (res == null) return res.data;
           if (res.status == false) {
             this.router.navigateByUrl('/404');
             return;
           }
-          const dateObj = {
-            dob: new Date(res.data.dob),
-          };
-          var data = { ...res.data, ...dateObj };
-          return data;
+          return { ...res.data, ...dateObj };
         })
       );
   };
@@ -91,8 +90,7 @@ export class EmployeeService {
             confirmationDate: new Date(res.confirmationDate),
             joiningDate: new Date(res.joiningDate),
           };
-          var data = { ...res, ...dateObj };
-          return data;
+          return { ...res, ...dateObj };
         })
       );
   };

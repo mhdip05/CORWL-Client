@@ -9,3 +9,4 @@ export const environment = {
   fileUrl: "https://stcorwl.blob.core.windows.net/rootcontainer/",
   testDataUrl: 'http://localhost:1665/',
 };
+

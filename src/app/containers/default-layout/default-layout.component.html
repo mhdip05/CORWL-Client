@@ -5,7 +5,7 @@
   class="d-print-none sidebar sidebar-fixed"
   id="sidebar"
   visible
-  style="background: #082944;"
+  style="background: #082944"
 >
   <c-sidebar-brand
     [brandFull]="{
@@ -23,12 +23,9 @@
     routerLink="./"
   >
   </c-sidebar-brand>
-    <perfect-scrollbar [config]="perfectScrollbarConfig">
-  <c-sidebar-nav
-    [navItems]="navItems"
-  >
-  </c-sidebar-nav>
-    </perfect-scrollbar>
+  <perfect-scrollbar [config]="perfectScrollbarConfig">
+    <c-sidebar-nav [navItems]="navItems"> </c-sidebar-nav>
+  </perfect-scrollbar>
   <c-sidebar-toggler
     *ngIf="!sidebar.narrow"
     toggle="unfoldable"
@@ -39,14 +36,17 @@
 <!--main-->
 <div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent">
   <!--app-header-->
-  <app-default-header class="mb-4 d-print-none header header-sticky" position="sticky" sidebarId="sidebar"></app-default-header>
+  <app-default-header
+    class="mb-4 d-print-none header header-sticky"
+    position="sticky"
+    sidebarId="sidebar"
+  ></app-default-header>
   <!--app-body-->
   <div class="body flex-grow-1 px-3">
     <div class="container-fluid">
-      <router-outlet></router-outlet>  
-    </div> 
+      <router-outlet></router-outlet>
+    </div>
   </div>
   <!--app footer-->
   <app-default-footer></app-default-footer>
-
 </div>

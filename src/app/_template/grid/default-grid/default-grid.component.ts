@@ -14,7 +14,7 @@ import { ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
 
 @Component({
-  selector: 'app-default-grid', 
+  selector: 'app-default-grid',
   templateUrl: './default-grid.component.html',
   styleUrls: ['./default-grid.component.scss'],
 })
@@ -33,7 +33,6 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
   @Input() isShrinkGridHeader = false;
   @Input() applyCustomHeaderStyle = false;
   @Input() gridLoad = false;
-  
 
   //---------------- Set Data-----------------
   @Input() hasBtnSetData = false;
@@ -44,7 +43,7 @@ export class DefaultGridComponent implements OnInit, AfterViewInit {
   @Input() hasBtnPull = false;
   @Output() pullDataEvent = new EventEmitter();
 
-  // ----------Edit and Delete Button --------
+  // ----------Action---------
   @Input() actionStyle = {};
   @Input() hasAction = true;
   @Input() isButtonIconable = true;

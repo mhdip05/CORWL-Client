@@ -14,5 +14,5 @@
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
-, "src/app/views/employee/user-list/user-list.component.spec.ts"  ]
+, "src/app/views/employee/user-list/user-list.component.spec.ts", "src/app/_resolver/Schema.ts"  ]
 }

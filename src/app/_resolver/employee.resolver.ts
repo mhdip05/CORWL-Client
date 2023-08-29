@@ -5,14 +5,15 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot,
 } from '@angular/router';
-import { filter, map, Observable, of, pipe, switchMap, take } from 'rxjs';
-import { CompanyService } from '../_services/company/company.service';
+import { Observable, filter, map, of, switchMap, take } from 'rxjs';
+import { EmployeeService } from '../_services/employee/employee.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CompanyResolver implements Resolve<any> {
-  constructor(private companyService: CompanyService) {}
+
+export class EmployeeResolver implements Resolve<boolean> {
+  constructor(private employeeService: EmployeeService) {}
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -20,7 +21,7 @@ export class CompanyResolver implements Resolve<any> {
     const id = route.params['id'];
     let cd = of(id).pipe(
       map((id) => id),
-      switchMap((id) => this.companyService.getCompanyById(id)),
+      switchMap((id) => this.employeeService.updateEmployeeBasicInfo(id)),
       filter((res) => !!res),
       take(1)
     );

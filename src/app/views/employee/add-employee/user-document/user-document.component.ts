@@ -90,6 +90,9 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
             this.utilService.successMessage(v.message, 2000)
           );
         },
+        error: (e) => {
+          this.displayError(e);
+        },
       });
   }
 
@@ -170,7 +173,7 @@ export class UserDocumentComponent implements OnInit, AfterViewInit {
 
   DeleteEmployeeDocsFromAzure(data: any) {
     const fileId = data.fileId;
-    this.employeeService.DeleteEmployeeDocsFromAzure(fileId).subscribe();
+    this.employeeService.DeleteEmployeeDocsFromAzure(fileId).subscribe({});
     if (data.currentFileLength == 0) {
       this.customModel.displayModal = false;
       this.isFileAvailable = false;

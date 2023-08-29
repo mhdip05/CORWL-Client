@@ -84,7 +84,6 @@ import { ChooseRoleComponent } from '../views/choose-role/choose-role.component'
     FileUploadComponent,
     FileViewComponent,
     ChooseRoleComponent,
-
   ],
   imports: [
     CommonModule,
@@ -112,7 +111,7 @@ import { ChooseRoleComponent } from '../views/choose-role/choose-role.component'
     CalendarModule,
     PasswordModule,
     FileUploadModule,
-    CheckboxModule 
+    CheckboxModule,
   ],
   exports: [
     ButtonModule,
@@ -162,7 +161,7 @@ import { ChooseRoleComponent } from '../views/choose-role/choose-role.component'
     FileUploadModule,
     FileUploadComponent,
     FileViewComponent,
-    CheckboxModule 
+    CheckboxModule,
   ],
   providers: [ConfirmationService, MessageService],
 })
