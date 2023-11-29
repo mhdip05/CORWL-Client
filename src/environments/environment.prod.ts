@@ -1,5 +1,5 @@
-//var currentURL = 'https://localhost:7214'
-var currentURL ='https://corwl-dev.azurewebsites.net';
+var currentURL = 'https://localhost:7214'
+//var currentURL ='https://corwl-dev.azurewebsites.net';
 //var currentURL ='https://corwl.azurewebsites.net';
 
 export const environment = {
