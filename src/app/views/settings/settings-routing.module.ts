@@ -20,6 +20,7 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'basic-settings',
+        pathMatch: 'full'
       },
       {
         path: 'basic-settings',

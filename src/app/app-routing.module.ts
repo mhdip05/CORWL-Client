@@ -12,11 +12,11 @@ import { ForgotPasswordComponent } from './views/authentication/forgot-password/
 import { ChooseRoleComponent } from './views/choose-role/choose-role.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'auth',
+  //   pathMatch: 'full',
+  // },
 
   {
     path: '',

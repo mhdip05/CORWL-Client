@@ -16,6 +16,7 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'employee-settings',
+        pathMatch:'full'
       },
       {
         path: 'employee-settings',

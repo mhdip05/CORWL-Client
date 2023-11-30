@@ -9,7 +9,8 @@ const routes: Routes = [
     component: DashboardComponent,
     data: {
       title: $localize`Dashboard`
-    }
+    },
+    pathMatch:'full'
   },
 
 

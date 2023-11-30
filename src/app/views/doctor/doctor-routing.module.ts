@@ -11,7 +11,8 @@ const routes: Routes = [
     children: [
       {
         path:'',
-        redirectTo:'appointment-list'
+        redirectTo:'appointment-list',
+        pathMatch:'full'
       },
       {
         path: 'appointment-list',

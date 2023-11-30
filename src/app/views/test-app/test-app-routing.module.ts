@@ -11,7 +11,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'grid-test'
+        redirectTo: 'grid-test',
+        pathMatch:'full'
       },
       { path: 'grid-test', component: GridTestComponent, data: { title: 'Grid-Test' }},
     ]

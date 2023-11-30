@@ -5,13 +5,14 @@ import { ParentComponent } from './parent/parent.component';
 const routes: Routes = [
   {
     path: '',
-    // data: {
-    //   title:'Account Settings'
-    // },
+    data: {
+      title:'Account Settings'
+    },
     children:[
       {
          path: '',
-         redirectTo: 'parent'
+         redirectTo: 'parent',
+         pathMatch: 'full'
       },
 
       {
