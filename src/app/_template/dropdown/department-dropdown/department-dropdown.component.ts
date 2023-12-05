@@ -44,8 +44,8 @@ export class DepartmentDropdownComponent implements OnInit {
     this.changeDepartment.emit(this.selectedDepartment);
   }
 
-  onBlurEvent(event:any){
-    this.onBlur.emit(event)
+  onBlurEvent(event: any) {
+    this.onBlur.emit(event);
   }
 
   onShow() {
@@ -70,8 +70,8 @@ export class DepartmentDropdownComponent implements OnInit {
               },
             ];
           }
-          this.departments = [...empty,...res];
-          this.currentdepartments = [...empty,...res];
+          this.departments = [...empty, ...res];
+          this.currentdepartments = [...empty, ...res];
         },
       });
   }

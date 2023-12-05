@@ -50,7 +50,6 @@
             </div>
 
             <div class="col-12 mb-3">
-              <span class="p-float-label">
                 <app-employee-dropdown
                   [employees]="[
                     {
@@ -70,15 +69,7 @@
                   (changeEmployee)="changeDropdown($event)"
                 >
                 </app-employee-dropdown>
-                <!-- <label
-                  for="employee"
-                  *ngIf="
-                    customModel.model.departmentHeadId == 0 ||
-                    customModel.model.departmentHeadId == null
-                  "
-                  >Dept. Head
-                </label> -->
-              </span>
+                
             </div>
             <div class="col-12 mb-3">
               <span class="p-float-label">

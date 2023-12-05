@@ -5,7 +5,6 @@
     </div>
     <div [class]="designModel.responsiveClass">
       <label for="companyName">Company</label>
-      <span class="p-float-label">
         <app-company-dropdown
           [companies]="[
             {
@@ -37,11 +36,9 @@
           [hasValidation]="customModel.hasValidation"
           [validationModel]="customModel.validationModel.CompanyId"
         ></app-error-validation>
-      </span>
     </div>
     <div [class]="designModel.responsiveClass">
       <label for="branchName">Banch</label>
-      <span class="p-float-label">
         <app-branch-dropdown
           [branches]="[
             {
@@ -72,11 +69,10 @@
           [hasValidation]="customModel.hasValidation"
           [validationModel]="customModel.validationModel.BranchId"
         ></app-error-validation>
-      </span>
+
     </div>
     <div [class]="designModel.responsiveClass">
       <label for="departmentName">Department</label>
-      <span class="p-float-label">
         <app-department-dropdown
           [departments]="[
             {
@@ -108,11 +104,9 @@
           [hasValidation]="customModel.hasValidation"
           [validationModel]="customModel.validationModel.DepartmentId"
         ></app-error-validation>
-      </span>
     </div>
     <div [class]="designModel.responsiveClass">
       <label for="designationName">Designation</label>
-      <span class="p-float-label">
         <app-designation-dropdown
           [designations]="[
             {
@@ -143,11 +137,9 @@
           [hasValidation]="customModel.hasValidation"
           [validationModel]="customModel.validationModel.DesignationId"
         ></app-error-validation>
-      </span>
     </div>
     <div [class]="designModel.responsiveClass">
       <label for="supervisor">Supervisor</label>
-      <span class="p-float-label">
         <app-employee-dropdown
           [employees]="[
             {
@@ -169,7 +161,6 @@
           [applyDefaultText]="true"
         >
         </app-employee-dropdown>
-      </span>
     </div>
 
     <div class="custom-group-clear"></div>
@@ -179,7 +170,6 @@
 
     <div [class]="designModel.responsiveClass">
       <label>Staff Grade</label>
-      <span class="p-float-label">
         <p-dropdown
           [options]="employeeModel.staffGrade"
           [(ngModel)]="customModel.model.staffGrade"
@@ -189,11 +179,9 @@
           placeholder="Select staff grade"
           [showClear]="true"
         ></p-dropdown>
-      </span>
     </div>
     <div [class]="designModel.responsiveClass">
       <label for="confirmationDate">Confirmation Date</label>
-      <span class="p-float-label">
         <p-calendar
           [(ngModel)]="customModel.model.confirmationDate"
           name="'confirmationDate'"
@@ -204,7 +192,6 @@
             customModel.removeValidationMsg($event, 'ConfirmationDate')
           "
         ></p-calendar>
-      </span>
       <app-error-validation
         [hasValidation]="customModel.hasValidation"
         [validationModel]="customModel.validationModel.ConfirmationDate"
@@ -212,7 +199,6 @@
     </div>
     <div [class]="designModel.responsiveClass">
       <label for="joiningDate">Joining Date</label>
-      <span class="p-float-label">
         <p-calendar
           [(ngModel)]="customModel.model.joiningDate"
           name="'joiningDate'"
@@ -221,7 +207,7 @@
           [maxDate]="dateTimeService.today"
           (onSelect)="customModel.removeValidationMsg($event, 'JoiningDate')"
         ></p-calendar>
-      </span>
+
       <app-error-validation
         [hasValidation]="customModel.hasValidation"
         [validationModel]="customModel.validationModel.JoiningDate"
@@ -229,7 +215,6 @@
     </div>
     <div [class]="designModel.responsiveClass">
       <label for="reportingMethod">Reporting Method</label>
-      <span class="p-float-label">
         <p-dropdown
           [options]="employeeModel.reportingMethod"
           [(ngModel)]="customModel.model.reportingMethod"
@@ -239,7 +224,6 @@
           placeholder="Select reporting method"
           [showClear]="true"
         ></p-dropdown>
-      </span>
     </div>
   </div>
   <hr class="custom-hr" />
