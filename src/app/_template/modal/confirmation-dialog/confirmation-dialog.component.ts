@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 export class ConfirmationDialogComponent implements OnInit {
 
   @Input() display = false;
-  @Input() position = "top";
+  @Input() position:any = "top";
   @Input() contentDetails = 'Are you sure to proceed ?'
   @Output() hideDialog = new EventEmitter()
   @Output() accept = new EventEmitter()

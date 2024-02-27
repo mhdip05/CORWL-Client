@@ -1,5 +1,6 @@
 import { style } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastPositionType } from 'primeng/toast';
 
 @Component({
   selector: 'app-default-toast',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./default-toast.component.scss'],
 })
 export class DefaultToastComponent implements OnInit {
-  @Input() position = 'top-center';
+  @Input() position:ToastPositionType = "top-center";
   @Input() style = {
     'opacity': '0.9',
     'font-style': 'italic',

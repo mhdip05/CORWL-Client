@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Dialog } from 'primeng/dialog';
 
 @Component({
   selector: 'app-dialog-modal',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./dialog-modal.component.scss'],
 })
 export class DialogModalComponent implements OnInit {
-  @Input() position = "top"
+  @Input() position:Dialog["position"] = "top"
   @Input() header = "Title"
   @Input() display = false;
   @Input() breakpoints="{'960px': '75vw', '640px': '100vw'}";
